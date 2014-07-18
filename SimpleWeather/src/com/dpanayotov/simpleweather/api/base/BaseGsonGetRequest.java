@@ -4,10 +4,11 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
+import android.content.Context;
+
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
@@ -24,9 +25,9 @@ public class BaseGsonGetRequest<T> extends Request<T> {
 	private Listener<T> mListener;
 	private Class<T> mResponseClass;
 
-	public BaseGsonGetRequest(int method, String url, ErrorListener listener,
-			Class<T> responseClass) {
-		super(method, url, listener);
+	public BaseGsonGetRequest(int method, String url, Class<T> responseClass,
+			Context context) {
+		super(method, url, new BaseForecastErrorListener(context));
 		mResponseClass = responseClass;
 	}
 
