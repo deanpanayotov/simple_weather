@@ -1,4 +1,4 @@
-package com.dpanayotov.simpleweather;
+package com.dpanayotov.simpleweather.activity;
 
 import org.json.JSONObject;
 
@@ -16,6 +16,10 @@ import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.dpanayotov.simpleweather.R;
+import com.dpanayotov.simpleweather.R.id;
+import com.dpanayotov.simpleweather.R.layout;
+import com.dpanayotov.simpleweather.R.menu;
 import com.dpanayotov.simpleweather.general.SimpleWeatherApplication;
 
 public class MainActivity extends Activity {
