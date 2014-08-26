@@ -1,0 +1,6 @@
+<resources>
+
+    <dimen name="drawer_padding">6dp</dimen>
+    <dimen name="drawer_padding_half">3dp</dimen>
+
+</resources>

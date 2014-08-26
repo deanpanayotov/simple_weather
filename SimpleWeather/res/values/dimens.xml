@@ -4,4 +4,12 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="terra_terra_terra">#E8DDCB</color>
+    <color name="terra_terra">#CDB380</color>
+    <color name="terra_acqua">#036564</color>
+    <color name="terra_acqua_profonda">#033649</color>
+    <color name="terra_abisso">#031634</color>
+
 </resources>

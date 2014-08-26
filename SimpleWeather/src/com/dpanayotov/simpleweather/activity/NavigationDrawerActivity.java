@@ -16,14 +16,10 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.dpanayotov.simpleweather.R;
+import com.dpanayotov.simpleweather.adapter.NavigationDrawerArrayAdapter;
+import com.dpanayotov.simpleweather.adapter.NavigationDrawerContent;
 
 public abstract class NavigationDrawerActivity extends Activity {
-
-	private static final int POS_HOME_LOCATION = 0;
-	private static final int POS_LIST = 1;
-	private static final int POS_MAP = 2;
-	private static final int POS_SETTINGS = 3;
-	private static final int POS_ABOUT = 4;
 
 	private ActionBarDrawerToggle mDrawerToggle;
 
@@ -45,9 +41,8 @@ public abstract class NavigationDrawerActivity extends Activity {
 	 */
 	private void setUpDrawer(DrawerLayout drawer) {
 		ListView drawerList = ((ListView) findViewById(R.id.left_drawer));
-		drawerList.setAdapter(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, getResources()
-						.getStringArray(R.array.drawer_items)));
+		drawerList.setAdapter(new NavigationDrawerArrayAdapter(this,
+				NavigationDrawerContent.getContent()));
 		drawerList.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -77,19 +72,19 @@ public abstract class NavigationDrawerActivity extends Activity {
 	private void selectItem(int position) {
 		// TODO #10 Navigation
 		switch (position) {
-		case POS_HOME_LOCATION:
+		case NavigationDrawerContent.POS_HOME_LOCATION:
 			Log.d("Menu", "Home Location");
 			break;
-		case POS_LIST:
+		case NavigationDrawerContent.POS_LIST:
 			Log.d("Menu", "List");
 			break;
-		case POS_MAP:
+		case NavigationDrawerContent.POS_MAP:
 			Log.d("Menu", "Map");
 			break;
-		case POS_SETTINGS:
+		case NavigationDrawerContent.POS_SETTINGS:
 			Log.d("Menu", "Settings");
 			break;
-		case POS_ABOUT:
+		case NavigationDrawerContent.POS_ABOUT:
 			Log.d("Menu", "About");
 			break;
 		default:
