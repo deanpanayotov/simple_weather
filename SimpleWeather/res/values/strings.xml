@@ -13,4 +13,12 @@
     <string name="error_data">Data</string>
     <string name="error_status_code">Status Code</string>
 
+    <string-array name="drawer_items">
+        <item>Home Location</item>
+        <item>List</item>
+        <item>Map</item>
+        <item>Settings</item>
+        <item>About</item>
+    </string-array>
+
 </resources>
