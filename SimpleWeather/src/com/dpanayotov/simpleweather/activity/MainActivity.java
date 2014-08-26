@@ -29,15 +29,6 @@ public class MainActivity extends NavigationDrawerActivity {
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
 	protected void onResume() {
 		super.onResume();
 		String tag_json_obj = "json_obj_req";

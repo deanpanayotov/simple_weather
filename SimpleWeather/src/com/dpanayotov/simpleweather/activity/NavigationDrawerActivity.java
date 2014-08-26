@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
@@ -52,7 +51,7 @@ public abstract class NavigationDrawerActivity extends Activity {
 			}
 		});
 		mDrawerToggle = new ActionBarDrawerToggle(this, drawer,
-				R.drawable.ic_drawer, R.string.drawer_open,
+				R.drawable.ic_drawer_terra, R.string.drawer_open,
 				R.string.drawer_close) {
 		};
 		drawer.setDrawerListener(mDrawerToggle);
