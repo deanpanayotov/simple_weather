@@ -2,5 +2,6 @@
 
     <dimen name="drawer_padding">8dp</dimen>
     <dimen name="drawer_padding_half">4dp</dimen>
-
+    <dimen name="drawer_width">120dp</dimen>
+    
 </resources>
