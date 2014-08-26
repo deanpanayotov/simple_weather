@@ -18,6 +18,7 @@
         android:choiceMode="singleChoice"
         android:divider="@color/terra_acqua"
         android:dividerHeight="0dp" 
-        android:paddingTop="@dimen/drawer_padding"/>
+        android:paddingTop="@dimen/drawer_padding"
+        android:paddingBottom="@dimen/drawer_padding"/>
 
 </android.support.v4.widget.DrawerLayout>

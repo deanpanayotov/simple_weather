@@ -2,6 +2,7 @@
 
     <style name="SimpleWeatherTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/SimpleWeatherTheme.SWActionBar</item>
+        <item name="android:windowBackground">@color/terra_terra_terra</item>
     </style>
 
     <style name="SimpleWeatherTheme.SWActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
