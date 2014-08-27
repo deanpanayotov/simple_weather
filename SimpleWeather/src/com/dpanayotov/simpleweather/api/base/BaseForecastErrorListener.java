@@ -10,9 +10,11 @@ import com.dpanayotov.simpleweather.util.NetworkUtil;
 
 public class BaseForecastErrorListener implements ErrorListener {
 	private Context mContext;
+	private String mUrl;
 
-	public BaseForecastErrorListener(Context context) {
+	public BaseForecastErrorListener(Context context, String url) {
 		mContext = context.getApplicationContext();
+		mUrl = url;
 	}
 
 	@Override
@@ -38,6 +40,7 @@ public class BaseForecastErrorListener implements ErrorListener {
 		String data = new String(error.networkResponse.data);
 
 		StringBuilder sb = new StringBuilder();
+		append(sb, mUrl, mContext.getString(R.string.error_message));
 		append(sb, message, mContext.getString(R.string.error_message));
 		append(sb, cause, mContext.getString(R.string.error_cause));
 		append(sb, data, mContext.getString(R.string.error_data));

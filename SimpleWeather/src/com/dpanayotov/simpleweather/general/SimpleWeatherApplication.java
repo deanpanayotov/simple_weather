@@ -1,37 +1,30 @@
 package com.dpanayotov.simpleweather.general;
 
-import android.app.Application;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.Volley;
+import android.app.Application;
+import android.content.Context;
 
 public class SimpleWeatherApplication extends Application {
-	private RequestQueue mRequestQueue;
-	private ImageLoader mImageLoader;
+	private static SimpleWeatherApplication mInstance;
+	private static Gson mGson;
 
-	public RequestQueue getRequestQueue() {
-		if (mRequestQueue == null) {
-			mRequestQueue = Volley.newRequestQueue(getApplicationContext());
-		}
-		return mRequestQueue;
+	public SimpleWeatherApplication() {
+		mInstance = this;
+		//mGson = new Gson();
+		mGson = new GsonBuilder().setPrettyPrinting().create();
 	}
 
-	public ImageLoader getImageLoader() {
-		if (mImageLoader == null) {
-			 mImageLoader = new ImageLoader(getRequestQueue(), new
-			 LRUBitmapCache());
-		}
-		return mImageLoader;
+	public static SimpleWeatherApplication getInstance() {
+		return mInstance;
 	}
-	
-	public <T> void addToRequestQueue(Request <T> request, String tag){
-		request.setTag(tag);
-		getRequestQueue().add(request);
+
+	public static Context getContext() {
+		return mInstance.getApplicationContext();
 	}
-	
-	public void cancelRequest(Object tag){
-		getRequestQueue().cancelAll(tag);
+
+	public static Gson getGson() {
+		return mGson;
 	}
 }

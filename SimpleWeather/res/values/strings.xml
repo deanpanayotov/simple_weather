@@ -23,5 +23,7 @@
     <string name="content_description_image">Image</string>
     <string name="footer">data provided by forecast.io</string>
     <string name="loading">loading&#8230;</string>
+    <string name="error_url">URL</string>
+    <string name="error_timestamp">Timestamp</string>
 
 </resources>
