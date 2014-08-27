@@ -22,5 +22,6 @@
     <string name="drawer_title">Navigation</string>
     <string name="content_description_image">Image</string>
     <string name="footer">data provided by forecast.io</string>
+    <string name="loading">loading&#8230;</string>
 
 </resources>

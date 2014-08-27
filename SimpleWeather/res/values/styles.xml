@@ -14,4 +14,9 @@
         <item name="android:textColor">@color/terra_terra</item>
     </style>
 
+    <style name="ProgressDialogTheme" parent="android:Theme.DeviceDefault.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
 </resources>

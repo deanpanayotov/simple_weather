@@ -2,17 +2,19 @@ package com.dpanayotov.simpleweather.activity;
 
 import org.json.JSONObject;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.dpanayotov.simpleweather.R;
-import com.dpanayotov.simpleweather.general.SimpleWeatherApplication;
 
 public class MainActivity extends BaseSWActivity {
 
@@ -20,6 +22,29 @@ public class MainActivity extends BaseSWActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		((Button) findViewById(R.id.button))
+				.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View arg0) {
+						showProgressDialog();
+						new AsyncTask<Void, Void, Void>() {
+
+							@Override
+							protected Void doInBackground(Void... params) {
+								try {
+									Thread.sleep(2000);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								hideProgressDialog();
+								return null;
+							}
+
+						}.execute();
+					}
+				});
 	}
 
 	@Override
@@ -50,8 +75,8 @@ public class MainActivity extends BaseSWActivity {
 					}
 				});
 
-		((SimpleWeatherApplication) getApplication()).addToRequestQueue(
-				jsonObjReq, tag_json_obj);
+		// ((SimpleWeatherApplication) getApplication()).addToRequestQueue(
+		// jsonObjReq, tag_json_obj);
 	}
 
 }

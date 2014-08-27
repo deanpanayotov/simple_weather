@@ -1,6 +1,5 @@
 package com.dpanayotov.simpleweather.activity;
 
-import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -18,7 +17,7 @@ import com.dpanayotov.simpleweather.adapter.NavigationDrawerArrayAdapter;
 import com.dpanayotov.simpleweather.adapter.NavigationDrawerContent;
 import com.dpanayotov.simpleweather.util.LogUtil;
 
-public abstract class NavigationDrawerActivity extends Activity {
+public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 
 	private ActionBarDrawerToggle mDrawerToggle;
 
