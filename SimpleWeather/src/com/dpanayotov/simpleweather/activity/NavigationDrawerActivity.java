@@ -5,7 +5,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +16,7 @@ import android.widget.ListView;
 import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.adapter.NavigationDrawerArrayAdapter;
 import com.dpanayotov.simpleweather.adapter.NavigationDrawerContent;
+import com.dpanayotov.simpleweather.util.LogUtil;
 
 public abstract class NavigationDrawerActivity extends Activity {
 
@@ -83,22 +83,22 @@ public abstract class NavigationDrawerActivity extends Activity {
 		// TODO #10 Navigation
 		switch (position) {
 		case NavigationDrawerContent.POS_HOME_LOCATION:
-			Log.d("Menu", "Home Location");
+			LogUtil.d("Menu", "Home Location");
 			break;
 		case NavigationDrawerContent.POS_LIST:
-			Log.d("Menu", "List");
+			LogUtil.d("Menu", "List");
 			break;
 		case NavigationDrawerContent.POS_MAP:
-			Log.d("Menu", "Map");
+			LogUtil.d("Menu", "Map");
 			break;
 		case NavigationDrawerContent.POS_SETTINGS:
-			Log.d("Menu", "Settings");
+			LogUtil.d("Menu", "Settings");
 			break;
 		case NavigationDrawerContent.POS_ABOUT:
-			Log.d("Menu", "About");
+			LogUtil.d("Menu", "About");
 			break;
 		default:
-			Log.d("Menu", "Default");
+			LogUtil.d("Menu", "Default");
 			break;
 		}
 	}
