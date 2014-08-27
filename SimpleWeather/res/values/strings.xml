@@ -21,5 +21,6 @@
     <string name="drawer_close">Close the drawer</string>
     <string name="drawer_title">Navigation</string>
     <string name="content_description_image">Image</string>
+    <string name="footer">data provided by forecast.io</string>
 
 </resources>

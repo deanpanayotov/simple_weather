@@ -33,6 +33,17 @@ public abstract class NavigationDrawerActivity extends Activity {
 		setUpDrawer(fullLayout);
 	}
 
+	@Override
+	public void setContentView(View view) {
+		DrawerLayout fullLayout = (DrawerLayout) getLayoutInflater().inflate(
+				R.layout.activity_base_navigation_drawer, null);
+		FrameLayout actContent = (FrameLayout) fullLayout
+				.findViewById(R.id.content_frame);
+		actContent.addView(view);
+		super.setContentView(fullLayout);
+		setUpDrawer(fullLayout);
+	}
+
 	/**
 	 * Sets up the Navigation Drawer
 	 * 

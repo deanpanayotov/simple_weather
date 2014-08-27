@@ -14,7 +14,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.general.SimpleWeatherApplication;
 
-public class MainActivity extends NavigationDrawerActivity {
+public class MainActivity extends BaseSWActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
