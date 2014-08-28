@@ -1,8 +1,11 @@
 package com.dpanayotov.simpleweather.api.response;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Forecast {
+public class Forecast implements Parcelable {
 	@SerializedName("summary")
 	private String summary;
 	@SerializedName("icon")
@@ -88,4 +91,52 @@ public class Forecast {
 				+ cloudCover + "]";
 	}
 
+	protected Forecast(Parcel in) {
+		summary = in.readString();
+		icon = in.readString();
+		precipIntensity = in.readFloat();
+		precipProbability = in.readFloat();
+		precipType = in.readString();
+		temperatureMin = in.readFloat();
+		temperatureMax = in.readFloat();
+		temperature = in.readFloat();
+		humidity = in.readFloat();
+		windSpeed = in.readFloat();
+		windBearing = in.readInt();
+		cloudCover = in.readFloat();
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(summary);
+		dest.writeString(icon);
+		dest.writeFloat(precipIntensity);
+		dest.writeFloat(precipProbability);
+		dest.writeString(precipType);
+		dest.writeFloat(temperatureMin);
+		dest.writeFloat(temperatureMax);
+		dest.writeFloat(temperature);
+		dest.writeFloat(humidity);
+		dest.writeFloat(windSpeed);
+		dest.writeInt(windBearing);
+		dest.writeFloat(cloudCover);
+	}
+
+	@SuppressWarnings("unused")
+	public static final Parcelable.Creator<Forecast> CREATOR = new Parcelable.Creator<Forecast>() {
+		@Override
+		public Forecast createFromParcel(Parcel in) {
+			return new Forecast(in);
+		}
+
+		@Override
+		public Forecast[] newArray(int size) {
+			return new Forecast[size];
+		}
+	};
 }
