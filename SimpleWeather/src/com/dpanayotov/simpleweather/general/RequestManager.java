@@ -7,8 +7,8 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.Volley;
 import com.dpanayotov.simpleweather.activity.BaseSWActivity;
 import com.dpanayotov.simpleweather.api.base.BaseGsonGetRequest;
-import com.dpanayotov.simpleweather.api.base.ForecastRequest;
-import com.dpanayotov.simpleweather.api.base.ForecastResponse;
+import com.dpanayotov.simpleweather.api.base.BaseForecastRequest;
+import com.dpanayotov.simpleweather.api.base.BaseForecastResponse;
 import com.dpanayotov.simpleweather.util.DateUtil;
 import com.dpanayotov.simpleweather.util.LogUtil;
 
@@ -29,13 +29,13 @@ public class RequestManager {
 	}
 
 	public static <T> void sendServerRequest(final BaseSWActivity activity,
-			int progressMessageId, Object tag, ForecastRequest request,
-			final Listener<ForecastResponse> listener) {
+			Object tag, BaseForecastRequest request,
+			final Listener<BaseForecastResponse> listener) {
 
-		request.setResponseListener(new Listener<ForecastResponse>() {
+		request.setResponseListener(new Listener<BaseForecastResponse>() {
 
 			@Override
-			public void onResponse(ForecastResponse response) {
+			public void onResponse(BaseForecastResponse response) {
 				activity.hideProgressDialog();
 				if (response == null) {
 					LogUtil.e(TAG, "The response is null!!!");
@@ -56,7 +56,7 @@ public class RequestManager {
 		activity.showProgressDialog();
 	}
 
-	private static void printRequestToBeSent(ForecastRequest request) {
+	private static void printRequestToBeSent(BaseForecastRequest request) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("=============[REQUEST]=============");
 		sb.append("\n");

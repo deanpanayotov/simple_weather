@@ -15,6 +15,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.dpanayotov.simpleweather.R;
+import com.dpanayotov.simpleweather.api.base.BaseForecastResponse;
+import com.dpanayotov.simpleweather.api.request.CurrentForecastParams;
+import com.dpanayotov.simpleweather.api.request.CurrentForecastRequest;
+import com.dpanayotov.simpleweather.general.RequestManager;
 
 public class MainActivity extends BaseSWActivity {
 
@@ -27,22 +31,12 @@ public class MainActivity extends BaseSWActivity {
 
 					@Override
 					public void onClick(View arg0) {
-						showProgressDialog();
-						new AsyncTask<Void, Void, Void>() {
-
-							@Override
-							protected Void doInBackground(Void... params) {
-								try {
-									Thread.sleep(2000);
-								} catch (InterruptedException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-								hideProgressDialog();
-								return null;
-							}
-
-						}.execute();
+						RequestManager.sendServerRequest(MainActivity.this,
+								"test", new CurrentForecastRequest(
+										new CurrentForecastParams(42.709197f,
+												23.324034f),
+										BaseForecastResponse.class,
+										MainActivity.this), null);
 					}
 				});
 	}

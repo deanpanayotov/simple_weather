@@ -25,5 +25,7 @@
     <string name="loading">loading&#8230;</string>
     <string name="error_url">URL</string>
     <string name="error_timestamp">Timestamp</string>
+    <string name="forecastio_api_key">31b4326b570a5734fbb335c04d1fa7bc</string>
+    <string name="forecastio_api_url">https://api.forecast.io/forecast</string>
 
 </resources>
