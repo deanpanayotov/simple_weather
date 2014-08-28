@@ -6,6 +6,8 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 public class Forecast implements Parcelable {
+	@SerializedName("long")
+	private long time;
 	@SerializedName("summary")
 	private String summary;
 	@SerializedName("icon")
