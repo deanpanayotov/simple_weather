@@ -1,9 +1,9 @@
 package com.dpanayotov.simpleweather.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
-public class ProcessDialogActivity extends Activity {
+public class ProcessDialogActivity extends FragmentActivity {
 	private ProcessDialogFragment mProgressDialogFragment;
 	private boolean mIsProgressDialogShown;
 

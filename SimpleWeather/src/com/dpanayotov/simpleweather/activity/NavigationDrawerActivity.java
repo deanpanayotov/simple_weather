@@ -1,5 +1,6 @@
 package com.dpanayotov.simpleweather.activity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -89,6 +90,7 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 			break;
 		case NavigationDrawerContent.POS_MAP:
 			LogUtil.d("Menu", "Map");
+			startActivity(new Intent(this, MapActivity.class));
 			break;
 		case NavigationDrawerContent.POS_SETTINGS:
 			LogUtil.d("Menu", "Settings");
