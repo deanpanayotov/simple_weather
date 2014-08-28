@@ -6,12 +6,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
+import com.android.volley.Response;
 import com.dpanayotov.simpleweather.R;
+import com.dpanayotov.simpleweather.api.request.CurrentForecastParams;
+import com.dpanayotov.simpleweather.api.request.CurrentForecastRequest;
 import com.dpanayotov.simpleweather.api.response.ForecastResponse;
+import com.dpanayotov.simpleweather.general.RequestManager;
+import com.dpanayotov.simpleweather.util.Constants;
 import com.dpanayotov.simpleweather.util.LogUtil;
+import com.google.android.gms.maps.model.LatLng;
 
 public class ForecastActivity extends BaseSWActivity implements
 		IForecastDataProvider {
+	private String FORECAST_REQUEST_TAG = "FORECAST_REQUEST_TAG";
 
 	private ForecastResponse mForecastResponse;
 
@@ -19,9 +26,21 @@ public class ForecastActivity extends BaseSWActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forecast);
+		LatLng latlng = ((LatLng) getIntent().getParcelableExtra(
+				Constants.PARAM_LATLNG));
+		RequestManager.sendServerRequest(this, FORECAST_REQUEST_TAG,
+				new CurrentForecastRequest(new CurrentForecastParams(
+						(float) latlng.latitude, (float) latlng.longitude),
+						this), new Response.Listener<ForecastResponse>() {
 
-		ViewPager pager = (ViewPager) findViewById(R.id.pager);
-		pager.setAdapter(new ForecastPagerAdapter(getSupportFragmentManager()));
+					@Override
+					public void onResponse(ForecastResponse response) {
+						mForecastResponse = response;
+						((ViewPager) findViewById(R.id.pager))
+								.setAdapter(new ForecastPagerAdapter(
+										getSupportFragmentManager()));
+					}
+				});
 	}
 
 	private class ForecastPagerAdapter extends FragmentPagerAdapter {
