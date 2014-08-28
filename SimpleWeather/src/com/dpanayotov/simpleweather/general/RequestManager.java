@@ -29,13 +29,13 @@ public class RequestManager {
 	}
 
 	public static <T> void sendServerRequest(final BaseSWActivity activity,
-			Object tag, BaseForecastRequest request,
-			final Listener<BaseForecastResponse> listener) {
+			Object tag, BaseForecastRequest<T> request,
+			final Listener<T> listener) {
 
-		request.setResponseListener(new Listener<BaseForecastResponse>() {
+		request.setResponseListener(new Listener<T>() {
 
 			@Override
-			public void onResponse(BaseForecastResponse response) {
+			public void onResponse(T response) {
 				activity.hideProgressDialog();
 				if (response == null) {
 					LogUtil.e(TAG, "The response is null!!!");

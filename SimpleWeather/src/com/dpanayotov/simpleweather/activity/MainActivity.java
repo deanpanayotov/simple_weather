@@ -2,7 +2,6 @@ package com.dpanayotov.simpleweather.activity;
 
 import org.json.JSONObject;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,10 +14,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.dpanayotov.simpleweather.R;
-import com.dpanayotov.simpleweather.api.base.BaseForecastResponse;
 import com.dpanayotov.simpleweather.api.request.CurrentForecastParams;
 import com.dpanayotov.simpleweather.api.request.CurrentForecastRequest;
+import com.dpanayotov.simpleweather.api.response.ForecastResponse;
 import com.dpanayotov.simpleweather.general.RequestManager;
+import com.dpanayotov.simpleweather.util.LogUtil;
 
 public class MainActivity extends BaseSWActivity {
 
@@ -31,12 +31,27 @@ public class MainActivity extends BaseSWActivity {
 
 					@Override
 					public void onClick(View arg0) {
-						RequestManager.sendServerRequest(MainActivity.this,
-								"test", new CurrentForecastRequest(
-										new CurrentForecastParams(42.709197f,
-												23.324034f),
-										BaseForecastResponse.class,
-										MainActivity.this), null);
+						RequestManager
+								.sendServerRequest(
+										MainActivity.this,
+										"test",
+										new CurrentForecastRequest(
+												new CurrentForecastParams(
+														42.709197f, 23.324034f),
+												MainActivity.this),
+										new Response.Listener<ForecastResponse>() {
+
+											@Override
+											public void onResponse(
+													ForecastResponse response) {
+												if (response == null) {
+													LogUtil.d("Response is nul..............");
+												} else {
+													LogUtil.d(response
+															.toString());
+												}
+											}
+										});
 					}
 				});
 	}
