@@ -85,7 +85,7 @@ public class HourlyForecastFragment extends Fragment {
 			((ImageView) v.findViewById(R.id.precip))
 					.setImageBitmap(getDataCricle(f.getPrecipProbability()));
 			((ImageView) v.findViewById(R.id.temperature))
-					.setImageBitmap(getDataCricle(f.getTemperature() / 50.0f));
+					.setImageBitmap(getDataCricle(f.getTemperature() / 113.0f));
 			((ImageView) v.findViewById(R.id.coluds))
 					.setImageBitmap(getDataCricle(f.getCloudCover()));
 			((ImageView) v.findViewById(R.id.wind))
