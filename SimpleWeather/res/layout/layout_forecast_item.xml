@@ -1,36 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp" >
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 
     <LinearLayout
+        android:id="@+id/midnight_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp" >
+        android:layout_gravity="center"
+        android:gravity="center" >
 
         <ImageView
-            android:id="@+id/icon"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/cloudy" />
+            android:layout_height="wrap_content"
+            android:src="@drawable/clear_night" />
 
         <TextView
-            android:id="@+id/summary"
-            android:layout_width="match_parent"
+            android:id="@+id/midnight_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:text="No precipitation throughout the week, with temperatures peaking at 78°F on Monday." />
+            android:text="Midnight!"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/terra_terra"
         android:orientation="horizontal" >
 
         <TextView
@@ -39,49 +36,47 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Time" />
+            android:text="23:00" />
 
         <ImageView
+            android:id="@+id/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/default_placeholder" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/clear_day" />
 
         <ImageView
+            android:id="@+id/precip"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:scaleType="fitCenter"
             android:src="@drawable/precip_level" />
 
         <ImageView
+            android:id="@+id/temperature"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:scaleType="fitCenter"
             android:src="@drawable/temperature" />
 
         <ImageView
+            android:id="@+id/coluds"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:scaleType="fitCenter"
             android:src="@drawable/cloudy" />
 
         <ImageView
+            android:id="@+id/wind"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:scaleType="fitCenter"
             android:src="@drawable/wind" />
     </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="16dp" >
-
-        <ListView
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-        </ListView>
-    </FrameLayout>
 
 </LinearLayout>
