@@ -10,9 +10,13 @@ public class SimpleWeatherApplication extends Application {
 	private static SimpleWeatherApplication mInstance;
 	private static Gson mGson;
 
+	public enum TEMPERATURE_MEASUREMENT_UNITS {
+		C, F
+	}
+
 	public SimpleWeatherApplication() {
 		mInstance = this;
-		//mGson = new Gson();
+		// mGson = new Gson();
 		mGson = new GsonBuilder().setPrettyPrinting().create();
 	}
 
@@ -27,4 +31,9 @@ public class SimpleWeatherApplication extends Application {
 	public static Gson getGson() {
 		return mGson;
 	}
+
+	public static TEMPERATURE_MEASUREMENT_UNITS getTemperatureUnit() {
+		return TEMPERATURE_MEASUREMENT_UNITS.F;
+	}
+
 }

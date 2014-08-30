@@ -21,6 +21,8 @@ import android.widget.TextView;
 import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.api.response.Forecast;
 import com.dpanayotov.simpleweather.api.response.ForecastResponse;
+import com.dpanayotov.simpleweather.util.BitmapCirclesUtil;
+import com.dpanayotov.simpleweather.util.LogUtil;
 
 public class HourlyForecastFragment extends Fragment {
 	@Override
@@ -83,13 +85,19 @@ public class HourlyForecastFragment extends Fragment {
 			((ImageView) v.findViewById(R.id.icon))
 					.setImageResource(returnImageResource(f.getIcon()));
 			((ImageView) v.findViewById(R.id.precip))
-					.setImageBitmap(getDataCricle(f.getPrecipProbability()));
+					.setImageBitmap(BitmapCirclesUtil.getPrecipCircle(
+							f.getPrecipIntensity(), f.getPrecipProbability()));
+			LogUtil.d("Precipintensity: " + f.getPrecipIntensity()
+					+ " Precipprobability: " + f.getPrecipProbability());
 			((ImageView) v.findViewById(R.id.temperature))
-					.setImageBitmap(getDataCricle(f.getTemperature() / 113.0f));
+					.setImageBitmap(BitmapCirclesUtil.getTemperatureCircle(f
+							.getTemperature()));
 			((ImageView) v.findViewById(R.id.coluds))
-					.setImageBitmap(getDataCricle(f.getCloudCover()));
+					.setImageBitmap(BitmapCirclesUtil.getDataCircle(f
+							.getCloudCover()));
 			((ImageView) v.findViewById(R.id.wind))
-					.setImageBitmap(getDataCricle(f.getWindSpeed() / 50.0f));
+					.setImageBitmap(BitmapCirclesUtil.getWindCircle(f
+							.getWindSpeed()));
 
 			return v;
 		}
@@ -122,16 +130,4 @@ public class HourlyForecastFragment extends Fragment {
 		}
 	}
 
-	private static final int BITMAP_SIZE = 200;
-
-	private Bitmap getDataCricle(float size) {
-		Bitmap bmp = Bitmap.createBitmap(BITMAP_SIZE, BITMAP_SIZE,
-				Bitmap.Config.ARGB_8888);
-		Canvas c = new Canvas(bmp);
-		Paint paint = new Paint();
-		paint.setColor(Color.parseColor("#000000"));
-		c.drawCircle(BITMAP_SIZE / 2, BITMAP_SIZE / 2,
-				(BITMAP_SIZE / 2) * size, paint);
-		return bmp;
-	}
 }
