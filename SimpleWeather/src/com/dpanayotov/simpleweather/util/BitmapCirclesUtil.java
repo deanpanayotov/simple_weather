@@ -1,12 +1,12 @@
 package com.dpanayotov.simpleweather.util;
 
-import com.dpanayotov.simpleweather.R;
-import com.dpanayotov.simpleweather.general.SimpleWeatherApplication;
-
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+
+import com.dpanayotov.simpleweather.R;
+import com.dpanayotov.simpleweather.general.SimpleWeatherApplication;
 
 public class BitmapCirclesUtil {
 	private static final int BITMAP_SIZE = 200;
@@ -21,9 +21,6 @@ public class BitmapCirclesUtil {
 	private static final float TOTAL_TEMP_C = Math.abs(TEMP_MIN_C) + TEMP_MAX_C;
 
 	private static final int TEMP_MAX_HUE_IN_DEGREES = 255;
-	private static final int TEMP_TOTAL_HUE_DEGREES = 360;
-	private static final int TEMP_APPLIED_HUE_SCALE = TEMP_MAX_HUE_IN_DEGREES
-			/ TEMP_TOTAL_HUE_DEGREES;
 	private static final float TEMP_MIN_RADIUS_RATIO = 0.2f;
 	private static final float TEMP_LEFT_OVER_RADIUS_RATIO = 1f - TEMP_MIN_RADIUS_RATIO;
 
@@ -92,6 +89,14 @@ public class BitmapCirclesUtil {
 		return getDataCircle(wind / WIND_MAX_VALUE);
 	}
 
+	public static Bitmap getCloudCircle(float cloudCoverage) {
+		Paint paint = new Paint();
+		paint.setColor(Color.parseColor("#000000"));
+		paint.setStyle(Paint.Style.STROKE);
+		paint.setStrokeWidth(5);
+		return getDataCircle(cloudCoverage, paint);
+	}
+
 	public static Bitmap getDataCircle(float size, Paint paint) {
 		Bitmap bmp = Bitmap.createBitmap(BITMAP_SIZE, BITMAP_SIZE,
 				Bitmap.Config.ARGB_8888);
@@ -106,4 +111,15 @@ public class BitmapCirclesUtil {
 		paint.setColor(Color.parseColor("#000000"));
 		return getDataCircle(size, paint);
 	}
+
+	// public static Bitmap getDataCircleHollow(float size, Paint paint,
+	// int strokeWidth) {
+	// Bitmap bmp = Bitmap.createBitmap(BITMAP_SIZE, BITMAP_SIZE,
+	// Bitmap.Config.ARGB_8888);
+	// Canvas c = new Canvas(bmp);
+	// paint.setStrokeWidth(strokeWidth);
+	// c.drawArc(new RectF(0, 0, BITMAP_SIZE, BITMAP_SIZE), 0, 360, true,
+	// paint);
+	// return bmp;
+	// }
 }

@@ -93,7 +93,7 @@ public class HourlyForecastFragment extends Fragment {
 					.setImageBitmap(BitmapCirclesUtil.getTemperatureCircle(f
 							.getTemperature()));
 			((ImageView) v.findViewById(R.id.coluds))
-					.setImageBitmap(BitmapCirclesUtil.getDataCircle(f
+					.setImageBitmap(BitmapCirclesUtil.getCloudCircle(f
 							.getCloudCover()));
 			((ImageView) v.findViewById(R.id.wind))
 					.setImageBitmap(BitmapCirclesUtil.getWindCircle(f
