@@ -14,15 +14,17 @@ import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.api.response.Forecast;
 import com.dpanayotov.simpleweather.util.BitmapCirclesUtil;
 import com.dpanayotov.simpleweather.util.DateUtil;
-import com.dpanayotov.simpleweather.util.LogUtil;
 import com.dpanayotov.simpleweather.util.WeatherImageUtil;
 
 class ForecastAdapter extends ArrayAdapter<Forecast> {
-	Context mContext;
+	private Context mContext;
+	private boolean mIsDaily;
 
-	public ForecastAdapter(Context context, List<Forecast> objects) {
+	public ForecastAdapter(Context context, List<Forecast> objects,
+			boolean isDaily) {
 		super(context, R.layout.layout_forecast_item, objects);
 		mContext = context;
+		mIsDaily = isDaily;
 	}
 
 	@Override
@@ -35,9 +37,13 @@ class ForecastAdapter extends ArrayAdapter<Forecast> {
 			v = inflater.inflate(R.layout.layout_forecast_item, null);
 		}
 		String formattedTime = DateUtil.getFormatedDate(f.getTime(),
-				DateUtil.FORECAST_LIST_FORMAT);
+				mIsDaily ? DateUtil.FORECAST_LIST_FORMAT_DAILY
+						: DateUtil.FORECAST_LIST_FORMAT_HOURLY);
 		v.findViewById(R.id.midnight_bar).setVisibility(
-				"00:00".equals(formattedTime) ? View.VISIBLE : View.GONE);
+				!mIsDaily
+						&& DateUtil.FORECAST_LIST_MIDNIGHT
+								.equals(formattedTime) ? View.VISIBLE
+						: View.GONE);
 
 		v.findViewById(R.id.item).setBackgroundColor(
 				mContext.getResources().getColor(
@@ -50,11 +56,15 @@ class ForecastAdapter extends ArrayAdapter<Forecast> {
 		((ImageView) v.findViewById(R.id.precip))
 				.setImageBitmap(BitmapCirclesUtil.getPrecipCircle(
 						f.getPrecipIntensity(), f.getPrecipProbability()));
-		LogUtil.d("Precipintensity: " + f.getPrecipIntensity()
-				+ " Precipprobability: " + f.getPrecipProbability());
+		float temperature;
+		if (mIsDaily) {
+			temperature = (f.getTemperatureMin() + f.getTemperatureMax()) / 2;
+		} else {
+			temperature = f.getTemperature();
+		}
 		((ImageView) v.findViewById(R.id.temperature))
-				.setImageBitmap(BitmapCirclesUtil.getTemperatureCircle(f
-						.getTemperature()));
+				.setImageBitmap(BitmapCirclesUtil
+						.getTemperatureCircle(temperature));
 		((ImageView) v.findViewById(R.id.coluds))
 				.setImageBitmap(BitmapCirclesUtil.getCloudCircle(f
 						.getCloudCover()));

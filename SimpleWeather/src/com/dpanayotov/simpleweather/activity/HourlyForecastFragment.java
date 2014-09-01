@@ -43,7 +43,7 @@ public class HourlyForecastFragment extends Fragment {
 	private void initForecastList(ForecastResponse response) {
 		((ListView) getView().findViewById(R.id.list))
 				.setAdapter(new ForecastAdapter(getActivity(), response
-						.getHourly().getData()));
+						.getHourly().getData(), false));
 
 	}
 

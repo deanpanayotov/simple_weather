@@ -13,7 +13,9 @@ public class DateUtil {
 	public static final long WEEK = 7 * DAY;
 
 	public static final String NETWORKING_DEBUG_TIMESTAMP_FORMAT = "HH:mm:ss_SSS";
-	public static final String FORECAST_LIST_FORMAT = "HH:mm";
+	public static final String FORECAST_LIST_FORMAT_HOURLY = "HH:mm";
+	public static final String FORECAST_LIST_FORMAT_DAILY = "DD.MM";
+	public static final String FORECAST_LIST_MIDNIGHT = "00:00";
 
 	public static final String getFormatedDate(long time, String format) {
 		return DateFormat.format(format, time).toString();
