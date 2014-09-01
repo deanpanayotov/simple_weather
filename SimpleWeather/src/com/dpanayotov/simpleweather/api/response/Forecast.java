@@ -32,45 +32,63 @@ public class Forecast implements Parcelable {
 	private int windBearing;
 	@SerializedName("cloudCover")
 	private float cloudCover;
+
+	/**
+	 * 
+	 * @return time in milliseconds
+	 */
 	public long getTime() {
-		return time;
+		return time * 1000;
 	}
+
 	public String getSummary() {
 		return summary;
 	}
+
 	public String getIcon() {
 		return icon;
 	}
+
 	public float getPrecipIntensity() {
 		return precipIntensity;
 	}
+
 	public float getPrecipProbability() {
 		return precipProbability;
 	}
+
 	public String getPrecipType() {
 		return precipType;
 	}
+
 	public float getTemperatureMin() {
 		return temperatureMin;
 	}
+
 	public float getTemperatureMax() {
 		return temperatureMax;
 	}
+
 	public float getTemperature() {
 		return temperature;
 	}
+
 	public float getHumidity() {
 		return humidity;
 	}
+
 	public float getWindSpeed() {
 		return windSpeed;
 	}
+
 	public int getWindBearing() {
 		return windBearing;
 	}
+
 	public float getCloudCover() {
 		return cloudCover;
 	}
+
 	@Override
 	public String toString() {
 		return "Forecast [time=" + time + ", summary=" + summary + ", icon="
@@ -83,56 +101,54 @@ public class Forecast implements Parcelable {
 				+ cloudCover + "]";
 	}
 
-	
+	protected Forecast(Parcel in) {
+		time = in.readLong();
+		summary = in.readString();
+		icon = in.readString();
+		precipIntensity = in.readFloat();
+		precipProbability = in.readFloat();
+		precipType = in.readString();
+		temperatureMin = in.readFloat();
+		temperatureMax = in.readFloat();
+		temperature = in.readFloat();
+		humidity = in.readFloat();
+		windSpeed = in.readFloat();
+		windBearing = in.readInt();
+		cloudCover = in.readFloat();
+	}
 
-    protected Forecast(Parcel in) {
-        time = in.readLong();
-        summary = in.readString();
-        icon = in.readString();
-        precipIntensity = in.readFloat();
-        precipProbability = in.readFloat();
-        precipType = in.readString();
-        temperatureMin = in.readFloat();
-        temperatureMax = in.readFloat();
-        temperature = in.readFloat();
-        humidity = in.readFloat();
-        windSpeed = in.readFloat();
-        windBearing = in.readInt();
-        cloudCover = in.readFloat();
-    }
+	@Override
+	public int describeContents() {
+		return 0;
+	}
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeLong(time);
+		dest.writeString(summary);
+		dest.writeString(icon);
+		dest.writeFloat(precipIntensity);
+		dest.writeFloat(precipProbability);
+		dest.writeString(precipType);
+		dest.writeFloat(temperatureMin);
+		dest.writeFloat(temperatureMax);
+		dest.writeFloat(temperature);
+		dest.writeFloat(humidity);
+		dest.writeFloat(windSpeed);
+		dest.writeInt(windBearing);
+		dest.writeFloat(cloudCover);
+	}
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(time);
-        dest.writeString(summary);
-        dest.writeString(icon);
-        dest.writeFloat(precipIntensity);
-        dest.writeFloat(precipProbability);
-        dest.writeString(precipType);
-        dest.writeFloat(temperatureMin);
-        dest.writeFloat(temperatureMax);
-        dest.writeFloat(temperature);
-        dest.writeFloat(humidity);
-        dest.writeFloat(windSpeed);
-        dest.writeInt(windBearing);
-        dest.writeFloat(cloudCover);
-    }
+	@SuppressWarnings("unused")
+	public static final Parcelable.Creator<Forecast> CREATOR = new Parcelable.Creator<Forecast>() {
+		@Override
+		public Forecast createFromParcel(Parcel in) {
+			return new Forecast(in);
+		}
 
-    @SuppressWarnings("unused")
-    public static final Parcelable.Creator<Forecast> CREATOR = new Parcelable.Creator<Forecast>() {
-        @Override
-        public Forecast createFromParcel(Parcel in) {
-            return new Forecast(in);
-        }
-
-        @Override
-        public Forecast[] newArray(int size) {
-            return new Forecast[size];
-        }
-    };
+		@Override
+		public Forecast[] newArray(int size) {
+			return new Forecast[size];
+		}
+	};
 }

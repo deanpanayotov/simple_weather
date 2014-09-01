@@ -65,8 +65,7 @@ public class BaseGsonGetRequest<T> extends Request<T> {
 		sb.append(mUrl);
 		sb.append("\n");
 		sb.append("timestamp: ");
-		sb.append(DateFormat.format(DateUtil.NETWORKING_DEBUG_TIMESTAMP_FORMAT,
-				mTimestamp));
+		sb.append(DateUtil.getFormatedDate(mTimestamp, DateUtil.NETWORKING_DEBUG_TIMESTAMP_FORMAT));
 		sb.append("\n");
 		sb.append("------------------------------------");
 		sb.append("\n");

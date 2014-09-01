@@ -65,4 +65,8 @@ public class ForecastResponse extends BaseForecastResponse implements
 			return new ForecastResponse[size];
 		}
 	};
+	
+	public final void selfValidate(){
+		
+	}
 }

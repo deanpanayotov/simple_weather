@@ -1,14 +1,10 @@
 package com.dpanayotov.simpleweather.general;
 
-import android.text.format.DateFormat;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.Volley;
 import com.dpanayotov.simpleweather.activity.BaseSWActivity;
-import com.dpanayotov.simpleweather.api.base.BaseGsonGetRequest;
 import com.dpanayotov.simpleweather.api.base.BaseForecastRequest;
-import com.dpanayotov.simpleweather.api.base.BaseForecastResponse;
 import com.dpanayotov.simpleweather.util.DateUtil;
 import com.dpanayotov.simpleweather.util.LogUtil;
 
@@ -64,8 +60,8 @@ public class RequestManager {
 		sb.append(request.getUrl());
 		sb.append("\n");
 		sb.append("timestamp: ");
-		sb.append(DateFormat.format(DateUtil.NETWORKING_DEBUG_TIMESTAMP_FORMAT,
-				request.getmTimestamp()));
+		sb.append(DateUtil.getFormatedDate(request.getmTimestamp(),
+				DateUtil.NETWORKING_DEBUG_TIMESTAMP_FORMAT));
 		sb.append("\n");
 		sb.append("------------------------------------");
 

@@ -22,6 +22,7 @@ import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.api.response.Forecast;
 import com.dpanayotov.simpleweather.api.response.ForecastResponse;
 import com.dpanayotov.simpleweather.util.BitmapCirclesUtil;
+import com.dpanayotov.simpleweather.util.DateUtil;
 import com.dpanayotov.simpleweather.util.LogUtil;
 
 public class HourlyForecastFragment extends Fragment {
@@ -72,8 +73,8 @@ public class HourlyForecastFragment extends Fragment {
 						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				v = inflater.inflate(R.layout.layout_forecast_item, null);
 			}
-			String formattedTime = DateFormat.format("HH:mm",
-					f.getTime() * 1000).toString();
+			String formattedTime = DateUtil.getFormatedDate(f.getTime(),
+					DateUtil.FORECAST_LIST_FORMAT);
 			v.findViewById(R.id.midnight_bar).setVisibility(
 					"00:00".equals(formattedTime) ? View.VISIBLE : View.GONE);
 
