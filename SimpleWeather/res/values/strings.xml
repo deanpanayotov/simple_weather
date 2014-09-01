@@ -30,5 +30,7 @@
     <string name="pager_title_currently">Currently</string>
     <string name="pager_title_hourly">Hourly</string>
     <string name="pager_title_daily">Daily</string>
+    <string name="title_hourly">24 hour summary: </string>
+    <string name="title_daily">Weekly summary: </string>
 
 </resources>

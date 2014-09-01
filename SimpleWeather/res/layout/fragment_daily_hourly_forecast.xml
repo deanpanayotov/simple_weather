@@ -3,29 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp" >
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:paddingBottom="16dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp" >
+
+        <TextView
+            android:id="@+id/title_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="16dp"
+            android:text="@string/title_hourly" />
 
         <ImageView
             android:id="@+id/icon"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/cloudy" />
-
-        <TextView
-            android:id="@+id/summary"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:text="No precipitation throughout the week, with temperatures peaking at 78°F on Monday." />
+            android:src="@drawable/cloudy" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:gravity="center"
+        android:text="No precipitation throughout the week, with temperatures peaking at 78°F on Monday." />
 
     <LinearLayout
         android:layout_width="match_parent"
