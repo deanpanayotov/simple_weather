@@ -3,7 +3,6 @@ package com.dpanayotov.simpleweather.util;
 import android.text.format.DateFormat;
 
 public class DateUtil {
-	// TODO does this even work?
 
 	public static final long MILLISECOND = 1;
 	public static final long SECOND = 1000 * MILLISECOND;
@@ -12,9 +11,10 @@ public class DateUtil {
 	public static final long DAY = 24 * HOUR;
 	public static final long WEEK = 7 * DAY;
 
+	// TODO fix milliseconds
 	public static final String NETWORKING_DEBUG_TIMESTAMP_FORMAT = "HH:mm:ss_SSS";
 	public static final String FORECAST_LIST_FORMAT_HOURLY = "HH:mm";
-	public static final String FORECAST_LIST_FORMAT_DAILY = "DD.MM";
+	public static final String FORECAST_LIST_FORMAT_DAILY = "dd.MM";
 	public static final String FORECAST_LIST_MIDNIGHT = "00:00";
 
 	public static final String getFormatedDate(long time, String format) {

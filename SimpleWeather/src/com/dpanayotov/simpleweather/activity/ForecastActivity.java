@@ -35,6 +35,7 @@ public class ForecastActivity extends BaseSWActivity implements
 
 					@Override
 					public void onResponse(ForecastResponse response) {
+						response.selfValidate();
 						mForecastResponse = response;
 						((ViewPager) findViewById(R.id.pager))
 								.setAdapter(new ForecastPagerAdapter(

@@ -173,7 +173,7 @@ public class ForecastResponse extends BaseForecastResponse implements
 	 */
 	private final long getStartingPointHourly() {
 		// Round down to the closest hour
-		return currently.getTime() / DateUtil.HOUR;
+		return currently.getTime() - (currently.getTime() % DateUtil.HOUR);
 	}
 
 }
