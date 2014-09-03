@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#88ff44"
-    android:orientation="vertical" >
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp" >
 
     <TextView
+        android:id="@+id/summary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Current" />
+        android:text="No precipitation throughout the week, with temperatures peaking at 78°F on Monday." />
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center" >
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@color/terra_terra"
+            android:src="@drawable/cloudy" />
+        
+    </LinearLayout>
+
+</LinearLayout>
