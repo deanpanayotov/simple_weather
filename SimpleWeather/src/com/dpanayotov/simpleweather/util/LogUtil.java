@@ -4,6 +4,7 @@ import android.util.Log;
 
 public class LogUtil {
 	public static final boolean DEBUG_ENABLED = true;
+	public static final boolean JSON_PRETTY_PRINT_ENABLED = true;
 	private static final String DEFAULT_TAG = "SW-DEFAULT";
 	private static final String DEBUG_TAG = "SW-DEBUG";
 

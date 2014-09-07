@@ -4,8 +4,10 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Context;
-import android.text.format.DateFormat;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -65,15 +67,31 @@ public class BaseGsonGetRequest<T> extends Request<T> {
 		sb.append(mUrl);
 		sb.append("\n");
 		sb.append("timestamp: ");
-		sb.append(DateUtil.getFormatedDate(mTimestamp, DateUtil.NETWORKING_DEBUG_TIMESTAMP_FORMAT));
+		sb.append(DateUtil.getFormatedDate(mTimestamp,
+				DateUtil.NETWORKING_DEBUG_TIMESTAMP_FORMAT));
 		sb.append("\n");
 		sb.append("------------------------------------");
 		sb.append("\n");
-		sb.append(new String(response.data));
-		sb.append("\n");
-		sb.append("------------------------------------");
-
 		LogUtil.n(sb.toString());
+		String responseString = new String(response.data);
+		if (LogUtil.JSON_PRETTY_PRINT_ENABLED) {
+			try {
+				responseString = new JSONObject(responseString).toString(2);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+		int length = responseString.length();
+
+		for (int i = 0; i < length; i += 1024) {
+			if (i + 1024 < length)
+				LogUtil.n(responseString.substring(i, i + 1024));
+			else
+				LogUtil.n(responseString.substring(i, length));
+		}
+		sb.append(responseString);
+		LogUtil.n("\n");
+		LogUtil.n("------------------------------------");
 	}
 
 	/**
