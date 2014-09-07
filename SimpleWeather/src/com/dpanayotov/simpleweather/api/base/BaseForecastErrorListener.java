@@ -13,7 +13,7 @@ public class BaseForecastErrorListener implements ErrorListener {
 	private String mUrl;
 
 	public BaseForecastErrorListener(Context context, String url) {
-		mContext = context.getApplicationContext();
+		mContext = context;
 		mUrl = url;
 	}
 
@@ -35,7 +35,10 @@ public class BaseForecastErrorListener implements ErrorListener {
 	 */
 	private void handleServerError(VolleyError error) {
 		String message = error.getMessage();
-		String cause = error.getCause().getMessage();
+		String cause = null;
+		if (error.getCause() != null) {
+			cause = error.getCause().getMessage();
+		}
 		int statusCode = error.networkResponse.statusCode;
 		String data = new String(error.networkResponse.data);
 
@@ -45,9 +48,9 @@ public class BaseForecastErrorListener implements ErrorListener {
 		append(sb, cause, mContext.getString(R.string.error_cause));
 		append(sb, data, mContext.getString(R.string.error_data));
 
-		DialogUtil.showNeutralAlertDialog(mContext, sb.toString(),
+		DialogUtil.showNeutralAlertDialog(mContext,
 				mContext.getString(R.string.error_status_code) + ": "
-						+ statusCode, null);
+						+ statusCode, sb.toString(), null);
 	}
 
 	/**
