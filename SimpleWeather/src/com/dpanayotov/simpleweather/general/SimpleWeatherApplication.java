@@ -14,6 +14,20 @@ public class SimpleWeatherApplication extends Application {
 		C, F
 	}
 
+	public enum UNITS {
+		US("us"), SI("si"), CA("ca"), UK("uk");
+
+		private final String name;
+
+		private UNITS(String s) {
+			name = s;
+		}
+
+		public String toString() {
+			return name;
+		}
+	}
+
 	public SimpleWeatherApplication() {
 		mInstance = this;
 		// mGson = new Gson();
@@ -34,6 +48,10 @@ public class SimpleWeatherApplication extends Application {
 
 	public static TEMPERATURE_MEASUREMENT_UNITS getTemperatureUnit() {
 		return TEMPERATURE_MEASUREMENT_UNITS.F;
+	}
+
+	public static UNITS getUnits() {
+		return UNITS.SI;
 	}
 
 }
