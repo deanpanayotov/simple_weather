@@ -32,5 +32,11 @@
     <string name="pager_title_daily">Daily</string>
     <string name="title_hourly">24 hour summary: </string>
     <string name="title_daily">Weekly summary: </string>
+    <string name="temperature">Temperature</string>
+    <string name="precipitation_intensity">Precipitation intensity</string>
+    <string name="precipitation_probability">Precipitation probability</string>
+    <string name="humitidy">Humitidy</string>
+    <string name="wind_speed">Wind speed</string>
+    <string name="cloud_cover">Cloud cover</string>
 
 </resources>
