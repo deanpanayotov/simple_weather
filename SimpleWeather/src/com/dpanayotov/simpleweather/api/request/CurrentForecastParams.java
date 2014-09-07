@@ -20,7 +20,6 @@ public class CurrentForecastParams extends BaseForecastParams {
 	}
 
 	public CurrentForecastParams() {
-
 	}
 
 	@Override
@@ -32,4 +31,9 @@ public class CurrentForecastParams extends BaseForecastParams {
 		return sb.toString();
 	}
 
+	@Override
+	public String[] getExcludedBlocks() {
+		return new String[]{MINUTELY, ALERTS, FLAGS};
+	}
+	
 }
