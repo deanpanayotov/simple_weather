@@ -37,24 +37,25 @@ public abstract class SingleItemForecastFragment extends Fragment {
 				.setText(getString(R.id.temperature) + ": "
 						+ getForecastTemperature());
 		((TextView) root.findViewById(R.id.precip_intensity))
-		.setText(getString(R.id.precip_intensity) + ": "
-				+ getForecast().getPrecipIntensity());
+				.setText(getString(R.id.precip_intensity) + ": "
+						+ getForecast().getPrecipIntensity());
 		((TextView) root.findViewById(R.id.precip_probability))
-		.setText(getString(R.id.precip_probability) + ": "
-				+ getForecast().getPrecipProbability());
+				.setText(getString(R.id.precip_probability) + ": "
+						+ getForecast().getPrecipProbability());
 		((TextView) root.findViewById(R.id.humitidy))
-		.setText(getString(R.id.humitidy) + ": "
-				+ getForecast().getHumidity());
+				.setText(getString(R.id.humitidy) + ": "
+						+ getForecast().getHumidity());
 		((TextView) root.findViewById(R.id.wind_speed))
-		.setText(getString(R.id.wind_speed) + ": "
-				+ getForecast().getWindSpeed());
+				.setText(getString(R.id.wind_speed) + ": "
+						+ getForecast().getWindSpeed());
 		((TextView) root.findViewById(R.id.cloud_cover))
-		.setText(getString(R.id.cloud_cover) + ": "
-				+ getForecast().getCloudCover());
+				.setText(getString(R.id.cloud_cover) + ": "
+						+ getForecast().getCloudCover());
 	}
 
 	private String getForecastTemperature() {
-		if (getForecast().getTemperature() != 0f) {
+		if (getForecast().getTemperatureMin() == 0f
+				&& getForecast().getTemperatureMax() == 0f) {
 			return "" + getForecast().getTemperature();
 		} else {
 			return getForecast().getTemperatureMin() + " / "
