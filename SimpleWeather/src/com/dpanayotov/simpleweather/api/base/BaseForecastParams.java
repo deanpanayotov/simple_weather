@@ -66,7 +66,7 @@ public abstract class BaseForecastParams {
 	 *         response
 	 */
 	private final String buildUnitsOption() {
-		return "?units=" + SimpleWeatherApplication.getUnits();
+		return "&units=" + SimpleWeatherApplication.getUnits();
 	}
 
 	/**
