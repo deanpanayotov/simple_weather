@@ -23,9 +23,8 @@ public class HourlySingleForecastViewActivity extends BaseSWActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forecast);
-		mForecastResponse = getIntent().getParcelableExtra(
-				Constants.PARAM_FULL_FORECAST_RESPONSE);
-		forecasts = mForecastResponse.getHourly().getData();
+		forecasts = getIntent().getParcelableArrayListExtra(
+				Constants.PARAM_FORECAST_LIST);
 		((ViewPager) findViewById(R.id.pager))
 				.setAdapter(new SingleItemForecastPagerAdapter(
 						getSupportFragmentManager()));

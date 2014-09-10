@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,6 +36,9 @@ public abstract class ForecastFragment extends Fragment {
 	public abstract List<Forecast> getForecastList();
 
 	public abstract boolean isDaily();
+
+	public abstract void onForecastItemClick(AdapterView<?> adapterView, View view,
+			int position, long id);
 
 	private ForecastResponse mResponse;
 
@@ -68,9 +73,17 @@ public abstract class ForecastFragment extends Fragment {
 	}
 
 	private void initForecastList() {
-		((ListView) getView().findViewById(R.id.list))
-				.setAdapter(new ForecastAdapter(getActivity(),
-						getForecastList(), isDaily()));
+		ListView list = (ListView) getView().findViewById(R.id.list);
 
+		list.setAdapter(new ForecastAdapter(getActivity(), getForecastList(),
+				isDaily()));
+		list.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> adapterView, View view,
+					int position, long id) {
+				onForecastItemClick(adapterView, view, position, id);
+			}
+		});
 	}
 }

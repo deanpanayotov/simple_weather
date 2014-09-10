@@ -1,9 +1,15 @@
 package com.dpanayotov.simpleweather.activity;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import android.content.Intent;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.api.response.Forecast;
+import com.dpanayotov.simpleweather.util.Constants;
 
 public class HourlyForecastFragment extends ForecastFragment {
 
@@ -35,6 +41,17 @@ public class HourlyForecastFragment extends ForecastFragment {
 	@Override
 	public boolean isDaily() {
 		return false;
+	}
+
+	@Override
+	public void onForecastItemClick(AdapterView<?> adapterView, View view,
+			int position, long id) {
+		Intent intent = new Intent(getActivity(),
+				HourlySingleForecastViewActivity.class);
+		intent.putParcelableArrayListExtra(Constants.PARAM_FORECAST_LIST,
+				(ArrayList<Forecast>) getResponse().getHourly().getData());
+		intent.putExtra(Constants.PARAM_FORECAST_ID, id);
+		startActivity(intent);
 	}
 
 }

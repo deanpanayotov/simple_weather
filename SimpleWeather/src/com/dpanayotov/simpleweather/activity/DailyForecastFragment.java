@@ -2,6 +2,9 @@ package com.dpanayotov.simpleweather.activity;
 
 import java.util.List;
 
+import android.view.View;
+import android.widget.AdapterView;
+
 import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.api.response.Forecast;
 
@@ -35,6 +38,13 @@ public class DailyForecastFragment extends ForecastFragment {
 	@Override
 	public boolean isDaily() {
 		return true;
+	}
+
+	@Override
+	public void onForecastItemClick(AdapterView<?> adapterView, View view,
+			int position, long id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
