@@ -48,9 +48,10 @@ public class HourlyForecastFragment extends ForecastFragment {
 			int position, long id) {
 		Intent intent = new Intent(getActivity(),
 				HourlySingleForecastViewActivity.class);
-		intent.putParcelableArrayListExtra(Constants.PARAM_FORECAST_LIST,
-				(ArrayList<Forecast>) getResponse().getHourly().getData());
-		intent.putExtra(Constants.PARAM_FORECAST_ID, id);
+		intent.putExtra(Constants.PARAM_FULL_FORECAST_RESPONSE, getResponse());
+		intent.putExtra(Constants.PARAM_FORECAST_ID, (int) id); // THIS INT CAST
+																// IS
+																// MANDATORY!!!
 		startActivity(intent);
 	}
 

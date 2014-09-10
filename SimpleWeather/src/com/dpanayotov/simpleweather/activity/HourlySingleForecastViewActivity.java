@@ -23,11 +23,16 @@ public class HourlySingleForecastViewActivity extends BaseSWActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forecast);
-		forecasts = getIntent().getParcelableArrayListExtra(
-				Constants.PARAM_FORECAST_LIST);
-		((ViewPager) findViewById(R.id.pager))
-				.setAdapter(new SingleItemForecastPagerAdapter(
-						getSupportFragmentManager()));
+		mForecastResponse = getIntent().getParcelableExtra(
+				Constants.PARAM_FULL_FORECAST_RESPONSE);
+		forecasts = mForecastResponse.getHourly().getData();
+		SingleItemForecastPagerAdapter adapter = new SingleItemForecastPagerAdapter(
+				getSupportFragmentManager());
+		ViewPager pager = (ViewPager) findViewById(R.id.pager);
+		pager.setAdapter(adapter);
+		adapter.notifyDataSetChanged();
+		pager.setCurrentItem(getIntent().getIntExtra(
+				Constants.PARAM_FORECAST_ID, 0));
 	}
 
 	private class SingleItemForecastPagerAdapter extends
@@ -35,11 +40,16 @@ public class HourlySingleForecastViewActivity extends BaseSWActivity implements
 
 		public SingleItemForecastPagerAdapter(FragmentManager fm) {
 			super(fm);
+
 		}
 
 		@Override
-		public Fragment getItem(int arg0) {
-			return new HourlySingleItemForecastFragment();
+		public Fragment getItem(int position) {
+			HourlySingleItemForecastFragment fragment = new HourlySingleItemForecastFragment();
+			Bundle arguments = new Bundle();
+			arguments.putInt(Constants.PARAM_FORECAST_ID, position);
+			fragment.setArguments(arguments);
+			return fragment;
 		}
 
 		@Override
