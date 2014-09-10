@@ -75,14 +75,14 @@ public class ForecastActivity extends BaseSWActivity implements
 			switch (pos) {
 
 			case 0:
-				return new SingleItemForecastFragment();
+				return new CurrentWeatherFragment();
 			case 1:
 				return new HourlyForecastFragment();
 			case 2:
 				return new DailyForecastFragment();
 			default:
 				LogUtil.e("default statement in getItem() fragment pager adapter reached!");
-				return new SingleItemForecastFragment();
+				return new CurrentWeatherFragment();
 			}
 		}
 

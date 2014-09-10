@@ -40,7 +40,7 @@ public class HourlySingleForecastViewActivity extends BaseSWActivity implements
 
 		@Override
 		public Fragment getItem(int arg0) {
-			return new SingleItemForecastFragment();
+			return new HourlySingleItemForecastFragment();
 		}
 
 		@Override
