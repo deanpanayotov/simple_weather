@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.general.SimpleWeatherApplication;
 
+//TODO these should be refactored according to the different unit systems
 public class BitmapCirclesUtil {
 	private static final int BITMAP_SIZE = 200;
 	private static final int CIRCLE_RADIUS = BITMAP_SIZE / 2;
@@ -62,7 +63,7 @@ public class BitmapCirclesUtil {
 	}
 
 	private static float getActiveMinTemperature() {
-		if (SimpleWeatherApplication.getTemperatureUnit() == SimpleWeatherApplication.TEMPERATURE_MEASUREMENT_UNITS.F) {
+		if (SimpleWeatherApplication.getUnits() == SimpleWeatherApplication.UNITS.US) {
 			return TEMP_MIN_F;
 		} else {
 			return TEMP_MIN_C;
@@ -70,7 +71,7 @@ public class BitmapCirclesUtil {
 	}
 
 	private static float getActiveMaxTemperature() {
-		if (SimpleWeatherApplication.getTemperatureUnit() == SimpleWeatherApplication.TEMPERATURE_MEASUREMENT_UNITS.F) {
+		if (SimpleWeatherApplication.getUnits() == SimpleWeatherApplication.UNITS.US) {
 			return TEMP_MAX_F;
 		} else {
 			return TEMP_MAX_C;
@@ -78,7 +79,7 @@ public class BitmapCirclesUtil {
 	}
 
 	private static float getActiveTotalTemperature() {
-		if (SimpleWeatherApplication.getTemperatureUnit() == SimpleWeatherApplication.TEMPERATURE_MEASUREMENT_UNITS.F) {
+		if (SimpleWeatherApplication.getUnits() == SimpleWeatherApplication.UNITS.US) {
 			return TOTAL_TEMP_F;
 		} else {
 			return TOTAL_TEMP_C;
