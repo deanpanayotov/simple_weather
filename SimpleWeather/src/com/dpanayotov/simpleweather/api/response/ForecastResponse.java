@@ -112,12 +112,13 @@ public class ForecastResponse extends BaseForecastResponse implements
 	 * specified in the response
 	 */
 	public final void convertToProperTime() {
-		currently.applyTimeConvertion(offset);
+		currently.timeToMillis();
 		for (Forecast forecast : hourly.getData()) {
-			forecast.applyTimeConvertion(offset);
+			forecast.timeToMillis();
 		}
 		for (Forecast forecast : daily.getData()) {
-			forecast.applyTimeConvertion(offset);
+			forecast.timeToMillis();
+			forecast.timeToGMT(offset);
 		}
 	}
 

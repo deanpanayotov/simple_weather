@@ -212,12 +212,18 @@ public class Forecast implements Parcelable {
 		}
 	};
 
-	public final void applyTimeConvertion(int offset) {
+	public final void timeToMillis() {
 		time *= DateUtil.SECOND;
-		// No need to move from GMT since DateFormat#format methods return a
-		// locale specific time
-		// time = DateUtil.convertGMTTimeToLocalTimezone(time * DateUtil.SECOND,
-		// offset);
+	}
+
+	/**
+	 * This should be applied only to daily forecast blocks since the server
+	 * returns LOCAL MIDNIGHT which prevents further calculations
+	 * 
+	 * @param offset
+	 */
+	public final void timeToGMT(int offset) {
+		time = DateUtil.convertGMTTimeToLocalTimezone(time, offset);
 	}
 
 	/**
