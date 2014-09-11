@@ -41,9 +41,9 @@ public class SettingsActivity extends BaseSWActivity {
 	}
 
 	private void setControlsState() {
-		mValidationSwitch.setEnabled(app.isDataValidationEnabled());
-		mCacheSwitch.setEnabled(app.isDBCahceEnabled());
-		mMissingDataSwitch.setEnabled(app.isMissingDataEnabled());
+		mValidationSwitch.setChecked(app.isDataValidationEnabled());
+		mCacheSwitch.setChecked(app.isDBCahceEnabled());
+		mMissingDataSwitch.setChecked(app.isMissingDataEnabled());
 		mUnitSpinner.setAdapter(new ArrayAdapter<UNITS>(this,
 				android.R.layout.simple_spinner_item,
 				SimpleWeatherApplication.UNITS.values()));
