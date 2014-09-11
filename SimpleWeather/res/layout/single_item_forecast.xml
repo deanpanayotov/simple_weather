@@ -15,7 +15,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="No precipitation throughout the week, with temperatures peaking at 78°F on Monday."
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,8 +31,7 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_gravity="center"
-            android:layout_marginRight="8dp"
-            android:padding="20dp"
+            android:padding="8dp"
             android:src="@drawable/cloudy" />
 
         <LinearLayout
@@ -41,41 +40,41 @@
             android:layout_gravity="center"
             android:orientation="vertical"
             android:paddingBottom="20dp"
-            android:paddingRight="20dp"
+            android:paddingRight="8dp"
             android:paddingTop="20dp" >
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/temperature"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/temperature"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="14 / 19 C"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Precipitation:"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/precip_intensity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="• Intensity: 0.012m"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/precip_probability"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="• Probability: 23%"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -85,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Wind speed; 5 m/s"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/cloud_cover"
@@ -93,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Cloud cover: 24%"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/humitidy"
@@ -101,6 +100,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Humitidy: 84%"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
 </LinearLayout>
