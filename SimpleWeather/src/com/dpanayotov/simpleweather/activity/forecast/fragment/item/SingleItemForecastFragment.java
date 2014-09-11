@@ -18,6 +18,7 @@ import com.dpanayotov.simpleweather.util.WeatherImageUtil;
 public abstract class SingleItemForecastFragment extends Fragment {
 
 	private static final String PERCENT = " %";
+	private static final String BULLET = " • ";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,38 +39,56 @@ public abstract class SingleItemForecastFragment extends Fragment {
 	public abstract Forecast getForecast();
 
 	private void fillInData() {
-		((ImageView) getView().findViewById(R.id.icon))
-				.setImageResource(WeatherImageUtil
-						.returnImageResource(getForecast().getIcon()));
-		((TextView) getView().findViewById(R.id.temperature))
-				.setText(getForecastTemperature()
-						+ UnitUtil.getTemperatureUnit());
-		((TextView) getView().findViewById(R.id.precip_intensity))
-				.setText(getString(R.string.precip_intensity)
-						+ getForecast().getPrecipIntensity()
-						+ UnitUtil.getPrecipIntensityUnit());
-		((TextView) getView().findViewById(R.id.precip_probability))
-				.setText(getString(R.string.precip_probability) + 100
-						* getForecast().getPrecipProbability() + PERCENT);
-		((TextView) getView().findViewById(R.id.humitidy))
-				.setText(getString(R.string.humitidy) + 100
-						* getForecast().getHumidity() + PERCENT);
-		((TextView) getView().findViewById(R.id.wind_speed))
-				.setText(getString(R.string.wind_speed)
-						+ getForecast().getWindSpeed()
-						+ UnitUtil.getWindSpeedUnit());
-		((TextView) getView().findViewById(R.id.cloud_cover))
-				.setText(getString(R.string.cloud_cover) + 100
-						* getForecast().getCloudCover() + PERCENT);
+
+		String sTemperature = BULLET + getForecastTemperature()
+				+ UnitUtil.getTemperatureUnit();
+		String sPercipIntensity = getString(R.string.precip_intensity)
+				+ String.format("%.3f", getForecast().getPrecipIntensity())
+				+ UnitUtil.getPrecipIntensityUnit();
+		String sPercipProbability = getString(R.string.precip_probability)
+				+ String.format("%.1f", 100 * getForecast()
+						.getPrecipProbability()) + PERCENT;
+		String sWindSPeed = getString(R.string.wind_speed)
+				+ String.format("%.4f", getForecast().getWindSpeed())
+				+ UnitUtil.getWindSpeedUnit();
+		String sCloudCover = getString(R.string.cloud_cover)
+				+ String.format("%.1f", 100 * getForecast().getCloudCover())
+				+ PERCENT;
+		String sHumitidy = getString(R.string.humitidy)
+				+ String.format("%.1f", 100 * getForecast().getHumidity())
+				+ PERCENT;
+
+		ImageView image = (ImageView) getView().findViewById(R.id.icon);
+		TextView temperature = (TextView) getView().findViewById(
+				R.id.temperature);
+		TextView precipIntensity = (TextView) getView().findViewById(
+				R.id.precip_intensity);
+		TextView precipProbability = (TextView) getView().findViewById(
+				R.id.precip_probability);
+		TextView windSpeed = (TextView) getView().findViewById(R.id.wind_speed);
+		TextView cloudCover = (TextView) getView().findViewById(
+				R.id.cloud_cover);
+		TextView humitidy = (TextView) getView().findViewById(R.id.humitidy);
+
+		image.setImageResource(WeatherImageUtil
+				.returnImageResource(getForecast().getIcon()));
+		temperature.setText(sTemperature);
+		precipIntensity.setText(sPercipIntensity);
+		precipProbability.setText(sPercipProbability);
+		windSpeed.setText(sWindSPeed);
+		cloudCover.setText(sCloudCover);
+		humitidy.setText(sHumitidy);
+
 	}
 
 	private String getForecastTemperature() {
 		if (getForecast().getTemperatureMin() == 0f
 				&& getForecast().getTemperatureMax() == 0f) {
-			return "" + getForecast().getTemperature();
+			return "" + String.format("%.2f", getForecast().getTemperature());
 		} else {
-			return getForecast().getTemperatureMin() + " / "
-					+ getForecast().getTemperatureMax();
+			return String.format("%.2f", getForecast().getTemperatureMin())
+					+ " / "
+					+ String.format("%.2f", getForecast().getTemperatureMax());
 		}
 	}
 }
