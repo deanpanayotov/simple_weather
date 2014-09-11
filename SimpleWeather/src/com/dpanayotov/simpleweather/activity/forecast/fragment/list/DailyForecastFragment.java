@@ -2,11 +2,14 @@ package com.dpanayotov.simpleweather.activity.forecast.fragment.list;
 
 import java.util.List;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.dpanayotov.simpleweather.R;
+import com.dpanayotov.simpleweather.activity.forecast.DailySingleForecastViewActivity;
 import com.dpanayotov.simpleweather.api.response.Forecast;
+import com.dpanayotov.simpleweather.util.Constants;
 
 public class DailyForecastFragment extends ForecastFragment {
 
@@ -43,8 +46,13 @@ public class DailyForecastFragment extends ForecastFragment {
 	@Override
 	public void onForecastItemClick(AdapterView<?> adapterView, View view,
 			int position, long id) {
-		// TODO Auto-generated method stub
-		
+		Intent intent = new Intent(getActivity(),
+				DailySingleForecastViewActivity.class);
+		intent.putExtra(Constants.PARAM_FULL_FORECAST_RESPONSE, getResponse());
+		intent.putExtra(Constants.PARAM_FORECAST_ID, (int) id); // THIS INT CAST
+																// IS
+																// MANDATORY!!!
+		startActivity(intent);		
 	}
 
 }

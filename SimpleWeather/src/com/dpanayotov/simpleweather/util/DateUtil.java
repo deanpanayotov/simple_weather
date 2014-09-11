@@ -14,7 +14,7 @@ public class DateUtil {
 	// TODO fix milliseconds
 	public static final String NETWORKING_DEBUG_TIMESTAMP_FORMAT = "HH:mm:ss";
 	public static final String FORECAST_SINGLE_ITEM_FORMAT_HOURLY = "EEE dd.MM HH:mm";
-	public static final String FORECAST_SINGLE_ITEM_FORMAT_daily = "EEEE, dd.MM";
+	public static final String FORECAST_SINGLE_ITEM_FORMAT_DAILY = "EEEE, dd.MM";
 	public static final String FORECAST_LIST_FORMAT_HOURLY = "HH:mm";
 	public static final String FORECAST_LIST_FORMAT_DAILY = "dd.MM";
 	public static final String FORECAST_LIST_MIDNIGHT = "00:00";
