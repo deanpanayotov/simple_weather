@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.dpanayotov.simpleweather.R;
+import com.dpanayotov.simpleweather.activity.forecast.ForecastActivity;
 import com.dpanayotov.simpleweather.util.Constants;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;

@@ -1,4 +1,4 @@
-package com.dpanayotov.simpleweather.activity;
+package com.dpanayotov.simpleweather.activity.forecast;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.dpanayotov.simpleweather.R;
+import com.dpanayotov.simpleweather.activity.BaseSWActivity;
 import com.dpanayotov.simpleweather.api.response.Forecast;
 import com.dpanayotov.simpleweather.api.response.ForecastResponse;
 import com.dpanayotov.simpleweather.util.Constants;

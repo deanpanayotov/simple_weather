@@ -1,4 +1,4 @@
-package com.dpanayotov.simpleweather.activity;
+package com.dpanayotov.simpleweather.activity.forecast;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

@@ -1,4 +1,4 @@
-package com.dpanayotov.simpleweather.activity;
+package com.dpanayotov.simpleweather.activity.forecast;
 
 import com.dpanayotov.simpleweather.api.response.ForecastResponse;
 
