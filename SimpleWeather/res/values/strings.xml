@@ -30,13 +30,14 @@
     <string name="pager_title_currently">Currently</string>
     <string name="pager_title_hourly">Hourly</string>
     <string name="pager_title_daily">Daily</string>
-    <string name="title_hourly">24 hour summary: </string>
-    <string name="title_daily">Weekly summary: </string>
-    <string name="temperature">Temperature</string>
-    <string name="precip_intensity">Precipitation intensity</string>
-    <string name="precip_probability">Precipitation probability</string>
-    <string name="humitidy">Humitidy</string>
-    <string name="wind_speed">Wind speed</string>
-    <string name="cloud_cover">Cloud cover</string>
+    <string name="title_hourly">"24 hour summary: "</string>
+    <string name="title_daily">"Weekly summary: "</string>
+    <string name="temperature">"Temperature: "</string>
+    <string name="precip">"Precipitation: "</string>
+    <string name="precip_intensity">" • Intensity: "</string>
+    <string name="precip_probability">" • Probability: "</string>
+    <string name="humitidy">"Humitidy: "</string>
+    <string name="wind_speed">"Wind speed: "</string>
+    <string name="cloud_cover">"Cloud cover: "</string>
 
 </resources>
