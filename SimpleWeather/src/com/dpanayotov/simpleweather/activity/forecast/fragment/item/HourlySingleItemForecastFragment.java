@@ -1,5 +1,6 @@
-package com.dpanayotov.simpleweather.activity.forecast;
+package com.dpanayotov.simpleweather.activity.forecast.fragment.item;
 
+import com.dpanayotov.simpleweather.activity.forecast.IForecastDataProvider;
 import com.dpanayotov.simpleweather.api.response.Forecast;
 import com.dpanayotov.simpleweather.util.Constants;
 

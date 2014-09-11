@@ -1,4 +1,4 @@
-package com.dpanayotov.simpleweather.activity.forecast;
+package com.dpanayotov.simpleweather.activity.forecast.fragment.list;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import com.dpanayotov.simpleweather.util.BitmapCirclesUtil;
 import com.dpanayotov.simpleweather.util.DateUtil;
 import com.dpanayotov.simpleweather.util.WeatherImageUtil;
 
-class ForecastAdapter extends ArrayAdapter<Forecast> {
+public class ForecastAdapter extends ArrayAdapter<Forecast> {
 	private Context mContext;
 	private boolean mIsDaily;
 

@@ -1,4 +1,4 @@
-package com.dpanayotov.simpleweather.activity.forecast;
+package com.dpanayotov.simpleweather.activity.forecast.fragment.list;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.dpanayotov.simpleweather.R;
+import com.dpanayotov.simpleweather.activity.forecast.HourlySingleForecastViewActivity;
 import com.dpanayotov.simpleweather.api.response.Forecast;
 import com.dpanayotov.simpleweather.util.Constants;
 

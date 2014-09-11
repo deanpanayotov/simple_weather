@@ -1,4 +1,4 @@
-package com.dpanayotov.simpleweather.activity.forecast;
+package com.dpanayotov.simpleweather.activity.forecast.fragment.list;
 
 import java.util.List;
 
