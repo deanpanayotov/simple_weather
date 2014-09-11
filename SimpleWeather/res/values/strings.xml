@@ -45,5 +45,6 @@
     <string name="precip_intensity_unit_us">" in/h"</string>
     <string name="wind_speed_unit_si">" m/h"</string>
     <string name="wind_speed_unit_us">" mi/h"</string>
+    <string name="wind_speed_unit_ca">" km/h"</string>
 
 </resources>
