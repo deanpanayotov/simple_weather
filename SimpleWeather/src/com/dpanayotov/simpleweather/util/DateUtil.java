@@ -18,7 +18,10 @@ public class DateUtil {
 	public static final String FORECAST_LIST_FORMAT_HOURLY = "HH:mm";
 	public static final String FORECAST_LIST_FORMAT_DAILY = "dd.MM";
 	public static final String FORECAST_LIST_MIDNIGHT = "00:00";
-
+	
+	/**
+	 * @return a locale specific formatted date string
+	 */
 	public static final String getFormatedDate(long time, String format) {
 		return DateFormat.format(format, time).toString();
 	}

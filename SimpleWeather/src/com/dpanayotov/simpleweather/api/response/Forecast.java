@@ -213,8 +213,11 @@ public class Forecast implements Parcelable {
 	};
 
 	public final void applyTimeConvertion(int offset) {
-		time = DateUtil.convertGMTTimeToLocalTimezone(time * DateUtil.SECOND,
-				offset);
+		time *= DateUtil.SECOND;
+		// No need to move from GMT since DateFormat#format methods return a
+		// locale specific time
+		// time = DateUtil.convertGMTTimeToLocalTimezone(time * DateUtil.SECOND,
+		// offset);
 	}
 
 	/**
