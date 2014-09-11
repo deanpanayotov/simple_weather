@@ -3,7 +3,7 @@ package com.dpanayotov.simpleweather.general;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.Volley;
-import com.dpanayotov.simpleweather.activity.BaseSWActivity;
+import com.dpanayotov.simpleweather.activity.base.BaseSWActivity;
 import com.dpanayotov.simpleweather.api.base.BaseForecastRequest;
 import com.dpanayotov.simpleweather.util.DateUtil;
 import com.dpanayotov.simpleweather.util.LogUtil;

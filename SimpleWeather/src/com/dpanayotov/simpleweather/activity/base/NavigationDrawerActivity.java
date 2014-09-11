@@ -1,4 +1,4 @@
-package com.dpanayotov.simpleweather.activity;
+package com.dpanayotov.simpleweather.activity.base;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -14,8 +14,10 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.dpanayotov.simpleweather.R;
-import com.dpanayotov.simpleweather.adapter.NavigationDrawerArrayAdapter;
-import com.dpanayotov.simpleweather.adapter.NavigationDrawerContent;
+import com.dpanayotov.simpleweather.activity.MapActivity;
+import com.dpanayotov.simpleweather.activity.SettingsActivity;
+import com.dpanayotov.simpleweather.navigation.NavigationDrawerArrayAdapter;
+import com.dpanayotov.simpleweather.navigation.NavigationDrawerContent;
 import com.dpanayotov.simpleweather.util.LogUtil;
 
 public abstract class NavigationDrawerActivity extends ProcessDialogActivity {

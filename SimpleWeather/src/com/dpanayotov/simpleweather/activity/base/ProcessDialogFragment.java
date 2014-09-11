@@ -1,4 +1,4 @@
-package com.dpanayotov.simpleweather.activity;
+package com.dpanayotov.simpleweather.activity.base;
 
 import android.app.Activity;
 import android.app.Dialog;

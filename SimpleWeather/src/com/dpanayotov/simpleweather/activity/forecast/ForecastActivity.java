@@ -8,7 +8,7 @@ import android.support.v4.view.ViewPager;
 
 import com.android.volley.Response;
 import com.dpanayotov.simpleweather.R;
-import com.dpanayotov.simpleweather.activity.BaseSWActivity;
+import com.dpanayotov.simpleweather.activity.base.BaseSWActivity;
 import com.dpanayotov.simpleweather.activity.forecast.fragment.item.CurrentWeatherFragment;
 import com.dpanayotov.simpleweather.activity.forecast.fragment.list.DailyForecastFragment;
 import com.dpanayotov.simpleweather.activity.forecast.fragment.list.HourlyForecastFragment;

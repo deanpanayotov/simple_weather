@@ -1,4 +1,4 @@
-package com.dpanayotov.simpleweather.adapter;
+package com.dpanayotov.simpleweather.navigation;
 
 public class NavigationDrawerItem {
 	private int mImageResourceId;

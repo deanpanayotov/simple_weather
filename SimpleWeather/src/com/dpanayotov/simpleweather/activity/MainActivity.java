@@ -14,6 +14,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.dpanayotov.simpleweather.R;
+import com.dpanayotov.simpleweather.activity.base.BaseSWActivity;
 import com.dpanayotov.simpleweather.api.request.CurrentForecastParams;
 import com.dpanayotov.simpleweather.api.request.CurrentForecastRequest;
 import com.dpanayotov.simpleweather.api.response.ForecastResponse;

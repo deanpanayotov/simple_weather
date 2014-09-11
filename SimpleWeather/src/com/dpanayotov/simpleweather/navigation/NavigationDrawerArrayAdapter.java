@@ -1,4 +1,4 @@
-package com.dpanayotov.simpleweather.adapter;
+package com.dpanayotov.simpleweather.navigation;
 
 import java.util.List;
 
