@@ -23,7 +23,7 @@ public abstract class SingleItemForecastFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View root = inflater.inflate(R.layout.single_item_forecast, container,
+		View root = inflater.inflate(R.layout.fragment_single_item_forecast, container,
 				false);
 
 		return root;
