@@ -12,9 +12,12 @@ import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.activity.forecast.IForecastDataProvider;
 import com.dpanayotov.simpleweather.api.response.Forecast;
 import com.dpanayotov.simpleweather.api.response.ForecastResponse;
+import com.dpanayotov.simpleweather.util.UnitUtil;
 import com.dpanayotov.simpleweather.util.WeatherImageUtil;
 
 public abstract class SingleItemForecastFragment extends Fragment {
+
+	private static final String PERCENT = " %";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,22 +42,25 @@ public abstract class SingleItemForecastFragment extends Fragment {
 				.setImageResource(WeatherImageUtil
 						.returnImageResource(getForecast().getIcon()));
 		((TextView) getView().findViewById(R.id.temperature))
-				.setText(getForecastTemperature());
+				.setText(getForecastTemperature()
+						+ UnitUtil.getTemperatureUnit());
 		((TextView) getView().findViewById(R.id.precip_intensity))
 				.setText(getString(R.string.precip_intensity)
-						+ getForecast().getPrecipIntensity());
+						+ getForecast().getPrecipIntensity()
+						+ UnitUtil.getPrecipIntensityUnit());
 		((TextView) getView().findViewById(R.id.precip_probability))
-				.setText(getString(R.string.precip_probability)
-						+ getForecast().getPrecipProbability());
+				.setText(getString(R.string.precip_probability) + 100
+						* getForecast().getPrecipProbability() + PERCENT);
 		((TextView) getView().findViewById(R.id.humitidy))
-				.setText(getString(R.string.humitidy)
-						+ getForecast().getHumidity());
+				.setText(getString(R.string.humitidy) + 100
+						* getForecast().getHumidity() + PERCENT);
 		((TextView) getView().findViewById(R.id.wind_speed))
 				.setText(getString(R.string.wind_speed)
-						+ getForecast().getWindSpeed());
+						+ getForecast().getWindSpeed()
+						+ UnitUtil.getWindSpeedUnit());
 		((TextView) getView().findViewById(R.id.cloud_cover))
-				.setText(getString(R.string.cloud_cover)
-						+ +getForecast().getCloudCover());
+				.setText(getString(R.string.cloud_cover) + 100
+						* getForecast().getCloudCover() + PERCENT);
 	}
 
 	private String getForecastTemperature() {
