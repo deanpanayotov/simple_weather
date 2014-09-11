@@ -1,5 +1,7 @@
 package com.dpanayotov.simpleweather.api.response;
 
+import java.util.List;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -123,45 +125,77 @@ public class ForecastResponse extends BaseForecastResponse implements
 	 * Fills in any missing blocks of data
 	 */
 	private final void fillInDataGapsHourly() {
-		if (hourly.getData() == null || hourly.getData().size() == 0) {
+		
+		List<Forecast> hourlyData = hourly.getData();
+		
+		if (hourlyData == null || hourlyData.size() == 0) {
 			LogUtil.e("No hourly entries in forecast response!");
 			return;
 		}
-		if (hourly.getData().size() > ENTRIES_COUNT_HOURLY) {
+		if (hourlyData.size() > ENTRIES_COUNT_HOURLY) {
 			LogUtil.e("Too many entries in hourly array of forecast response: "
-					+ hourly.getData().size());
+					+ hourlyData.size());
 			// we'll still try to fix any gaps
 		}
+
 		long time = getStartingPointHourly();
-		for (int i = 0; i < hourly.getData().size(); i++) {
-			if (hourly.getData().get(i).getTime() != time) {
-				if (hourly.getData().get(i).getTime() % DateUtil.HOUR != 0) {
+		// we first need to wipe out any corrupt data - meaning any data with a
+		// date previous from the current time variable
+		// loop is running backwards to avoid skipping an element when we remove
+		for (int i = hourlyData.size() - 1; i >= 0; i--) {
+			if (hourlyData.get(i).getTime() < time) {
+				hourlyData.remove(i);
+			}
+		}
+		for (int i = 0; i < hourlyData.size(); i++) {
+			if (hourlyData.get(i).getTime() != time) {
+				if (hourlyData.get(i).getTime() % DateUtil.HOUR != 0) {
 					// if this entry doesn't have an exact time then quit this
 					// fixing process - the data is corrupt
 					LogUtil.e("Corrupt data in hourly array of forecast response!");
 					return;
 				}
-				hourly.getData().add(i, new Forecast(time));
+				hourlyData.add(i, new Forecast(time));
 			}
 			time += DateUtil.HOUR;
 		}
 	}
 
+	/**
+	 * Fills in any missing blocks of data
+	 */
 	private final void fillInDataGapsDaily() {
-		if (daily.getData() == null || daily.getData().size() == 0) {
+		List<Forecast> dailyData = daily.getData();
+		if (dailyData == null || dailyData.size() == 0) {
 			LogUtil.e("No daily entries in forecast response!");
 			return;
 		}
-		if (daily.getData().size() > ENTRIES_COUNT_DAILY) {
+		// Check the length of the list;
+		if (dailyData.size() > ENTRIES_COUNT_DAILY) {
 			LogUtil.e("Too many entries in daily array of forecast response: "
-					+ daily.getData().size());
+					+ dailyData.size());
 			// we'll still try to fix any gaps
 		}
 		long time = currently.getTime();
-		for (int i = 0; i < daily.getData().size(); i++) {
-			if (daily.getData().get(i).getTime() / DateUtil.DAY != time
+		// first wipe off any dates BEFORE the current time:
+		// this loop is reversed to avoid skipping an element after removal
+		// loop direction doesn't matter since we're treating all elements the
+		// same way
+		for (int i = dailyData.size() - 1; i >= 0; i--) {
+			if (dailyData.get(i).getTime() / DateUtil.DAY < time / DateUtil.DAY) {
+				dailyData.remove(i);
+			}
+		}
+		// fill in any gaps:
+		// the time variable should be incremented every step - we either start
+		// off with the right day or we add placeholder items until we reach a
+		// correct day
+		// the element that's not matching our time varialbe would be examined
+		// every step until it reaches it's spot in the list
+		for (int i = 0; i < dailyData.size(); i++) {
+			if (dailyData.get(i).getTime() / DateUtil.DAY != time
 					/ DateUtil.DAY) {
-				daily.getData().add(i, new Forecast(time));
+				dailyData.add(i, new Forecast(time));
 			}
 			time += DateUtil.DAY;
 		}
