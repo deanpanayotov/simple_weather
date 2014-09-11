@@ -94,6 +94,7 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 			break;
 		case NavigationDrawerContent.POS_SETTINGS:
 			LogUtil.d("Menu", "Settings");
+			startActivity(new Intent(this, SettingsActivity.class));
 			break;
 		case NavigationDrawerContent.POS_ABOUT:
 			LogUtil.d("Menu", "About");
