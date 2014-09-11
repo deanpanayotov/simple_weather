@@ -49,29 +49,37 @@ public class ForecastAdapter extends ArrayAdapter<Forecast> {
 				mContext.getResources().getColor(
 						position % 2 == 0 ? R.color.terra_terra
 								: R.color.terra_terra_terra));
-		((TextView) v.findViewById(R.id.text)).setText(formattedTime);
-		((ImageView) v.findViewById(R.id.icon))
-				.setImageResource(WeatherImageUtil.returnImageResource(f
-						.getIcon()));
-		((ImageView) v.findViewById(R.id.precip))
-				.setImageBitmap(BitmapCirclesUtil.getPrecipCircle(
-						f.getPrecipIntensity(), f.getPrecipProbability()));
-		float temperature;
-		if (mIsDaily) {
-			temperature = (f.getTemperatureMin() + f.getTemperatureMax()) / 2;
-		} else {
-			temperature = f.getTemperature();
-		}
-		((ImageView) v.findViewById(R.id.temperature))
-				.setImageBitmap(BitmapCirclesUtil
-						.getTemperatureCircle(temperature));
-		((ImageView) v.findViewById(R.id.coluds))
-				.setImageBitmap(BitmapCirclesUtil.getCloudCircle(f
-						.getCloudCover()));
-		((ImageView) v.findViewById(R.id.wind))
-				.setImageBitmap(BitmapCirclesUtil.getWindCircle(f
-						.getWindSpeed()));
+		((TextView) v.findViewById(R.id.time)).setText(formattedTime);
+		if (f.getIcon() == null && f.getSummary() == null) {
+			v.findViewById(R.id.data).setVisibility(View.GONE);
+			v.findViewById(R.id.no_data).setVisibility(View.VISIBLE);
 
+		} else {
+			v.findViewById(R.id.data).setVisibility(View.VISIBLE);
+			v.findViewById(R.id.no_data).setVisibility(View.GONE);
+
+			((ImageView) v.findViewById(R.id.icon))
+					.setImageResource(WeatherImageUtil.returnImageResource(f
+							.getIcon()));
+			((ImageView) v.findViewById(R.id.precip))
+					.setImageBitmap(BitmapCirclesUtil.getPrecipCircle(
+							f.getPrecipIntensity(), f.getPrecipProbability()));
+			float temperature;
+			if (mIsDaily) {
+				temperature = (f.getTemperatureMin() + f.getTemperatureMax()) / 2;
+			} else {
+				temperature = f.getTemperature();
+			}
+			((ImageView) v.findViewById(R.id.temperature))
+					.setImageBitmap(BitmapCirclesUtil
+							.getTemperatureCircle(temperature));
+			((ImageView) v.findViewById(R.id.coluds))
+					.setImageBitmap(BitmapCirclesUtil.getCloudCircle(f
+							.getCloudCover()));
+			((ImageView) v.findViewById(R.id.wind))
+					.setImageBitmap(BitmapCirclesUtil.getWindCircle(f
+							.getWindSpeed()));
+		}
 		return v;
 	}
 }

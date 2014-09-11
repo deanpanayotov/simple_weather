@@ -39,6 +39,7 @@ public class ForecastActivity extends BaseSWActivity implements
 
 					@Override
 					public void onResponse(ForecastResponse response) {
+						response.simulateMissingBlocks(); //TODO
 						response.selfValidate();
 						mForecastResponse = response;
 						((ViewPager) findViewById(R.id.pager))

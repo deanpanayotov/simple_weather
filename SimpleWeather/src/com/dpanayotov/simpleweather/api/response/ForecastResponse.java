@@ -1,6 +1,7 @@
 package com.dpanayotov.simpleweather.api.response;
 
 import java.util.List;
+import java.util.Random;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -126,9 +127,9 @@ public class ForecastResponse extends BaseForecastResponse implements
 	 * Fills in any missing blocks of data
 	 */
 	private final void fillInDataGapsHourly() {
-		
+
 		List<Forecast> hourlyData = hourly.getData();
-		
+
 		if (hourlyData == null || hourlyData.size() == 0) {
 			LogUtil.e("No hourly entries in forecast response!");
 			return;
@@ -209,6 +210,22 @@ public class ForecastResponse extends BaseForecastResponse implements
 	private final long getStartingPointHourly() {
 		// Round down to the closest hour
 		return currently.getTime() - (currently.getTime() % DateUtil.HOUR);
+	}
+
+	public void simulateMissingBlocks() {
+		int hourlyToRemove = 5;
+		int dailyToRemove = 2;
+		List<Forecast> hourlyData = hourly.getData();
+		List<Forecast> dailyData = daily.getData();
+
+		for (int i = 0; i < hourlyToRemove; i++) {
+			Random rand = new Random();
+			hourlyData.remove(rand.nextInt(hourlyData.size()));
+		}
+		for (int i = 0; i < dailyToRemove; i++) {
+			Random rand = new Random();
+			dailyData.remove(rand.nextInt(dailyData.size()));
+		}
 	}
 
 }
