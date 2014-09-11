@@ -41,6 +41,11 @@ public class SimpleWeatherApplication extends Application {
 		mInstance = this;
 		// mGson = new Gson();
 		mGson = new GsonBuilder().setPrettyPrinting().create();
+	}
+	
+	@Override
+	public void onCreate() {
+		super.onCreate();
 		mPrefs = getSharedPreferences(SHARED_PREFS_SETTINGS, MODE_PRIVATE);
 		mUnits = UNITS.values()[mPrefs.getInt(PREFS_KEY_UNITS, 0)];
 		mDataValidation = mPrefs.getBoolean(PREFS_KEY_DATA_VALIDATION, false);
