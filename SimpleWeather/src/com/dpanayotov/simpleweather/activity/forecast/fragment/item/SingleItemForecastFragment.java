@@ -58,6 +58,7 @@ public abstract class SingleItemForecastFragment extends Fragment {
 				+ String.format("%.1f", 100 * getForecast().getHumidity())
 				+ PERCENT;
 
+		TextView summary = (TextView) getView().findViewById(R.id.summary);
 		ImageView image = (ImageView) getView().findViewById(R.id.icon);
 		TextView temperature = (TextView) getView().findViewById(
 				R.id.temperature);
@@ -70,6 +71,7 @@ public abstract class SingleItemForecastFragment extends Fragment {
 				R.id.cloud_cover);
 		TextView humitidy = (TextView) getView().findViewById(R.id.humitidy);
 
+		summary.setText(getForecast().getSummary());
 		image.setImageResource(WeatherImageUtil
 				.returnImageResource(getForecast().getIcon()));
 		temperature.setText(sTemperature);

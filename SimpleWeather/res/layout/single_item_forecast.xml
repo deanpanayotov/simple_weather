@@ -83,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Wind speed; 5 m/s"
+        android:text="Wind speed: 5 m/s"
         android:textSize="16sp" />
 
     <TextView
