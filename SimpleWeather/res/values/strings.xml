@@ -39,5 +39,11 @@
     <string name="humitidy">"Humitidy: "</string>
     <string name="wind_speed">"Wind speed: "</string>
     <string name="cloud_cover">"Cloud cover: "</string>
+    <string name="temperature_unit_si">" C°"</string>
+    <string name="temperature_unit_us">" F°"</string>
+    <string name="precip_intensity_unit_si">" mm/h"</string>
+    <string name="precip_intensity_unit_us">" in/h"</string>
+    <string name="wind_speed_unit_si">" m/h"</string>
+    <string name="wind_speed_unit_us">" mi/h"</string>
 
 </resources>
