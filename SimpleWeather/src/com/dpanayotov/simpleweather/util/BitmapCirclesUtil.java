@@ -25,9 +25,9 @@ public class BitmapCirclesUtil {
 	private static final float TEMP_MIN_RADIUS_RATIO = 0.2f;
 	private static final float TEMP_LEFT_OVER_RADIUS_RATIO = 1f - TEMP_MIN_RADIUS_RATIO;
 
-	private static final float WIND_MAX_VALUE_SI = 50.0f; // m/s
-	private static final float WIND_MAX_VALUE_US = 112.0f; // mi/h
-	private static final float WIND_MAX_VALUE_CA = 180.0f; // km/h
+	private static final float WIND_MAX_VALUE_SI = 27.7f; // m/s
+	private static final float WIND_MAX_VALUE_US = 62.0f; // mi/h
+	private static final float WIND_MAX_VALUE_CA = 100.0f; // km/h
 
 	private static final float PRECIP_MAX_INTENSITY_IN = 0.4f;
 	private static final float PRECIP_MAX_INTENSITY_MM = 10.16f;
