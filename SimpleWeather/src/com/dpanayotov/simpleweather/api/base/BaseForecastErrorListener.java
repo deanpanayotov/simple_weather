@@ -22,9 +22,7 @@ public class BaseForecastErrorListener implements ErrorListener {
 		if (NetworkUtil.isNetworkConnected(mContext)) {
 			handleServerError(error);
 		} else {
-			DialogUtil.showNeutralAlertDialog(mContext,
-					R.string.alert_title_no_internet,
-					R.string.aler_message_no_internet, null);
+			NetworkUtil.showNetworkDisabledDialog(mContext);
 		}
 	}
 
