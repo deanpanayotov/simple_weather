@@ -46,5 +46,7 @@
     <string name="wind_speed_unit_si">" m/h"</string>
     <string name="wind_speed_unit_us">" mi/h"</string>
     <string name="wind_speed_unit_ca">" km/h"</string>
+    <string name="unknown_location">"Unknown location"</string>
+    <string name="no_data">"No data"</string>
 
 </resources>
