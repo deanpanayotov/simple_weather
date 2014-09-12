@@ -1,5 +1,9 @@
 package com.dpanayotov.simpleweather.activity.forecast;
 
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,15 +21,18 @@ import com.dpanayotov.simpleweather.api.request.CurrentForecastRequest;
 import com.dpanayotov.simpleweather.api.response.ForecastResponse;
 import com.dpanayotov.simpleweather.general.RequestManager;
 import com.dpanayotov.simpleweather.util.Constants;
+import com.dpanayotov.simpleweather.util.DateUtil;
 import com.dpanayotov.simpleweather.util.GeocodingUtil;
 import com.dpanayotov.simpleweather.util.LogUtil;
 import com.google.android.gms.maps.model.LatLng;
 
 public class ForecastActivity extends BaseSWActivity implements
-		IForecastDataProvider {
+		IForecastDataProvider, LocationListener{
 	private String FORECAST_REQUEST_TAG = "FORECAST_REQUEST_TAG";
 
+    private LocationManager mLocationManager;
 	private ForecastResponse mForecastResponse;
+	private static final long LOCATION_EXPIRE_TIME = DateUtil.MINUTE * 15;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,23 +51,43 @@ public class ForecastActivity extends BaseSWActivity implements
 		} else {
 			LatLng latlng = ((LatLng) getIntent().getParcelableExtra(
 					Constants.PARAM_LATLNG));
-			getActionBar().setTitle(GeocodingUtil.getGeocodeName(latlng));
-			RequestManager.sendServerRequest(this, FORECAST_REQUEST_TAG,
-					new CurrentForecastRequest(new CurrentForecastParams(
-							(float) latlng.latitude, (float) latlng.longitude),
-							this), new Response.Listener<ForecastResponse>() {
+			if(latlng == null){
+				LogUtil.d("#######latlng == null");
+				mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-						@Override
-						public void onResponse(ForecastResponse response) {
-							response.simulateMissingBlocks(); // TODO
-							response.selfValidate();
-							mForecastResponse = response;
-							((ViewPager) findViewById(R.id.pager))
-									.setAdapter(new ForecastPagerAdapter(
-											getSupportFragmentManager()));
-						}
-					});
+		        Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		        if(location != null) {				LogUtil.d("#######latlng == null");
+					LogUtil.d("#######good");
+		        	getWeatherForLocation(new LatLng(location.getLatitude(), location.getLongitude()));
+		        }
+		        else {
+					LogUtil.d("#######bad");
+		            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+		            showProgressDialog();
+		        }
+			}else{
+				getWeatherForLocation(latlng);
+			}
 		}
+	}
+		
+	private void getWeatherForLocation(LatLng latlng){
+		getActionBar().setTitle(GeocodingUtil.getGeocodeName(latlng));
+		RequestManager.sendServerRequest(this, FORECAST_REQUEST_TAG,
+				new CurrentForecastRequest(new CurrentForecastParams(
+						(float) latlng.latitude, (float) latlng.longitude),
+						this), new Response.Listener<ForecastResponse>() {
+
+					@Override
+					public void onResponse(ForecastResponse response) {
+						response.simulateMissingBlocks(); // TODO
+						response.selfValidate();
+						mForecastResponse = response;
+						((ViewPager) findViewById(R.id.pager))
+								.setAdapter(new ForecastPagerAdapter(
+										getSupportFragmentManager()));
+					}
+				});
 	}
 
 	private class ForecastPagerAdapter extends FragmentPagerAdapter {
@@ -123,5 +150,34 @@ public class ForecastActivity extends BaseSWActivity implements
 		outState.putString(Constants.PARAM_LOCATION_NAME, getActionBar()
 				.getTitle().toString());
 		super.onSaveInstanceState(outState);
+	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+		LogUtil.d("#######received");
+		if (location != null) {
+            mLocationManager.removeUpdates(this);
+            getWeatherForLocation(new LatLng(location.getLatitude(), location.getLongitude()));
+            hideProgressDialog();
+        }
+		
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// TODO Auto-generated method stub
+		
 	}
 }

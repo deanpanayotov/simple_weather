@@ -1,12 +1,12 @@
 package com.dpanayotov.simpleweather.api.base;
 
-import android.content.Context;
+import com.dpanayotov.simpleweather.activity.base.BaseSWActivity;
 
 public class BaseForecastRequest<T> extends BaseGsonGetRequest<T> {
 
 	public BaseForecastRequest(BaseForecastParams params,
-			Class<T> responseClass, Context context) {
-		super(params.build(), responseClass, context);
+			Class<T> responseClass, BaseSWActivity activity) {
+		super(params.build(), responseClass, activity);
 	}
 
 }

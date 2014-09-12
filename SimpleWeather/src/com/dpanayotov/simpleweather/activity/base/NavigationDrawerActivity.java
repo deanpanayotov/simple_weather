@@ -17,6 +17,7 @@ import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.activity.AboutActivity;
 import com.dpanayotov.simpleweather.activity.MapActivity;
 import com.dpanayotov.simpleweather.activity.SettingsActivity;
+import com.dpanayotov.simpleweather.activity.forecast.ForecastActivity;
 import com.dpanayotov.simpleweather.navigation.NavigationDrawerArrayAdapter;
 import com.dpanayotov.simpleweather.navigation.NavigationDrawerContent;
 import com.dpanayotov.simpleweather.util.LogUtil;
@@ -87,6 +88,7 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 		switch (position) {
 		case NavigationDrawerContent.POS_HOME_LOCATION:
 			LogUtil.d("Menu", "Home Location");
+			startActivity(new Intent(this, ForecastActivity.class));
 			break;
 		case NavigationDrawerContent.POS_LIST:
 			LogUtil.d("Menu", "List");

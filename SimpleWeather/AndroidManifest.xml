@@ -31,11 +31,6 @@
         <activity
             android:name="com.dpanayotov.simpleweather.activity.MainActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.dpanayotov.simpleweather.activity.MapActivity"
@@ -44,6 +39,11 @@
         <activity
             android:name="com.dpanayotov.simpleweather.activity.forecast.ForecastActivity"
             android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.dpanayotov.simpleweather.activity.forecast.HourlySingleForecastViewActivity"

@@ -1,29 +1,31 @@
 package com.dpanayotov.simpleweather.api.base;
 
-import android.content.Context;
+import android.app.Activity;
 
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.VolleyError;
 import com.dpanayotov.simpleweather.R;
+import com.dpanayotov.simpleweather.activity.base.BaseSWActivity;
 import com.dpanayotov.simpleweather.util.DialogUtil;
 import com.dpanayotov.simpleweather.util.NetworkUtil;
 
 public class BaseForecastErrorListener implements ErrorListener {
-	private Context mContext;
+	private BaseSWActivity mActivity;
 	private String mUrl;
 
-	public BaseForecastErrorListener(Context context, String url) {
-		mContext = context;
+	public BaseForecastErrorListener(BaseSWActivity activity, String url) {
+		mActivity = activity;
 		mUrl = url;
 	}
 
 	@Override
 	public void onErrorResponse(VolleyError error) {
-		if (NetworkUtil.isNetworkConnected(mContext)) {
+		if (NetworkUtil.isNetworkConnected(mActivity)) {
 			handleServerError(error);
 		} else {
-			NetworkUtil.showNetworkDisabledDialog(mContext);
+			NetworkUtil.showNetworkDisabledDialog(mActivity);
 		}
+		mActivity.hideProgressDialog();
 	}
 
 	/**
@@ -41,13 +43,13 @@ public class BaseForecastErrorListener implements ErrorListener {
 		String data = new String(error.networkResponse.data);
 
 		StringBuilder sb = new StringBuilder();
-		append(sb, mUrl, mContext.getString(R.string.error_message));
-		append(sb, message, mContext.getString(R.string.error_message));
-		append(sb, cause, mContext.getString(R.string.error_cause));
-		append(sb, data, mContext.getString(R.string.error_data));
+		append(sb, mUrl, mActivity.getString(R.string.error_message));
+		append(sb, message, mActivity.getString(R.string.error_message));
+		append(sb, cause, mActivity.getString(R.string.error_cause));
+		append(sb, data, mActivity.getString(R.string.error_data));
 
-		DialogUtil.showNeutralAlertDialog(mContext,
-				mContext.getString(R.string.error_status_code) + ": "
+		DialogUtil.showNeutralAlertDialog(mActivity,
+				mActivity.getString(R.string.error_status_code) + ": "
 						+ statusCode, sb.toString(), null);
 	}
 
