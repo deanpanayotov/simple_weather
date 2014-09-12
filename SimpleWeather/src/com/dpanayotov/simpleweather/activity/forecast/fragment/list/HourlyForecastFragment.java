@@ -45,15 +45,8 @@ public class HourlyForecastFragment extends ForecastFragment {
 	}
 
 	@Override
-	public void onForecastItemClick(AdapterView<?> adapterView, View view,
-			int position, long id) {
-		Intent intent = new Intent(getActivity(),
-				HourlySingleForecastViewActivity.class);
-		intent.putExtra(Constants.PARAM_FULL_FORECAST_RESPONSE, getResponse());
-		intent.putExtra(Constants.PARAM_FORECAST_ID, (int) id); // THIS INT CAST
-																// IS
-																// MANDATORY!!!
-		startActivity(intent);
+	public Class getSingleForecastActivity() {
+		return HourlySingleForecastViewActivity.class;
 	}
 
 }

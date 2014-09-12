@@ -27,6 +27,11 @@ public abstract class SingleForecastViewActivity extends BaseSWActivity
 		setContentView(R.layout.activity_forecast);
 		mForecastResponse = getIntent().getParcelableExtra(
 				Constants.PARAM_FULL_FORECAST_RESPONSE);
+		String title = getIntent()
+				.getStringExtra(Constants.PARAM_LOCATION_NAME);
+		if (title != null && title.length() > 0) {
+			getActionBar().setTitle(title);
+		}
 		forecasts = getForecasts();
 		SingleItemForecastPagerAdapter adapter = new SingleItemForecastPagerAdapter(
 				getSupportFragmentManager());

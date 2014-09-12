@@ -2,6 +2,7 @@ package com.dpanayotov.simpleweather.activity.forecast.fragment.list;
 
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,9 +15,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.dpanayotov.simpleweather.R;
+import com.dpanayotov.simpleweather.activity.forecast.HourlySingleForecastViewActivity;
 import com.dpanayotov.simpleweather.activity.forecast.IForecastDataProvider;
+import com.dpanayotov.simpleweather.activity.forecast.SingleForecastViewActivity;
 import com.dpanayotov.simpleweather.api.response.Forecast;
 import com.dpanayotov.simpleweather.api.response.ForecastResponse;
+import com.dpanayotov.simpleweather.util.Constants;
 import com.dpanayotov.simpleweather.util.WeatherImageUtil;
 
 public abstract class ForecastFragment extends Fragment {
@@ -38,8 +42,7 @@ public abstract class ForecastFragment extends Fragment {
 
 	public abstract boolean isDaily();
 
-	public abstract void onForecastItemClick(AdapterView<?> adapterView, View view,
-			int position, long id);
+	public abstract Class getSingleForecastActivity();
 
 	private ForecastResponse mResponse;
 
@@ -83,7 +86,18 @@ public abstract class ForecastFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> adapterView, View view,
 					int position, long id) {
-				onForecastItemClick(adapterView, view, position, id);
+				Intent intent = new Intent(getActivity(),
+						getSingleForecastActivity());
+				intent.putExtra(Constants.PARAM_FULL_FORECAST_RESPONSE,
+						getResponse());
+				intent.putExtra(Constants.PARAM_FORECAST_ID, (int) id); // THIS
+																		// INT
+																		// CAST
+																		// IS
+																		// MANDATORY!!!
+				intent.putExtra(Constants.PARAM_LOCATION_NAME, getActivity()
+						.getActionBar().getTitle());
+				startActivity(intent);
 			}
 		});
 	}
