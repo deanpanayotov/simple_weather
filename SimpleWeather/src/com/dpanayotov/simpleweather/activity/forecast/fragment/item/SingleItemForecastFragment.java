@@ -23,7 +23,6 @@ public abstract class SingleItemForecastFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View root = inflater.inflate(R.layout.fragment_single_item_forecast,
 				container, false);
-
 		return root;
 
 	}
