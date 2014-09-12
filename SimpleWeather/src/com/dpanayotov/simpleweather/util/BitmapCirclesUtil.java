@@ -49,20 +49,12 @@ public class BitmapCirclesUtil {
 		paint.setColor(Color.HSVToColor(new float[] {
 				TEMP_MAX_HUE_IN_DEGREES * getTemperatureAsARatio(temperature),
 				1.0f, 1.0f }));
-		return getDataCircle(getTemperatureCircleRadius(temperature), paint);
+		return getDataCircle(1, paint);
 	}
 
 	private static float getTemperatureAsARatio(float temperature) {
 		float total = getActiveTotalTemperature(), min = getActiveMinTemperature();
-
-		return (1 - (temperature + Math.abs(min)) / total);
-	}
-
-	private static float getTemperatureCircleRadius(float temperature) {
-		return TEMP_MIN_RADIUS_RATIO
-				+ TEMP_LEFT_OVER_RADIUS_RATIO
-				* (temperature / (temperature >= 0 ? getActiveMaxTemperature()
-						: getActiveMinTemperature()));
+		return 1 - ((temperature + Math.abs(min)) / total);
 	}
 
 	public static Bitmap getWindCircle(float wind) {
