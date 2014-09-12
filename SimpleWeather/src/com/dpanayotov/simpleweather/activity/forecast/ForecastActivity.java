@@ -1,6 +1,5 @@
 package com.dpanayotov.simpleweather.activity.forecast;
 
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -32,24 +31,36 @@ public class ForecastActivity extends BaseSWActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forecast);
-		LatLng latlng = ((LatLng) getIntent().getParcelableExtra(
-				Constants.PARAM_LATLNG));
-		getActionBar().setTitle(GeocodingUtil.getGeocodeName(latlng));
-		RequestManager.sendServerRequest(this, FORECAST_REQUEST_TAG,
-				new CurrentForecastRequest(new CurrentForecastParams(
-						(float) latlng.latitude, (float) latlng.longitude),
-						this), new Response.Listener<ForecastResponse>() {
+		if (savedInstanceState != null) {
+			mForecastResponse = savedInstanceState
+					.getParcelable(Constants.PARAM_FULL_FORECAST_RESPONSE);
+			getActionBar()
+					.setTitle(
+							savedInstanceState
+									.getString(Constants.PARAM_LOCATION_NAME));
+			((ViewPager) findViewById(R.id.pager))
+					.setAdapter(new ForecastPagerAdapter(
+							getSupportFragmentManager()));
+		} else {
+			LatLng latlng = ((LatLng) getIntent().getParcelableExtra(
+					Constants.PARAM_LATLNG));
+			getActionBar().setTitle(GeocodingUtil.getGeocodeName(latlng));
+			RequestManager.sendServerRequest(this, FORECAST_REQUEST_TAG,
+					new CurrentForecastRequest(new CurrentForecastParams(
+							(float) latlng.latitude, (float) latlng.longitude),
+							this), new Response.Listener<ForecastResponse>() {
 
-					@Override
-					public void onResponse(ForecastResponse response) {
-						response.simulateMissingBlocks(); // TODO
-						response.selfValidate();
-						mForecastResponse = response;
-						((ViewPager) findViewById(R.id.pager))
-								.setAdapter(new ForecastPagerAdapter(
-										getSupportFragmentManager()));
-					}
-				});
+						@Override
+						public void onResponse(ForecastResponse response) {
+							response.simulateMissingBlocks(); // TODO
+							response.selfValidate();
+							mForecastResponse = response;
+							((ViewPager) findViewById(R.id.pager))
+									.setAdapter(new ForecastPagerAdapter(
+											getSupportFragmentManager()));
+						}
+					});
+		}
 	}
 
 	private class ForecastPagerAdapter extends FragmentPagerAdapter {
@@ -103,5 +114,14 @@ public class ForecastActivity extends BaseSWActivity implements
 	@Override
 	public ForecastResponse getForecastData() {
 		return mForecastResponse;
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		outState.putParcelable(Constants.PARAM_FULL_FORECAST_RESPONSE,
+				mForecastResponse);
+		outState.putString(Constants.PARAM_LOCATION_NAME, getActionBar()
+				.getTitle().toString());
+		super.onSaveInstanceState(outState);
 	}
 }
