@@ -63,13 +63,27 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/precip_level" />
 
-            <ImageView
-                android:id="@+id/temperature"
+            <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:src="@drawable/temperature" />
+                android:layout_weight="1" >
+
+                <ImageView
+                    android:id="@+id/temperature"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/temperature" />
+
+                <TextView
+                    android:id="@+id/temperature_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="00"/>
+            </FrameLayout>
 
             <ImageView
                 android:id="@+id/coluds"
