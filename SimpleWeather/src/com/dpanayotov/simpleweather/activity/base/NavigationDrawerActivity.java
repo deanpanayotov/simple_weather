@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.dpanayotov.simpleweather.R;
+import com.dpanayotov.simpleweather.activity.AboutActivity;
 import com.dpanayotov.simpleweather.activity.MapActivity;
 import com.dpanayotov.simpleweather.activity.SettingsActivity;
 import com.dpanayotov.simpleweather.navigation.NavigationDrawerArrayAdapter;
@@ -100,9 +101,11 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 			break;
 		case NavigationDrawerContent.POS_ABOUT:
 			LogUtil.d("Menu", "About");
+			startActivity(new Intent(this, AboutActivity.class));
 			break;
 		default:
 			LogUtil.d("Menu", "Default");
+			
 			break;
 		}
 	}

@@ -48,5 +48,13 @@
     <string name="wind_speed_unit_ca">" km/h"</string>
     <string name="unknown_location">"Unknown location"</string>
     <string name="no_data">"No data"</string>
+    <string name="created_by">"Application created by Dean Panayotov"</string>
+    <string name="email">"dean@deanpanayotov.com"</string>
+    <string name="data_provided_by">"Weather data provided by forecast.io"</string>
+    <string name="forecast_io_website">"https://forecast.io/"</string>
+    <string name="version">"Version: "</string>
+    <string name="version_code">"Version code: "</string>
+    <string name="installed">"Installed: "</string>
+    <string name="last_updated">"Last Updated: "</string>
 
 </resources>

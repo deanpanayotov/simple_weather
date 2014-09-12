@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dpanayotov.simpleweather"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0.0" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -55,6 +55,10 @@
         </activity>
         <activity
             android:name="com.dpanayotov.simpleweather.activity.SettingsActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.dpanayotov.simpleweather.activity.AboutActivity"
             android:label="@string/app_name" >
         </activity>
 
