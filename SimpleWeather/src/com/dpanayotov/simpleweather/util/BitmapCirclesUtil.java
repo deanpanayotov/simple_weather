@@ -25,9 +25,12 @@ public class BitmapCirclesUtil {
 	private static final float TEMP_MIN_RADIUS_RATIO = 0.2f;
 	private static final float TEMP_LEFT_OVER_RADIUS_RATIO = 1f - TEMP_MIN_RADIUS_RATIO;
 
-	private static final float WIND_MAX_VALUE = 50.0f; // m/s
+	private static final float WIND_MAX_VALUE_SI = 50.0f; // m/s
+	private static final float WIND_MAX_VALUE_US = 112.0f; // mi/h
+	private static final float WIND_MAX_VALUE_CA = 180.0f; // km/h
 
-	private static final float PRECIP_MAX_INTENSITY = 0.4f;
+	private static final float PRECIP_MAX_INTENSITY_IN = 0.4f;
+	private static final float PRECIP_MAX_INTENSITY_MM = 10.16f;
 	private static final float PRECIP_MIN_ALPHA_RATIO = 0.1f;
 	private static final float PRECIP_LEFT_OVER_ALPHA_RATIO = 1f - TEMP_MIN_RADIUS_RATIO;
 
@@ -37,7 +40,7 @@ public class BitmapCirclesUtil {
 		paint.setColor(SimpleWeatherApplication.getContext().getResources()
 				.getColor(R.color.terra_abisso));
 		paint.setAlpha((int) (255 * (PRECIP_MIN_ALPHA_RATIO + PRECIP_LEFT_OVER_ALPHA_RATIO
-				* (precipIntensity / PRECIP_MAX_INTENSITY))));
+				* (precipIntensity / getActivePrecipMaxIntensity()))));
 		return getDataCircle(precipProbability, paint);
 	}
 
@@ -60,6 +63,56 @@ public class BitmapCirclesUtil {
 				+ TEMP_LEFT_OVER_RADIUS_RATIO
 				* (temperature / (temperature >= 0 ? getActiveMaxTemperature()
 						: getActiveMinTemperature()));
+	}
+
+	public static Bitmap getWindCircle(float wind) {
+		return getDataCircle(wind / getActiveWindSpeedMaxValue());
+	}
+
+	public static Bitmap getCloudCircle(float cloudCoverage) {
+		Paint paint = new Paint();
+		paint.setColor(Color.parseColor("#000000"));
+		paint.setStyle(Paint.Style.STROKE);
+		paint.setStrokeWidth(5);
+		return getDataCircle(cloudCoverage, paint);
+	}
+
+	public static Bitmap getDataCircle(float size, Paint paint) {
+		Bitmap bmp = Bitmap.createBitmap(BITMAP_SIZE, BITMAP_SIZE,
+				Bitmap.Config.ARGB_8888);
+		Canvas c = new Canvas(bmp);
+		c.drawCircle(CIRCLE_RADIUS, CIRCLE_RADIUS, (CIRCLE_RADIUS) * size,
+				paint);
+		return bmp;
+	}
+
+	public static Bitmap getDataCircle(float size) {
+		Paint paint = new Paint();
+		paint.setColor(Color.parseColor("#000000"));
+		return getDataCircle(size, paint);
+	}
+
+	private static float getActiveWindSpeedMaxValue() {
+		switch (SimpleWeatherApplication.getUnits()) {
+		case SI:
+			return WIND_MAX_VALUE_SI;
+		case US:
+			return WIND_MAX_VALUE_US;
+		case CA:
+			return WIND_MAX_VALUE_CA;
+		case UK:
+			return WIND_MAX_VALUE_US;
+		default:
+			return WIND_MAX_VALUE_SI;
+		}
+	}
+
+	private static float getActivePrecipMaxIntensity() {
+		if (SimpleWeatherApplication.getUnits() == SimpleWeatherApplication.UNITS.US) {
+			return PRECIP_MAX_INTENSITY_IN;
+		} else {
+			return PRECIP_MAX_INTENSITY_MM;
+		}
 	}
 
 	private static float getActiveMinTemperature() {
@@ -86,41 +139,4 @@ public class BitmapCirclesUtil {
 		}
 	}
 
-	public static Bitmap getWindCircle(float wind) {
-		return getDataCircle(wind / WIND_MAX_VALUE);
-	}
-
-	public static Bitmap getCloudCircle(float cloudCoverage) {
-		Paint paint = new Paint();
-		paint.setColor(Color.parseColor("#000000"));
-		paint.setStyle(Paint.Style.STROKE);
-		paint.setStrokeWidth(5);
-		return getDataCircle(cloudCoverage, paint);
-	}
-
-	public static Bitmap getDataCircle(float size, Paint paint) {
-		Bitmap bmp = Bitmap.createBitmap(BITMAP_SIZE, BITMAP_SIZE,
-				Bitmap.Config.ARGB_8888);
-		Canvas c = new Canvas(bmp);
-		c.drawCircle(CIRCLE_RADIUS, CIRCLE_RADIUS, (CIRCLE_RADIUS) * size,
-				paint);
-		return bmp;
-	}
-
-	public static Bitmap getDataCircle(float size) {
-		Paint paint = new Paint();
-		paint.setColor(Color.parseColor("#000000"));
-		return getDataCircle(size, paint);
-	}
-
-	// public static Bitmap getDataCircleHollow(float size, Paint paint,
-	// int strokeWidth) {
-	// Bitmap bmp = Bitmap.createBitmap(BITMAP_SIZE, BITMAP_SIZE,
-	// Bitmap.Config.ARGB_8888);
-	// Canvas c = new Canvas(bmp);
-	// paint.setStrokeWidth(strokeWidth);
-	// c.drawArc(new RectF(0, 0, BITMAP_SIZE, BITMAP_SIZE), 0, 360, true,
-	// paint);
-	// return bmp;
-	// }
 }
