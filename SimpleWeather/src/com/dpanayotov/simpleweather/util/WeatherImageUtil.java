@@ -4,6 +4,9 @@ import com.dpanayotov.simpleweather.R;
 
 public class WeatherImageUtil {
 	public static final int returnImageResource(String icon) {
+		if(icon==null){
+			return 0;
+		}
 		switch (icon) {
 		case "clear-day":
 			return R.drawable.clear_day;
