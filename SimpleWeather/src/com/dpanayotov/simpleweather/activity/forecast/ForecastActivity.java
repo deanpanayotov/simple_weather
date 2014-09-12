@@ -1,5 +1,6 @@
 package com.dpanayotov.simpleweather.activity.forecast;
 
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,6 +18,7 @@ import com.dpanayotov.simpleweather.api.request.CurrentForecastRequest;
 import com.dpanayotov.simpleweather.api.response.ForecastResponse;
 import com.dpanayotov.simpleweather.general.RequestManager;
 import com.dpanayotov.simpleweather.util.Constants;
+import com.dpanayotov.simpleweather.util.GeocodingUtil;
 import com.dpanayotov.simpleweather.util.LogUtil;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -32,6 +34,7 @@ public class ForecastActivity extends BaseSWActivity implements
 		setContentView(R.layout.activity_forecast);
 		LatLng latlng = ((LatLng) getIntent().getParcelableExtra(
 				Constants.PARAM_LATLNG));
+		getActionBar().setTitle(GeocodingUtil.getGeocodeName(latlng));
 		RequestManager.sendServerRequest(this, FORECAST_REQUEST_TAG,
 				new CurrentForecastRequest(new CurrentForecastParams(
 						(float) latlng.latitude, (float) latlng.longitude),
@@ -39,7 +42,7 @@ public class ForecastActivity extends BaseSWActivity implements
 
 					@Override
 					public void onResponse(ForecastResponse response) {
-						response.simulateMissingBlocks(); //TODO
+						response.simulateMissingBlocks(); // TODO
 						response.selfValidate();
 						mForecastResponse = response;
 						((ViewPager) findViewById(R.id.pager))
