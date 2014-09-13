@@ -1,14 +1,6 @@
 package com.dpanayotov.simpleweather.activity.forecast;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
-import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -16,7 +8,6 @@ import android.support.v4.view.ViewPager;
 
 import com.android.volley.Response;
 import com.dpanayotov.simpleweather.R;
-import com.dpanayotov.simpleweather.activity.MapActivity;
 import com.dpanayotov.simpleweather.activity.base.BaseSWActivity;
 import com.dpanayotov.simpleweather.activity.forecast.fragment.item.CurrentWeatherFragment;
 import com.dpanayotov.simpleweather.activity.forecast.fragment.list.DailyForecastFragment;
@@ -27,9 +18,7 @@ import com.dpanayotov.simpleweather.api.response.ForecastResponse;
 import com.dpanayotov.simpleweather.general.RequestManager;
 import com.dpanayotov.simpleweather.general.SimpleWeatherApplication;
 import com.dpanayotov.simpleweather.util.Constants;
-import com.dpanayotov.simpleweather.util.DateUtil;
 import com.dpanayotov.simpleweather.util.GeocodingUtil;
-import com.dpanayotov.simpleweather.util.LocationUtil;
 import com.dpanayotov.simpleweather.util.LogUtil;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -37,52 +26,13 @@ public class ForecastActivity extends BaseSWActivity implements
 		IForecastDataProvider {
 	private String FORECAST_REQUEST_TAG = "FORECAST_REQUEST_TAG";
 
-	private LocationManager mLocationManager;
-	private boolean mSettingsOpened = false;
-	private boolean mLocationFetched = false;
-	private boolean mRunLocationFetchEverySecond = true;
-	private long mLocationFetchTime = 15 * DateUtil.SECOND;
 	private ForecastResponse mForecastResponse;
-
-	private Handler mHandler = new Handler();
-	private Runnable mRunnableStartMap = new Runnable() {
-
-		@Override
-		public void run() {
-			if (!mLocationFetched) {
-				mRunLocationFetchEverySecond = false; // to cancel the runnable
-														// below
-				hideProgressDialog();
-				startMapActivityNoLocation();
-			}
-		}
-	};
-	private Runnable mRunnableGetLocation = new Runnable() {
-
-		@Override
-		public void run() {
-			if (mRunLocationFetchEverySecond) {
-				Location location = getLastKnownLocation();
-				if (location != null) {
-					mLocationFetched = true;
-					hideProgressDialog();
-					getWeatherForLocation(new LatLng(location.getLatitude(),
-							location.getLongitude()));
-				} else {
-					mHandler.postDelayed(mRunnableGetLocation, DateUtil.SECOND);
-				}
-			}
-		}
-	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forecast);
-		mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		if (savedInstanceState != null) {
-			mSettingsOpened = savedInstanceState
-					.getBoolean(Constants.PARAM_SETTINGS_OPEN);
 			mForecastResponse = savedInstanceState
 					.getParcelable(Constants.PARAM_FULL_FORECAST_RESPONSE);
 			getActionBar()
@@ -93,86 +43,15 @@ public class ForecastActivity extends BaseSWActivity implements
 					.setAdapter(new ForecastPagerAdapter(
 							getSupportFragmentManager()));
 		} else {
-			LatLng latlng = ((LatLng) getIntent().getParcelableExtra(
-					Constants.PARAM_LATLNG));
-			if (latlng == null) {
-				if (LocationUtil.areLocationServicesEnabled(this)) {
-					getLastKnowLocationAndGetWeather(true);
-				} else {
-					LocationUtil.openLocationEnableDialog(this,
-							new OnClickListener() {
-
-								@Override
-								public void onClick(
-										DialogInterface paramDialogInterface,
-										int paramInt) {
-									Intent myIntent = new Intent(
-											Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-									mSettingsOpened = true;
-									startActivity(myIntent);
-								}
-							}, new OnClickListener() {
-								@Override
-								public void onClick(DialogInterface dialog,
-										int which) {
-									dialog.dismiss();
-									mSettingsOpened = false;
-									startMapActivityNoLocation();
-								}
-							});
-				}
-			} else {
+			LatLng latlng = (LatLng) getIntent().getParcelableExtra(
+					Constants.PARAM_LATLNG);
+			if (latlng != null) {
 				getWeatherForLocation(latlng);
 			}
 		}
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		if (mSettingsOpened) {
-			mSettingsOpened = false;
-			if (LocationUtil.areLocationServicesEnabled(this)) {
-				getLastKnowLocationAndGetWeather(true);
-			} else {
-				startMapActivityNoLocation();
-			}
-		}
-	}
-
-	private void getLastKnowLocationAndGetWeather(boolean requestLocationUpdates) {
-		Location location = getLastKnownLocation();
-		if (location != null) {
-			getWeatherForLocation(new LatLng(location.getLatitude(),
-					location.getLongitude()));
-		} else {
-			if (requestLocationUpdates) {
-				// mLocationManager.requestLocationUpdates(
-				// LocationManager.GPS_PROVIDER, 0, 0, this);
-				mHandler.postDelayed(mRunnableStartMap, mLocationFetchTime);
-				mHandler.postDelayed(mRunnableGetLocation, DateUtil.SECOND);
-				showProgressDialog();
-			}
-		}
-	}
-
-	private Location getLastKnownLocation() {
-		Location location = mLocationManager
-				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-		if (location == null) {
-			location = mLocationManager
-					.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-		}
-		return location;
-	}
-
-	private void startMapActivityNoLocation() {
-		Intent intent = new Intent(this, MapActivity.class);
-		intent.putExtra(Constants.PARAM_NO_LOCATION, true);
-		startActivity(intent);
-	}
-
-	private void getWeatherForLocation(LatLng latlng) {
+	protected void getWeatherForLocation(LatLng latlng) {
 		getActionBar().setTitle(GeocodingUtil.getGeocodeName(latlng));
 		RequestManager.sendServerRequest(this, FORECAST_REQUEST_TAG,
 				new CurrentForecastRequest(new CurrentForecastParams(
@@ -251,11 +130,15 @@ public class ForecastActivity extends BaseSWActivity implements
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-		outState.putBoolean(Constants.PARAM_SETTINGS_OPEN, mSettingsOpened);
 		outState.putParcelable(Constants.PARAM_FULL_FORECAST_RESPONSE,
 				mForecastResponse);
 		outState.putString(Constants.PARAM_LOCATION_NAME, getActionBar()
 				.getTitle().toString());
 		super.onSaveInstanceState(outState);
+	}
+
+	@Override
+	protected boolean doubleTapBack() {
+		return false;
 	}
 }
