@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -16,13 +17,16 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="Forecast Data Verification" />
+            android:text="Forecast Data Verification"
+            android:textColor="@color/terra_abisso" />
 
         <Switch
             android:id="@+id/switch_validation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:switchMinWidth="106dp"
+            android:thumb="@color/terra_abisso" />
     </LinearLayout>
 
     <LinearLayout
@@ -37,15 +41,18 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="Database Caching" />
+            android:text="Database Caching"
+            android:textColor="@color/terra_abisso" />
 
         <Switch
             android:id="@+id/switch_cache"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:switchMinWidth="106dp"
+            android:thumb="@color/terra_abisso" />
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,16 +65,19 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="Simulate Missing Data" />
+            android:text="Simulate Missing Data"
+            android:textColor="@color/terra_abisso" />
 
         <Switch
             android:id="@+id/switch_missing_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:switchMinWidth="106dp"
+            android:thumb="@color/terra_abisso" />
     </LinearLayout>
-    
-        <LinearLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -79,13 +89,25 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="Units" />
+            android:text="Units"
+            android:textColor="@color/terra_abisso" />
+
+        <Switch
+            android:id="@+id/switch_units"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:switchMinWidth="106dp"
+            android:textOff="@string/temperature_unit_si"
+            android:textOn="@string/temperature_unit_us"
+            android:thumb="@color/terra_abisso" />
 
         <Spinner
             android:id="@+id/spinner_units"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:visibility="gone" />
     </LinearLayout>
 
 </LinearLayout>
