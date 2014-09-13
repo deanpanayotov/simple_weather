@@ -35,6 +35,8 @@ public abstract class SingleItemForecastFragment extends Fragment {
 
 	public abstract Forecast getForecast();
 
+	public abstract String getTitle();
+
 	private void fillInData() {
 		if (getForecast().getIcon() == null
 				&& getForecast().getSummary() == null) {
@@ -77,7 +79,7 @@ public abstract class SingleItemForecastFragment extends Fragment {
 			TextView humitidy = (TextView) getView()
 					.findViewById(R.id.humitidy);
 
-			summary.setText(getForecast().getSummary());
+			summary.setText(getTitle() + getForecast().getSummary());
 			image.setImageResource(WeatherImageUtil
 					.returnImageResource(getForecast().getIcon()));
 			temperature.setText(sTemperature);

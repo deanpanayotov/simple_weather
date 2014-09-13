@@ -60,5 +60,8 @@
     <string name="open_location_settings">"Open Settings"</string>
     <string name="cancel">"Cancel"</string>
     <string name="no_location">"Couldn't fetch current location."</string>
+    <string name="currently">"Currently: "</string>
+    <string name="hourly_summary">"Hourly summary: "</string>
+    <string name="daily_summary">"Daily summary: "</string>
 
 </resources>
