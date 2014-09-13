@@ -1,13 +1,8 @@
 package com.dpanayotov.simpleweather.activity;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.Spinner;
 import android.widget.Switch;
 
 import com.dpanayotov.simpleweather.R;
@@ -19,7 +14,8 @@ public class SettingsActivity extends BaseSWActivity {
 	Switch mValidationSwitch;
 	Switch mCacheSwitch;
 	Switch mMissingDataSwitch;
-	Spinner mUnitSpinner;
+	Switch mUnitsSwitch;
+	// Spinner mUnitSpinner;
 	SimpleWeatherApplication app;
 
 	@Override
@@ -36,7 +32,8 @@ public class SettingsActivity extends BaseSWActivity {
 		mValidationSwitch = (Switch) findViewById(R.id.switch_validation);
 		mCacheSwitch = (Switch) findViewById(R.id.switch_cache);
 		mMissingDataSwitch = (Switch) findViewById(R.id.switch_missing_data);
-		mUnitSpinner = (Spinner) findViewById(R.id.spinner_units);
+		mUnitsSwitch = (Switch) findViewById(R.id.switch_units);
+		// mUnitSpinner = (Spinner) findViewById(R.id.spinner_units);
 		app = SimpleWeatherApplication.getInstance();
 	}
 
@@ -44,11 +41,13 @@ public class SettingsActivity extends BaseSWActivity {
 		mValidationSwitch.setChecked(app.isDataValidationEnabled());
 		mCacheSwitch.setChecked(app.isDBCahceEnabled());
 		mMissingDataSwitch.setChecked(app.isMissingDataEnabled());
-		mUnitSpinner.setAdapter(new ArrayAdapter<UNITS>(this,
-				android.R.layout.simple_spinner_item,
-				SimpleWeatherApplication.UNITS.values()));
-		mUnitSpinner
-				.setSelection(SimpleWeatherApplication.getUnits().ordinal());
+		mUnitsSwitch
+				.setChecked(app.getUnits() == SimpleWeatherApplication.UNITS.US);
+		// mUnitSpinner.setAdapter(new ArrayAdapter<UNITS>(this,
+		// android.R.layout.simple_spinner_item,
+		// SimpleWeatherApplication.UNITS.values()));
+		// mUnitSpinner
+		// .setSelection(SimpleWeatherApplication.getUnits().ordinal());
 	}
 
 	private void setOnClickListeners() {
@@ -79,18 +78,27 @@ public class SettingsActivity extends BaseSWActivity {
 						app.setMissingData(isChecked);
 					}
 				});
-		mUnitSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+		mUnitsSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
-			public void onItemSelected(AdapterView<?> parent, View view,
-					int position, long id) {
-				app.setUnits((int) id);
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				app.setUnits((isChecked ? SimpleWeatherApplication.UNITS.US
+						: SimpleWeatherApplication.UNITS.SI).ordinal());
 			}
 		});
+		// mUnitSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+		//
+		// @Override
+		// public void onItemSelected(AdapterView<?> parent, View view,
+		// int position, long id) {
+		// app.setUnits((int) id);
+		// }
+		//
+		// @Override
+		// public void onNothingSelected(AdapterView<?> arg0) {
+		// }
+		// });
 	}
 
 }
