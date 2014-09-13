@@ -12,7 +12,7 @@
     <string name="error_cause">Cause</string>
     <string name="error_data">Data</string>
     <string name="error_status_code">Status Code</string>
-    <string name="drawer_option_home_location">Home Location</string>
+    <string name="drawer_option_my_location">My Location</string>
     <string name="drawer_option_list">List</string>
     <string name="drawer_option_map">Map</string>
     <string name="drawer_option_settings">Settings</string>

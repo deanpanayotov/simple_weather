@@ -86,12 +86,9 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 	private void selectItem(int position) {
 		// TODO #10 Navigation
 		switch (position) {
-		case NavigationDrawerContent.POS_HOME_LOCATION:
+		case NavigationDrawerContent.POS_MY_LOCATION:
 			LogUtil.d("Menu", "Home Location");
 			startActivity(new Intent(this, ForecastActivity.class));
-			break;
-		case NavigationDrawerContent.POS_LIST:
-			LogUtil.d("Menu", "List");
 			break;
 		case NavigationDrawerContent.POS_MAP:
 			LogUtil.d("Menu", "Map");
@@ -107,7 +104,7 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 			break;
 		default:
 			LogUtil.d("Menu", "Default");
-			
+
 			break;
 		}
 	}
