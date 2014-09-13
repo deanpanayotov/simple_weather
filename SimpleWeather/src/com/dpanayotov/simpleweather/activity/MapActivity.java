@@ -2,6 +2,7 @@ package com.dpanayotov.simpleweather.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.activity.base.BaseSWActivity;
@@ -36,6 +37,9 @@ public class MapActivity extends BaseSWActivity {
 				startActivity(intent);
 			}
 		});
+		if (getIntent().getBooleanExtra(Constants.PARAM_NO_LOCATION, false)) {
+			Toast.makeText(this, R.string.no_location, Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	@Override

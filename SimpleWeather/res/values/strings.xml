@@ -56,5 +56,9 @@
     <string name="version_code">"Version code: "</string>
     <string name="installed">"Installed: "</string>
     <string name="last_updated">"Last Updated: "</string>
+    <string name="gps_network_not_enabled">"GPS services are not enabled. Would you like to enable them so that Simple Weather can fetch your location?"</string>
+    <string name="open_location_settings">"Open Settings"</string>
+    <string name="cancel">"Cancel"</string>
+    <string name="no_location">"Couldn't fetch current location."</string>
 
 </resources>
