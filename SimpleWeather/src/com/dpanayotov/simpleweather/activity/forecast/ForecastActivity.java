@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,12 +33,13 @@ import com.dpanayotov.simpleweather.util.LogUtil;
 import com.google.android.gms.maps.model.LatLng;
 
 public class ForecastActivity extends BaseSWActivity implements
-		IForecastDataProvider, LocationListener {
+		IForecastDataProvider {
 	private String FORECAST_REQUEST_TAG = "FORECAST_REQUEST_TAG";
 
 	private LocationManager mLocationManager;
 	private boolean mSettingsOpened = false;
 	private boolean mLocationFetched = false;
+	private boolean mRunLocationFetchEverySecond = true;
 	private long mLocationFetchTime = 15 * DateUtil.SECOND;
 	private ForecastResponse mForecastResponse;
 
@@ -49,7 +49,7 @@ public class ForecastActivity extends BaseSWActivity implements
 		@Override
 		public void run() {
 			if (!mLocationFetched) {
-				mLocationFetched = true; // to cancel the runnable below
+				mRunLocationFetchEverySecond = false; // to cancel the runnable below
 				hideProgressDialog();
 				startMapActivityNoLocation();
 			}
@@ -59,7 +59,7 @@ public class ForecastActivity extends BaseSWActivity implements
 
 		@Override
 		public void run() {
-			if (!mLocationFetched) {
+			if (mRunLocationFetchEverySecond) {
 				Location location = getLastKnownLocation();
 				if (location != null) {
 					mLocationFetched = true;
@@ -77,6 +77,7 @@ public class ForecastActivity extends BaseSWActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forecast);
+		mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		if (savedInstanceState != null) {
 			mSettingsOpened = savedInstanceState
 					.getBoolean(Constants.PARAM_SETTINGS_OPEN);
@@ -93,8 +94,6 @@ public class ForecastActivity extends BaseSWActivity implements
 			LatLng latlng = ((LatLng) getIntent().getParcelableExtra(
 					Constants.PARAM_LATLNG));
 			if (latlng == null) {
-				mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
 				if (LocationUtil.areLocationServicesEnabled(this)) {
 					getLastKnowLocationAndGetWeather(true);
 				} else {
@@ -146,8 +145,8 @@ public class ForecastActivity extends BaseSWActivity implements
 					location.getLongitude()));
 		} else {
 			if (requestLocationUpdates) {
-				mLocationManager.requestLocationUpdates(
-						LocationManager.GPS_PROVIDER, 0, 0, this);
+//				mLocationManager.requestLocationUpdates(
+//						LocationManager.GPS_PROVIDER, 0, 0, this);
 				mHandler.postDelayed(mRunnableStartMap, mLocationFetchTime);
 				mHandler.postDelayed(mRunnableGetLocation, DateUtil.SECOND);
 				showProgressDialog();
@@ -251,35 +250,5 @@ public class ForecastActivity extends BaseSWActivity implements
 		outState.putString(Constants.PARAM_LOCATION_NAME, getActionBar()
 				.getTitle().toString());
 		super.onSaveInstanceState(outState);
-	}
-
-	@Override
-	public void onLocationChanged(Location location) {
-		if (location != null) {
-			mLocationFetched = true;
-			mLocationManager.removeUpdates(this);
-			hideProgressDialog();
-			getWeatherForLocation(new LatLng(location.getLatitude(),
-					location.getLongitude()));
-		}
-
-	}
-
-	@Override
-	public void onProviderDisabled(String provider) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onProviderEnabled(String provider) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onStatusChanged(String provider, int status, Bundle extras) {
-		// TODO Auto-generated method stub
-
 	}
 }
