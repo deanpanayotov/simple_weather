@@ -52,6 +52,8 @@ public class BaseSWActivity extends NavigationDrawerActivity {
 					mBackPressedOnce = false;
 				}
 			}, TAP_TWICE_DELAY);
+		} else {
+			super.onBackPressed();
 		}
 	}
 
