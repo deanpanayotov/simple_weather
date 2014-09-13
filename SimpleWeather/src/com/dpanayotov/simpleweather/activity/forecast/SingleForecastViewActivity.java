@@ -10,7 +10,6 @@ import android.support.v4.view.ViewPager;
 
 import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.activity.base.BaseSWActivity;
-import com.dpanayotov.simpleweather.activity.forecast.fragment.item.HourlySingleItemForecastFragment;
 import com.dpanayotov.simpleweather.api.response.Forecast;
 import com.dpanayotov.simpleweather.api.response.ForecastResponse;
 import com.dpanayotov.simpleweather.util.Constants;
@@ -20,6 +19,11 @@ public abstract class SingleForecastViewActivity extends BaseSWActivity
 		implements IForecastDataProvider {
 	private ForecastResponse mForecastResponse;
 	private List<Forecast> forecasts;
+
+	@Override
+	protected boolean doubleTapBack() {
+		return false;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

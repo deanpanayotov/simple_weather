@@ -25,7 +25,7 @@ import com.dpanayotov.simpleweather.util.LogUtil;
 public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 
 	private ActionBarDrawerToggle mDrawerToggle;
-
+	private DrawerLayout mDrawer;
 	@Override
 	public void setContentView(int layoutResID) {
 		DrawerLayout fullLayout = (DrawerLayout) getLayoutInflater().inflate(
@@ -54,6 +54,7 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 	 * @param drawer
 	 */
 	private void setUpDrawer(DrawerLayout drawer) {
+		mDrawer = drawer;
 		ListView drawerList = ((ListView) findViewById(R.id.left_drawer));
 		drawerList.setAdapter(new NavigationDrawerArrayAdapter(this,
 				NavigationDrawerContent.getContent()));
@@ -71,7 +72,6 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 		};
 		drawer.setDrawerListener(mDrawerToggle);
 		drawer.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
-
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
 
@@ -88,25 +88,35 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 		switch (position) {
 		case NavigationDrawerContent.POS_MY_LOCATION:
 			LogUtil.d("Menu", "Home Location");
-			startActivity(new Intent(this, ForecastActivity.class));
+			startActivityClearStack(ForecastActivity.class);
 			break;
 		case NavigationDrawerContent.POS_MAP:
 			LogUtil.d("Menu", "Map");
-			startActivity(new Intent(this, MapActivity.class));
+			startActivityClearStack(MapActivity.class);
 			break;
 		case NavigationDrawerContent.POS_SETTINGS:
 			LogUtil.d("Menu", "Settings");
-			startActivity(new Intent(this, SettingsActivity.class));
+			startActivityClearStack(SettingsActivity.class);
 			break;
 		case NavigationDrawerContent.POS_ABOUT:
 			LogUtil.d("Menu", "About");
-			startActivity(new Intent(this, AboutActivity.class));
+			startActivityClearStack(AboutActivity.class);
 			break;
 		default:
 			LogUtil.d("Menu", "Default");
-
+			startActivityClearStack(ForecastActivity.class);
 			break;
 		}
+	}
+	
+	private void startActivityClearStack(Class activityClass){
+		if(this.getClass().equals(activityClass)){
+			mDrawer.closeDrawer(Gravity.LEFT);
+			return;
+		}
+		Intent intent = new Intent(this, activityClass);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		startActivity(intent);
 	}
 
 	@Override
