@@ -21,7 +21,7 @@ public class CurrentLocationForecastActivity extends ForecastActivity {
 	private boolean mSettingsOpened = false;
 	private boolean mLocationFetched = false;
 	private boolean mRunLocationFetchEverySecond = true;
-	private long mLocationFetchTime = 15 * DateUtil.SECOND;
+	private long mLocationFetchTime = 7 * DateUtil.SECOND;
 
 	private Handler mHandler = new Handler();
 	private Runnable mRunnableStartMap = new Runnable() {
