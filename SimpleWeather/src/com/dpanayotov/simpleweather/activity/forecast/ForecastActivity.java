@@ -25,6 +25,7 @@ import com.dpanayotov.simpleweather.api.request.CurrentForecastParams;
 import com.dpanayotov.simpleweather.api.request.CurrentForecastRequest;
 import com.dpanayotov.simpleweather.api.response.ForecastResponse;
 import com.dpanayotov.simpleweather.general.RequestManager;
+import com.dpanayotov.simpleweather.general.SimpleWeatherApplication;
 import com.dpanayotov.simpleweather.util.Constants;
 import com.dpanayotov.simpleweather.util.DateUtil;
 import com.dpanayotov.simpleweather.util.GeocodingUtil;
@@ -49,7 +50,8 @@ public class ForecastActivity extends BaseSWActivity implements
 		@Override
 		public void run() {
 			if (!mLocationFetched) {
-				mRunLocationFetchEverySecond = false; // to cancel the runnable below
+				mRunLocationFetchEverySecond = false; // to cancel the runnable
+														// below
 				hideProgressDialog();
 				startMapActivityNoLocation();
 			}
@@ -145,8 +147,8 @@ public class ForecastActivity extends BaseSWActivity implements
 					location.getLongitude()));
 		} else {
 			if (requestLocationUpdates) {
-//				mLocationManager.requestLocationUpdates(
-//						LocationManager.GPS_PROVIDER, 0, 0, this);
+				// mLocationManager.requestLocationUpdates(
+				// LocationManager.GPS_PROVIDER, 0, 0, this);
 				mHandler.postDelayed(mRunnableStartMap, mLocationFetchTime);
 				mHandler.postDelayed(mRunnableGetLocation, DateUtil.SECOND);
 				showProgressDialog();
@@ -179,8 +181,13 @@ public class ForecastActivity extends BaseSWActivity implements
 
 					@Override
 					public void onResponse(ForecastResponse response) {
-						response.simulateMissingBlocks(); // TODO
-						response.selfValidate();
+						if (SimpleWeatherApplication.isMissingDataEnabled()) {
+							response.simulateMissingBlocks();
+						}
+						response.convertToProperTime();
+						if (SimpleWeatherApplication.isDataValidationEnabled()) {
+							response.selfValidate();
+						}
 						mForecastResponse = response;
 						((ViewPager) findViewById(R.id.pager))
 								.setAdapter(new ForecastPagerAdapter(
