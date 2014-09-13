@@ -63,7 +63,8 @@ public class BitmapCirclesUtil {
 
 	public static Bitmap getCloudCircle(float cloudCoverage) {
 		Paint paint = new Paint();
-		paint.setColor(Color.parseColor("#000000"));
+		paint.setColor(SimpleWeatherApplication.getContext().getResources()
+				.getColor(R.color.black));
 		paint.setStyle(Paint.Style.STROKE);
 		paint.setStrokeWidth(5);
 		return getDataCircle(cloudCoverage, paint);
@@ -80,7 +81,8 @@ public class BitmapCirclesUtil {
 
 	public static Bitmap getDataCircle(float size) {
 		Paint paint = new Paint();
-		paint.setColor(Color.parseColor("#000000"));
+		paint.setColor(SimpleWeatherApplication.getContext().getResources()
+				.getColor(R.color.black));
 		return getDataCircle(size, paint);
 	}
 

@@ -21,7 +21,6 @@ import com.dpanayotov.simpleweather.activity.forecast.CurrentLocationForecastAct
 import com.dpanayotov.simpleweather.activity.forecast.ForecastActivity;
 import com.dpanayotov.simpleweather.navigation.NavigationDrawerArrayAdapter;
 import com.dpanayotov.simpleweather.navigation.NavigationDrawerContent;
-import com.dpanayotov.simpleweather.util.LogUtil;
 
 public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 
@@ -88,23 +87,18 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 		// TODO #10 Navigation
 		switch (position) {
 		case NavigationDrawerContent.POS_MY_LOCATION:
-			LogUtil.d("Menu", "Home Location");
 			startActivityClearStack(CurrentLocationForecastActivity.class);
 			break;
 		case NavigationDrawerContent.POS_MAP:
-			LogUtil.d("Menu", "Map");
 			startActivityClearStack(MapActivity.class);
 			break;
 		case NavigationDrawerContent.POS_SETTINGS:
-			LogUtil.d("Menu", "Settings");
 			startActivityClearStack(SettingsActivity.class);
 			break;
 		case NavigationDrawerContent.POS_ABOUT:
-			LogUtil.d("Menu", "About");
 			startActivityClearStack(AboutActivity.class);
 			break;
 		default:
-			LogUtil.d("Menu", "Default");
 			startActivityClearStack(ForecastActivity.class);
 			break;
 		}

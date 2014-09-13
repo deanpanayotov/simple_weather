@@ -10,13 +10,14 @@ import android.widget.TextView;
 
 import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.api.response.Forecast;
+import com.dpanayotov.simpleweather.general.SimpleWeatherApplication;
 import com.dpanayotov.simpleweather.util.UnitUtil;
 import com.dpanayotov.simpleweather.util.WeatherImageUtil;
 
 public abstract class SingleItemForecastFragment extends Fragment {
 
-	private static final String PERCENT = " %";
-	private static final String BULLET = " • ";
+	private static final String PERCENT = SimpleWeatherApplication.getContext().getString(R.string.percent);
+	private static final String BULLET = SimpleWeatherApplication.getContext().getString(R.string.bullet);
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

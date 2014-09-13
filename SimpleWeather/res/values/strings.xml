@@ -64,5 +64,7 @@
     <string name="hourly_summary">"Hourly summary: "</string>
     <string name="daily_summary">"Daily summary: "</string>
     <string name="tap_back">Please tap BACK again to exit</string>
+    <string name="percent">" %"</string>
+    <string name="bullet">" • "</string>
 
 </resources>

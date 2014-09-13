@@ -15,9 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.dpanayotov.simpleweather.R;
-import com.dpanayotov.simpleweather.activity.forecast.HourlySingleForecastViewActivity;
 import com.dpanayotov.simpleweather.activity.forecast.IForecastDataProvider;
-import com.dpanayotov.simpleweather.activity.forecast.SingleForecastViewActivity;
 import com.dpanayotov.simpleweather.api.response.Forecast;
 import com.dpanayotov.simpleweather.api.response.ForecastResponse;
 import com.dpanayotov.simpleweather.util.Constants;

@@ -1,7 +1,5 @@
 package com.dpanayotov.simpleweather.api.base;
 
-import android.app.Activity;
-
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.VolleyError;
 import com.dpanayotov.simpleweather.R;

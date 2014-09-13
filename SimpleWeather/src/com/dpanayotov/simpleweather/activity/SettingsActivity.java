@@ -8,7 +8,6 @@ import android.widget.Switch;
 import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.activity.base.BaseSWActivity;
 import com.dpanayotov.simpleweather.general.SimpleWeatherApplication;
-import com.dpanayotov.simpleweather.general.SimpleWeatherApplication.UNITS;
 
 public class SettingsActivity extends BaseSWActivity {
 	Switch mValidationSwitch;
