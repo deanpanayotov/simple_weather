@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
+import android.os.AsyncTask;
 
 import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.general.SimpleWeatherApplication;
@@ -13,8 +14,24 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class GeocodingUtil {
 
-	public static String getGeocodeName(LatLng latlng) {
-		return getGeocodeName(latlng.latitude, latlng.longitude);
+	public static void getGeocodeName(LatLng latlng, GeocodeListener listener) {
+		getGeocodeName(latlng.latitude, latlng.longitude, listener);
+	}
+
+	public static void getGeocodeName(final double latitude,
+			final double longitude, final GeocodeListener listener) {
+		new AsyncTask<Void, Void, String>() {
+
+			@Override
+			protected String doInBackground(Void... params) {
+				return getGeocodeName(latitude, longitude);
+			}
+
+			@Override
+			protected void onPostExecute(String result) {
+				listener.onGeocodeReceived(result);
+			}
+		}.execute();
 	}
 
 	public static String getGeocodeName(double latitude, double longitude) {
@@ -53,5 +70,9 @@ public class GeocodingUtil {
 
 	private static boolean empty(String str) {
 		return str == null || str.length() == 0;
+	}
+
+	public interface GeocodeListener {
+		public void onGeocodeReceived(String geoCode);
 	}
 }

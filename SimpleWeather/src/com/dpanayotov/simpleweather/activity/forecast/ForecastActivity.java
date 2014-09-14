@@ -19,6 +19,7 @@ import com.dpanayotov.simpleweather.general.RequestManager;
 import com.dpanayotov.simpleweather.general.SimpleWeatherApplication;
 import com.dpanayotov.simpleweather.util.Constants;
 import com.dpanayotov.simpleweather.util.GeocodingUtil;
+import com.dpanayotov.simpleweather.util.GeocodingUtil.GeocodeListener;
 import com.dpanayotov.simpleweather.util.LogUtil;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -52,7 +53,13 @@ public class ForecastActivity extends BaseSWActivity implements
 	}
 
 	protected void getWeatherForLocation(LatLng latlng) {
-		getActionBar().setTitle(GeocodingUtil.getGeocodeName(latlng));
+		GeocodingUtil.getGeocodeName(latlng, new GeocodeListener() {
+
+			@Override
+			public void onGeocodeReceived(String geoCode) {
+				getActionBar().setTitle(geoCode);
+			}
+		});
 		RequestManager.sendServerRequest(this, FORECAST_REQUEST_TAG,
 				new CurrentForecastRequest(new CurrentForecastParams(
 						(float) latlng.latitude, (float) latlng.longitude),
