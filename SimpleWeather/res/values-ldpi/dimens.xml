@@ -3,5 +3,22 @@
     <dimen name="drawer_padding">6dp</dimen>
     <dimen name="drawer_padding_half">3dp</dimen>
     <dimen name="drawer_width">90dp</dimen>
+    <dimen name="activity_about_padding">9dp</dimen>
+    <dimen name="activity_forecast_pager_tab_strip_padding">1.5dp</dimen>
+    <dimen name="activity_setings_item_padding">3dp</dimen>
+    <dimen name="activity_setings_switch_min_width">39dp</dimen>
+    <dimen name="activity_sw_base_decorative_strip_height">1.5dp</dimen>
+    <dimen name="activity_sw_base_footer_height">9dp</dimen>
+    <dimen name="activity_sw_base_footer_padding_right">3dp</dimen>
+    <dimen name="fragment_daily_hourly_padding">6dp</dimen>
+    <dimen name="layout_forecast_item_height">14dp</dimen>
+    <dimen name="process_dialog_padding">6dp</dimen>
+    <dimen name="fragment_single_item_forecast_padding">6dp</dimen>
+    <dimen name="fragment_single_item_forecast_summary_padding">9dp</dimen>
+    <dimen name="fragment_single_item_forecast_rectangle_margin">3dp</dimen>
+    <dimen name="fragment_single_item_forecast_rectangle_padding">8dp</dimen>
+    <dimen name="fragment_single_item_forecast_icon_size">45dp</dimen>
+    <dimen name="fragment_single_item_forecast_icon_paddimg">3dp</dimen>
+    <dimen name="fragment_single_item_forecast_no_data_paddimg">9dp</dimen>
     
 </resources>

@@ -3,7 +3,6 @@
     <dimen name="drawer_padding">16dp</dimen>
     <dimen name="drawer_padding_half">8dp</dimen>
     <dimen name="drawer_width">240dp</dimen>
-    
     <dimen name="activity_about_padding">24dp</dimen>
     <dimen name="activity_forecast_pager_tab_strip_padding">4dp</dimen>
     <dimen name="activity_setings_item_padding">8dp</dimen>
