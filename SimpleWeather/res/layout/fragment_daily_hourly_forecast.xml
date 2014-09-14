@@ -3,27 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/fragment_daily_hourly_padding" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp" >
+        android:paddingLeft="@dimen/fragment_daily_hourly_padding"
+        android:paddingRight="@dimen/fragment_daily_hourly_padding" >
 
         <TextView
             android:id="@+id/title_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="16dp"
+            android:paddingRight="@dimen/fragment_daily_hourly_padding"
             android:text="@string/title_hourly" />
 
         <ImageView
             android:id="@+id/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/content_description_image"
             android:src="@drawable/cloudy" />
     </LinearLayout>
 
@@ -31,15 +32,15 @@
         android:id="@+id/summary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
         android:gravity="center"
-        android:text="No precipitation throughout the week, with temperatures peaking at 78°F on Monday." />
+        android:paddingBottom="@dimen/fragment_daily_hourly_padding"
+        android:text="@string/summary_placeholder" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:gravity="center"
+        android:layout_height="@dimen/layout_forecast_item_height"
         android:background="@color/terra_terra"
+        android:gravity="center"
         android:orientation="horizontal" >
 
         <TextView
@@ -48,43 +49,48 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Time" />
+            android:text="@string/time" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/content_description_image"
             android:src="@drawable/default_placeholder" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/content_description_image"
             android:src="@drawable/precip_level" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/content_description_image"
             android:src="@drawable/temperature" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/content_description_image"
             android:src="@drawable/cloudy" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/content_description_image"
             android:src="@drawable/wind" />
     </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="16dp" >
+        android:paddingTop="@dimen/fragment_daily_hourly_padding" >
 
         <ListView
             android:id="@+id/list"

@@ -12,7 +12,7 @@
         android:layout_gravity="bottom"
         android:background="@color/terra_abisso"
         android:textColor="@color/terra_terra"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp" />
+        android:paddingTop="@dimen/activity_forecast_pager_tab_strip_padding"
+        android:paddingBottom="@dimen/activity_forecast_pager_tab_strip_padding" />
 
 </android.support.v4.view.ViewPager>

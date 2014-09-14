@@ -19,7 +19,7 @@ public class MapActivity extends BaseSWActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_map_test);
+		setContentView(R.layout.activity_map);
 		mMap = ((SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.map)).getMap();
 		mMap.setMyLocationEnabled(true);

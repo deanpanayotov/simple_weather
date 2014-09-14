@@ -66,5 +66,18 @@
     <string name="tap_back">Please tap BACK again to exit</string>
     <string name="percent">" %"</string>
     <string name="bullet">" • "</string>
-
+    <string name="forecast_data_verification">"Forecast Data Verification"</string>
+    <string name="simulate_missing_data">"Simulate Missing Data"</string>
+    <string name="data_caching">"Database Caching"</string>
+    <string name="units">"Units"</string>
+    <string name="time">"Time"</string>
+    <string name="summary_placeholder">"No precipitation throughout the week, with temperatures peaking at 78°F on Monday."</string>
+	<string name="temperature_placeholder">"14 / 19 C"</string>
+	<string name="precip_intensity_placeholder">"• Intensity: 0.012m"</string>
+	<string name="precip_probability_placeholder">"• Probability: 23%"</string>
+	<string name="wind_speed_placeholder">"Wind speed: 5 m/s"</string>
+	<string name="cloud_cover_placeholder">"Cloud cover: 24%"</string>
+	<string name="humitidy_placeholder">"Humitidy: 84%"</string>
+	<string name="midnight">Midnight!</string>
+	<string name="time_placeholder">23:00</string>
 </resources>

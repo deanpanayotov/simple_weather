@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp" >
+        android:padding="@dimen/activity_setings_item_padding" >
 
         <TextView
             android:layout_width="0dp"
@@ -17,7 +17,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="Forecast Data Verification"
+            android:text="@string/forecast_data_verification"
             android:textColor="@color/terra_abisso" />
 
         <Switch
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:switchMinWidth="106dp"
+            android:switchMinWidth="@dimen/activity_setings_switch_min_width"
             android:thumb="@color/terra_abisso" />
     </LinearLayout>
 
@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp" >
+        android:padding="@dimen/activity_setings_item_padding" >
 
         <TextView
             android:layout_width="0dp"
@@ -41,7 +41,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="Database Caching"
+            android:text="@string/data_caching"
             android:textColor="@color/terra_abisso" />
 
         <Switch
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:switchMinWidth="106dp"
+            android:switchMinWidth="@dimen/activity_setings_switch_min_width"
             android:thumb="@color/terra_abisso" />
     </LinearLayout>
 
@@ -57,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp" >
+        android:padding="@dimen/activity_setings_item_padding" >
 
         <TextView
             android:layout_width="0dp"
@@ -65,7 +65,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="Simulate Missing Data"
+            android:text="@string/simulate_missing_data"
             android:textColor="@color/terra_abisso" />
 
         <Switch
@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:switchMinWidth="106dp"
+            android:switchMinWidth="@dimen/activity_setings_switch_min_width"
             android:thumb="@color/terra_abisso" />
     </LinearLayout>
 
@@ -81,7 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp" >
+        android:padding="@dimen/activity_setings_item_padding" >
 
         <TextView
             android:layout_width="0dp"
@@ -89,7 +89,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="Units"
+            android:text="@string/units"
             android:textColor="@color/terra_abisso" />
 
         <Switch
@@ -97,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:switchMinWidth="106dp"
+            android:switchMinWidth="@dimen/activity_setings_switch_min_width"
             android:textOff="@string/temperature_unit_si"
             android:textOn="@string/temperature_unit_us"
             android:thumb="@color/terra_abisso" />

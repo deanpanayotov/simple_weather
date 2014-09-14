@@ -4,14 +4,14 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="24dp" >
+    android:padding="@dimen/activity_about_padding" >
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/created_by"
         android:textColor="@color/terra_abisso"
-        android:textSize="14sp" />
+        android:textSize="@dimen/activity_about_text_size" />
 
     <TextView
         android:id="@+id/mail"
@@ -20,14 +20,14 @@
         android:autoLink="web|email"
         android:text="@string/email"
         android:textColor="@color/terra_abisso"
-        android:textSize="14sp" />
+        android:textSize="@dimen/activity_about_text_size" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/data_provided_by"
         android:textColor="@color/terra_abisso"
-        android:textSize="14sp" />
+        android:textSize="@dimen/activity_about_text_size" />
 
     <TextView
         android:id="@+id/forecast_io"
@@ -36,34 +36,34 @@
         android:autoLink="web|email"
         android:text="@string/forecast_io_website"
         android:textColor="@color/terra_abisso"
-        android:textSize="14sp" />
+        android:textSize="@dimen/activity_about_text_size" />
 
     <TextView
         android:id="@+id/version"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/terra_abisso"
-        android:textSize="14sp" />
+        android:textSize="@dimen/activity_about_text_size" />
 
     <TextView
         android:id="@+id/version_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/terra_abisso"
-        android:textSize="14sp" />
+        android:textSize="@dimen/activity_about_text_size" />
 
     <TextView
         android:id="@+id/installation_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/terra_abisso"
-        android:textSize="14sp" />
+        android:textSize="@dimen/activity_about_text_size" />
 
     <TextView
         android:id="@+id/last_update_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/terra_abisso"
-        android:textSize="14sp" />
+        android:textSize="@dimen/activity_about_text_size" />
 
 </LinearLayout>
