@@ -46,14 +46,11 @@ public class Cache {
 
 	public Cache(long invalidatePeriod, Context context) {
 		dbHelper = new CacheSQLiteHelper(context);
+		database = dbHelper.getWritableDatabase();
 		mInvalidatePeriod = invalidatePeriod;
 		mWorkerThread = new HandlerThread(HANDLER_CACHE_THREAD_NAME);
 		mWorkerThread.start();
 		mHandler = new Handler(mWorkerThread.getLooper());
-	}
-
-	public void open() throws SQLException {
-		database = dbHelper.getWritableDatabase();
 	}
 
 	public void close() {

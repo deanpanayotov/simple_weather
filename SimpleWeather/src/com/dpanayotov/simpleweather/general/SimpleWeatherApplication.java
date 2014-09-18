@@ -52,7 +52,6 @@ public class SimpleWeatherApplication extends Application {
 		mInstance = this;
 		mGson = new Gson();
 		mCache = new Cache(CACHE_INVALIDATE_PERIOD, this);
-		mCache.open();
 	}
 
 	public static SimpleWeatherApplication getInstance() {
