@@ -52,34 +52,42 @@ public class ForecastActivity extends BaseSWActivity implements
 		}
 	}
 
-	protected void getWeatherForLocation(LatLng latlng) {
+	protected void getWeatherForLocation(final LatLng latlng) {
 		GeocodingUtil.getGeocodeName(latlng, new GeocodeListener() {
 
 			@Override
 			public void onGeocodeReceived(String geoCode) {
 				getActionBar().setTitle(geoCode);
+				if (geoCode.startsWith(getString(R.string.unknown_location))) {
+					geoCode = latlng.latitude + "," + latlng.longitude;
+				}
+				RequestManager.sendServerRequest(ForecastActivity.this,
+						FORECAST_REQUEST_TAG, new CurrentForecastRequest(
+								new CurrentForecastParams(
+										(float) latlng.latitude,
+										(float) latlng.longitude),
+								ForecastActivity.this, geoCode),
+						new Response.Listener<ForecastResponse>() {
+
+							@Override
+							public void onResponse(ForecastResponse response) {
+								if (SimpleWeatherApplication
+										.isMissingDataEnabled()) {
+									response.simulateMissingBlocks();
+								}
+								response.convertToProperTime();
+								if (SimpleWeatherApplication
+										.isDataValidationEnabled()) {
+									response.selfValidate();
+								}
+								mForecastResponse = response;
+								((ViewPager) findViewById(R.id.pager))
+										.setAdapter(new ForecastPagerAdapter(
+												getSupportFragmentManager()));
+							}
+						});
 			}
 		});
-		RequestManager.sendServerRequest(this, FORECAST_REQUEST_TAG,
-				new CurrentForecastRequest(new CurrentForecastParams(
-						(float) latlng.latitude, (float) latlng.longitude),
-						this), new Response.Listener<ForecastResponse>() {
-
-					@Override
-					public void onResponse(ForecastResponse response) {
-						if (SimpleWeatherApplication.isMissingDataEnabled()) {
-							response.simulateMissingBlocks();
-						}
-						response.convertToProperTime();
-						if (SimpleWeatherApplication.isDataValidationEnabled()) {
-							response.selfValidate();
-						}
-						mForecastResponse = response;
-						((ViewPager) findViewById(R.id.pager))
-								.setAdapter(new ForecastPagerAdapter(
-										getSupportFragmentManager()));
-					}
-				});
 	}
 
 	private class ForecastPagerAdapter extends FragmentPagerAdapter {

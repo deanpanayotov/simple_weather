@@ -5,6 +5,7 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.Volley;
 import com.dpanayotov.simpleweather.activity.base.BaseSWActivity;
 import com.dpanayotov.simpleweather.api.base.BaseForecastRequest;
+import com.dpanayotov.simpleweather.api.base.CacheGsonGetRequest;
 import com.dpanayotov.simpleweather.util.DateUtil;
 import com.dpanayotov.simpleweather.util.LogUtil;
 
@@ -28,6 +29,18 @@ public class RequestManager {
 			Object tag, BaseForecastRequest<T> request,
 			final Listener<T> listener) {
 
+		if (request instanceof CacheGsonGetRequest) {
+			T response = ((CacheGsonGetRequest<T>) request).checkInCache();
+			if (response != null) {
+				activity.hideProgressDialog();
+				if (listener != null) {
+					LogUtil.d(LogUtil.CACHE_TAG, "cached response aquired!");
+					listener.onResponse(response);
+				}
+				return;
+			}
+		}
+		LogUtil.d(LogUtil.CACHE_TAG, "cached response NOT aquired!");
 		request.setResponseListener(new Listener<T>() {
 
 			@Override
@@ -50,6 +63,7 @@ public class RequestManager {
 		}
 		getRequestQueue().add(request);
 		activity.showProgressDialog();
+
 	}
 
 	private static void printRequestToBeSent(BaseForecastRequest request) {

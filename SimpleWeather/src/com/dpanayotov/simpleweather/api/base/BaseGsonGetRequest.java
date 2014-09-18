@@ -49,15 +49,24 @@ public class BaseGsonGetRequest<T> extends Request<T> {
 
 	@Override
 	protected Response<T> parseNetworkResponse(NetworkResponse response) {
-		if (LogUtil.NETWORKING_DEBUG_ENABLED) {
-			printResponse(response);
-		}
+		onNetworkResponseReceived(response);
 		Reader jsonInputStreamReader = new InputStreamReader(
 				new ByteArrayInputStream(response.data));
 		return Response.success(
 				SimpleWeatherApplication.getGson().fromJson(
 						jsonInputStreamReader, mResponseClass),
 				HttpHeaderParser.parseCacheHeaders(response));
+	}
+
+	/**
+	 * Handles any additional logic before parsing the {@link NetworkResponse}
+	 * 
+	 * @param response
+	 */
+	protected void onNetworkResponseReceived(NetworkResponse response) {
+		if (LogUtil.NETWORKING_DEBUG_ENABLED) {
+			printResponse(response);
+		}
 	}
 
 	private void printResponse(NetworkResponse response) {

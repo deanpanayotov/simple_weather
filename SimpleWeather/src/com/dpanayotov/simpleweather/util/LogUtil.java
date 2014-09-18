@@ -7,6 +7,7 @@ public class LogUtil {
 	public static final boolean JSON_PRETTY_PRINT_ENABLED = true;
 	private static final String DEFAULT_TAG = "SW-DEFAULT";
 	private static final String DEBUG_TAG = "SW-DEBUG";
+	public static final String CACHE_TAG = "SW-CACHE";
 
 	public static final boolean NETWORKING_DEBUG_ENABLED = true;
 	private static final String NETWORKING_TAG = "SW-NETWORKING";

@@ -1,11 +1,13 @@
 package com.dpanayotov.simpleweather.general;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.dpanayotov.simpleweather.db.Cache;
+import com.dpanayotov.simpleweather.util.DateUtil;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class SimpleWeatherApplication extends Application {
 	private static final String SHARED_PREFS_SETTINGS = "com.dpanayotov.simpleweather.general.SHARED_PREFS_SETTINGS";
@@ -13,6 +15,8 @@ public class SimpleWeatherApplication extends Application {
 	private static final String PREFS_KEY_DATA_VALIDATION = "PREFS_KEY_DATA_VALIDATION";
 	private static final String PREFS_KEY_DB_CACHE = "PREFS_KEY_DB_CACHE";
 	private static final String PREFS_KEY_MISSING_DATA = "PREFS_KEY_MISSING_DATA";
+	
+	private static final long CACHE_INVALIDATE_PERIOD = DateUtil.MINUTE * 3;
 
 	private static SimpleWeatherApplication mInstance;
 	private static Gson mGson;
@@ -22,6 +26,7 @@ public class SimpleWeatherApplication extends Application {
 	private static boolean mMissingData;
 	private static UNITS mUnits;
 	private static SharedPreferences mPrefs;
+	private static Cache mCache;
 
 	public enum UNITS {
 		US("us"), SI("si"), CA("ca"), UK("uk");
@@ -37,12 +42,6 @@ public class SimpleWeatherApplication extends Application {
 		}
 	}
 
-	public SimpleWeatherApplication() {
-		mInstance = this;
-		// mGson = new Gson();
-		mGson = new GsonBuilder().setPrettyPrinting().create();
-	}
-	
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -51,6 +50,10 @@ public class SimpleWeatherApplication extends Application {
 		mDataValidation = mPrefs.getBoolean(PREFS_KEY_DATA_VALIDATION, false);
 		mDBCahce = mPrefs.getBoolean(PREFS_KEY_DB_CACHE, false);
 		mMissingData = mPrefs.getBoolean(PREFS_KEY_MISSING_DATA, false);
+		mInstance = this;
+		mGson = new Gson();
+		mCache = new Cache(CACHE_INVALIDATE_PERIOD, this);
+		mCache.open();
 	}
 
 	public static SimpleWeatherApplication getInstance() {
@@ -104,4 +107,7 @@ public class SimpleWeatherApplication extends Application {
 
 	}
 
+	public static Cache getCache() {
+		return mCache;
+	}
 }
