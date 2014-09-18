@@ -4,7 +4,7 @@ import com.dpanayotov.simpleweather.R;
 
 public class WeatherImageUtil {
 	public static final int returnImageResource(String icon) {
-		if(icon==null){
+		if (icon == null) {
 			return 0;
 		}
 		switch (icon) {

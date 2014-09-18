@@ -18,7 +18,7 @@ public class DateUtil {
 	public static final String FORECAST_LIST_FORMAT_DAILY = "dd.MM";
 	public static final String FORECAST_LIST_MIDNIGHT = "00:00";
 	public static final String INSTALLATION_FORMAT = "HH:mm dd.MM.yy";
-	
+
 	/**
 	 * @return a locale specific formatted date string
 	 */

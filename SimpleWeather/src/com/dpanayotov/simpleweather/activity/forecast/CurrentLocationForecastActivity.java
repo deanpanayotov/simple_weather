@@ -53,7 +53,7 @@ public class CurrentLocationForecastActivity extends ForecastActivity {
 			}
 		}
 	};
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -132,7 +132,8 @@ public class CurrentLocationForecastActivity extends ForecastActivity {
 	private void startMapActivityNoLocation() {
 		Intent intent = new Intent(this, MapActivity.class);
 		intent.putExtra(Constants.PARAM_NO_LOCATION, true);
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+				| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		startActivity(intent);
 	}
 

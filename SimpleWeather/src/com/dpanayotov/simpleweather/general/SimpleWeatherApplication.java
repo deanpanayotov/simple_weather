@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import com.dpanayotov.simpleweather.db.Cache;
 import com.dpanayotov.simpleweather.util.DateUtil;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 public class SimpleWeatherApplication extends Application {
 	private static final String SHARED_PREFS_SETTINGS = "com.dpanayotov.simpleweather.general.SHARED_PREFS_SETTINGS";
@@ -15,7 +14,7 @@ public class SimpleWeatherApplication extends Application {
 	private static final String PREFS_KEY_DATA_VALIDATION = "PREFS_KEY_DATA_VALIDATION";
 	private static final String PREFS_KEY_DB_CACHE = "PREFS_KEY_DB_CACHE";
 	private static final String PREFS_KEY_MISSING_DATA = "PREFS_KEY_MISSING_DATA";
-	
+
 	private static final long CACHE_INVALIDATE_PERIOD = DateUtil.MINUTE * 3;
 
 	private static SimpleWeatherApplication mInstance;

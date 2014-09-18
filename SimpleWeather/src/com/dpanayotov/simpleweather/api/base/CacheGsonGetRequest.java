@@ -16,7 +16,7 @@ public abstract class CacheGsonGetRequest<T> extends BaseGsonGetRequest<T> {
 	}
 
 	public abstract void cacheResponse(NetworkResponse response);
-	
+
 	public abstract T checkInCache();
 
 }

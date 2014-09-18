@@ -1,10 +1,10 @@
 package com.dpanayotov.simpleweather.util;
 
-import com.dpanayotov.simpleweather.R;
-
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+
+import com.dpanayotov.simpleweather.R;
 
 public class NetworkUtil {
 	/**
@@ -23,8 +23,8 @@ public class NetworkUtil {
 				&& activeNetwork.isConnectedOrConnecting();
 		return isConnected;
 	}
-	
-	public static void showNetworkDisabledDialog(Context context){
+
+	public static void showNetworkDisabledDialog(Context context) {
 		DialogUtil.showNeutralAlertDialog(context,
 				R.string.alert_title_no_internet,
 				R.string.aler_message_no_internet, null);

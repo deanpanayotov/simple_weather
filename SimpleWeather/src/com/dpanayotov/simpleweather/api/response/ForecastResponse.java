@@ -98,7 +98,7 @@ public class ForecastResponse extends BaseForecastResponse implements
 			return new ForecastResponse[size];
 		}
 	};
-	
+
 	/**
 	 * Applies the changes required in order to achieve a persistent data flow.
 	 */

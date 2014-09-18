@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 
 import com.dpanayotov.simpleweather.R;
 
-
 public class DialogUtil {
 
 	private DialogUtil() {
@@ -39,22 +38,24 @@ public class DialogUtil {
 	 *            - {@link IDialogListener} for handling neutral button click or
 	 *            <code>null</code> if you do not want to handle this action.
 	 */
-	public static void showNeutralAlertDialog(Context context, CharSequence title,
-			CharSequence message, CharSequence neutralButtonText, final IDialogListener listener) {
+	public static void showNeutralAlertDialog(Context context,
+			CharSequence title, CharSequence message,
+			CharSequence neutralButtonText, final IDialogListener listener) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setCancelable(false);
 		builder.setTitle(title);
 		builder.setMessage(message);
-		builder.setNeutralButton(neutralButtonText, new DialogInterface.OnClickListener() {
+		builder.setNeutralButton(neutralButtonText,
+				new DialogInterface.OnClickListener() {
 
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
-				if (listener != null) {
-					listener.onButtonClick(dialog);
-				}
-			}
-		});
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+						if (listener != null) {
+							listener.onButtonClick(dialog);
+						}
+					}
+				});
 
 		builder.create().show();
 	}
@@ -76,8 +77,9 @@ public class DialogUtil {
 	 *            - {@link IDialogListener} for handling neutral button click or
 	 *            <code>null</code> if you do not want to handle this action.
 	 */
-	public static void showNeutralAlertDialog(Context context, CharSequence title,
-			CharSequence message, final IDialogListener listener) {
+	public static void showNeutralAlertDialog(Context context,
+			CharSequence title, CharSequence message,
+			final IDialogListener listener) {
 		showNeutralAlertDialog(context, title, message,
 				context.getString(R.string.alert_neutral_button_text), listener);
 	}
@@ -97,9 +99,10 @@ public class DialogUtil {
 	 *            - {@link IDialogListener} for handling neutral button click or
 	 *            <code>null</code> if you do not want to handle this action.
 	 */
-	public static void showNeutralAlertDialog(Context context, CharSequence message,
-			final IDialogListener listener) {
-		showNeutralAlertDialog(context, context.getString(R.string.alert_title), message,
+	public static void showNeutralAlertDialog(Context context,
+			CharSequence message, final IDialogListener listener) {
+		showNeutralAlertDialog(context,
+				context.getString(R.string.alert_title), message,
 				context.getString(R.string.alert_neutral_button_text), listener);
 	}
 
@@ -121,9 +124,11 @@ public class DialogUtil {
 	 *            - {@link IDialogListener} for handling neutral button click or
 	 *            <code>null</code> if you do not want to handle this action.
 	 */
-	public static void showNeutralAlertDialog(Context context, int titleId, int messageId,
-			int neutralButtonTextId, final IDialogListener listener) {
-		showNeutralAlertDialog(context, context.getText(titleId), context.getText(messageId),
+	public static void showNeutralAlertDialog(Context context, int titleId,
+			int messageId, int neutralButtonTextId,
+			final IDialogListener listener) {
+		showNeutralAlertDialog(context, context.getText(titleId),
+				context.getText(messageId),
 				context.getText(neutralButtonTextId), listener);
 	}
 
@@ -144,10 +149,10 @@ public class DialogUtil {
 	 *            - {@link IDialogListener} for handling neutral button click or
 	 *            <code>null</code> if you do not want to handle this action.
 	 */
-	public static void showNeutralAlertDialog(Context context, int titleId, int messageId,
-			final IDialogListener listener) {
-		showNeutralAlertDialog(context, titleId, messageId, R.string.alert_neutral_button_text,
-				listener);
+	public static void showNeutralAlertDialog(Context context, int titleId,
+			int messageId, final IDialogListener listener) {
+		showNeutralAlertDialog(context, titleId, messageId,
+				R.string.alert_neutral_button_text, listener);
 	}
 
 	/**

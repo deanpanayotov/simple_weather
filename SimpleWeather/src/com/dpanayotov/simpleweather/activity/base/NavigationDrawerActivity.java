@@ -26,6 +26,7 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 
 	private ActionBarDrawerToggle mDrawerToggle;
 	private DrawerLayout mDrawer;
+
 	@Override
 	public void setContentView(int layoutResID) {
 		DrawerLayout fullLayout = (DrawerLayout) getLayoutInflater().inflate(
@@ -103,14 +104,15 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 			break;
 		}
 	}
-	
-	private void startActivityClearStack(Class activityClass){
-		if(this.getClass().equals(activityClass)){
+
+	private void startActivityClearStack(Class activityClass) {
+		if (this.getClass().equals(activityClass)) {
 			mDrawer.closeDrawer(Gravity.LEFT);
 			return;
 		}
 		Intent intent = new Intent(this, activityClass);
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+				| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		startActivity(intent);
 	}
 

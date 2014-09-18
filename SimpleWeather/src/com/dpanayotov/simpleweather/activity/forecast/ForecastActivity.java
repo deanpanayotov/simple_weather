@@ -61,7 +61,8 @@ public class ForecastActivity extends BaseSWActivity implements
 				hideProgressDialog();
 				getActionBar().setTitle(geoCode);
 				if (geoCode.startsWith(getString(R.string.unknown_location))) {
-					geoCode = String.format("%.1f",latlng.latitude) + "," + String.format("%.1f",latlng.longitude);
+					geoCode = String.format("%.1f", latlng.latitude) + ","
+							+ String.format("%.1f", latlng.longitude);
 				}
 				RequestManager.sendServerRequest(ForecastActivity.this,
 						FORECAST_REQUEST_TAG, new CurrentForecastRequest(

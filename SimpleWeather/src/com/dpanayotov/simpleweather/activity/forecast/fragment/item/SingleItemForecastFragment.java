@@ -16,8 +16,10 @@ import com.dpanayotov.simpleweather.util.WeatherImageUtil;
 
 public abstract class SingleItemForecastFragment extends Fragment {
 
-	private static final String PERCENT = SimpleWeatherApplication.getContext().getString(R.string.percent);
-	private static final String BULLET = SimpleWeatherApplication.getContext().getString(R.string.bullet);
+	private static final String PERCENT = SimpleWeatherApplication.getContext()
+			.getString(R.string.percent);
+	private static final String BULLET = SimpleWeatherApplication.getContext()
+			.getString(R.string.bullet);
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

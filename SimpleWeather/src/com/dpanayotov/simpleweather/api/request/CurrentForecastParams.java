@@ -33,7 +33,7 @@ public class CurrentForecastParams extends BaseForecastParams {
 
 	@Override
 	public String[] getExcludedBlocks() {
-		return new String[]{MINUTELY, ALERTS, FLAGS};
+		return new String[] { MINUTELY, ALERTS, FLAGS };
 	}
-	
+
 }

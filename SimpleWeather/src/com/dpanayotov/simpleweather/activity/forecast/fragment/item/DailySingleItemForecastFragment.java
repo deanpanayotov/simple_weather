@@ -14,7 +14,7 @@ public class DailySingleItemForecastFragment extends SingleItemForecastFragment 
 		return dataProvider.getForecastData().getDaily().getData()
 				.get(forecastID);
 	}
-	
+
 	@Override
 	public String getTitle() {
 		return getString(R.string.daily_summary);

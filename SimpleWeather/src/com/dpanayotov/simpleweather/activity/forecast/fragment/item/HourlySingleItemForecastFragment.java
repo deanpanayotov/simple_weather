@@ -15,7 +15,7 @@ public class HourlySingleItemForecastFragment extends
 		return dataProvider.getForecastData().getHourly().getData()
 				.get(forecastID);
 	}
-	
+
 	@Override
 	public String getTitle() {
 		return getString(R.string.hourly_summary);

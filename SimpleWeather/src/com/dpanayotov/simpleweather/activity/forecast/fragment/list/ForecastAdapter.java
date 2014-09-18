@@ -74,7 +74,7 @@ public class ForecastAdapter extends ArrayAdapter<Forecast> {
 					.setImageBitmap(BitmapCirclesUtil
 							.getTemperatureCircle(temperature));
 			((TextView) v.findViewById(R.id.temperature_text)).setText(""
-					+ (int)temperature);
+					+ (int) temperature);
 			((ImageView) v.findViewById(R.id.coluds))
 					.setImageBitmap(BitmapCirclesUtil.getCloudCircle(f
 							.getCloudCover()));

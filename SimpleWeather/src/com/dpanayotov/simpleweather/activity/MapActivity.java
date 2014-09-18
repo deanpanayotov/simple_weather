@@ -38,7 +38,8 @@ public class MapActivity extends BaseSWActivity {
 			}
 		});
 		if (getIntent().getBooleanExtra(Constants.PARAM_NO_LOCATION, false)) {
-			Toast.makeText(this, R.string.no_location, Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, R.string.no_location, Toast.LENGTH_SHORT)
+					.show();
 		}
 	}
 
