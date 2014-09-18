@@ -38,6 +38,8 @@ public class Cache {
 	};
 
 	private void scheduleInvalidateTask() {
+		LogUtil.d(LogUtil.CACHE_TAG, "Scheduling new cleanup task");
+		printAllResponses();
 		mHandler.postDelayed(mInvalidateCache, mInvalidatePeriod);
 		mIsInvalidateTaskScheduled = true;
 	}

@@ -53,13 +53,15 @@ public class ForecastActivity extends BaseSWActivity implements
 	}
 
 	protected void getWeatherForLocation(final LatLng latlng) {
+		showProgressDialog();
 		GeocodingUtil.getGeocodeName(latlng, new GeocodeListener() {
 
 			@Override
 			public void onGeocodeReceived(String geoCode) {
+				hideProgressDialog();
 				getActionBar().setTitle(geoCode);
 				if (geoCode.startsWith(getString(R.string.unknown_location))) {
-					geoCode = latlng.latitude + "," + latlng.longitude;
+					geoCode = String.format("%.1f",latlng.latitude) + "," + String.format("%.1f",latlng.longitude);
 				}
 				RequestManager.sendServerRequest(ForecastActivity.this,
 						FORECAST_REQUEST_TAG, new CurrentForecastRequest(
