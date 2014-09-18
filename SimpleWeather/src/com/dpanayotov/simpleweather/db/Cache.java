@@ -73,7 +73,7 @@ public class Cache {
 		values.put(CacheContract.Responses.COLUMN_RAW_JSON, json);
 		if (database.insert(CacheContract.Responses.TABLE_NAME, null, values) != -1) {
 			mLastInsert = System.currentTimeMillis();
-			if (mIsInvalidateTaskScheduled) {
+			if (!mIsInvalidateTaskScheduled) {
 				scheduleInvalidateTask();
 			}
 			LogUtil.d(LogUtil.CACHE_TAG, "A response was cached!");

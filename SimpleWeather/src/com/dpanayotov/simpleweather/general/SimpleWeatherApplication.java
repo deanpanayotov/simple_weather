@@ -15,7 +15,7 @@ public class SimpleWeatherApplication extends Application {
 	private static final String PREFS_KEY_DB_CACHE = "PREFS_KEY_DB_CACHE";
 	private static final String PREFS_KEY_MISSING_DATA = "PREFS_KEY_MISSING_DATA";
 
-	private static final long CACHE_INVALIDATE_PERIOD = DateUtil.MINUTE * 3;
+	private static final long CACHE_INVALIDATE_PERIOD = DateUtil.MINUTE * 1;
 
 	private static SimpleWeatherApplication mInstance;
 	private static Gson mGson;
