@@ -32,6 +32,8 @@ public class CacheSQLiteHelper extends SQLiteOpenHelper {
 		sb.append(CacheContract.COMMA);
 		// sb.append(" integer, ");
 		sb.append(CacheContract.Responses.COLUMN_RAW_JSON);
+		sb.append(CacheContract.TYPE_TEXT);
+		sb.append(CacheContract.NOT_NULL);
 		sb.append(CacheContract.CLOSE_BRACKET);
 		sb.append(CacheContract.SEMICOLON);
 		// sb.append(");");
