@@ -46,8 +46,8 @@ public class SimpleWeatherApplication extends Application {
 		super.onCreate();
 		mPrefs = getSharedPreferences(SHARED_PREFS_SETTINGS, MODE_PRIVATE);
 		mUnits = UNITS.values()[mPrefs.getInt(PREFS_KEY_UNITS, 0)];
-		mDataValidation = mPrefs.getBoolean(PREFS_KEY_DATA_VALIDATION, false);
-		mDBCahce = mPrefs.getBoolean(PREFS_KEY_DB_CACHE, false);
+		mDataValidation = mPrefs.getBoolean(PREFS_KEY_DATA_VALIDATION, true);
+		mDBCahce = mPrefs.getBoolean(PREFS_KEY_DB_CACHE, true);
 		mMissingData = mPrefs.getBoolean(PREFS_KEY_MISSING_DATA, false);
 		mInstance = this;
 		mGson = new Gson();
