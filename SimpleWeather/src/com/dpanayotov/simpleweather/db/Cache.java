@@ -30,16 +30,14 @@ public class Cache {
 				scheduleInvalidateTask();
 			} else {
 				mIsInvalidateTaskScheduled = false;
-				LogUtil.d(LogUtil.CACHE_TAG, "Invalidate task dismissed");
-				printAllResponses();
+				debug("A new invalidate task was NOT scheduled - db is empty.");
 			}
 			invalidate();
 		}
 	};
 
 	private void scheduleInvalidateTask() {
-		LogUtil.d(LogUtil.CACHE_TAG, "Scheduling new cleanup task");
-		printAllResponses();
+		debug("Scheduling new invalidate task.");
 		mHandler.postDelayed(mInvalidateCache, mInvalidatePeriod);
 		mIsInvalidateTaskScheduled = true;
 	}
@@ -76,12 +74,10 @@ public class Cache {
 			if (!mIsInvalidateTaskScheduled) {
 				scheduleInvalidateTask();
 			}
-			LogUtil.d(LogUtil.CACHE_TAG, "A response was cached!");
-			printAllResponses();
+			debug("A response was cached!");
 			return true;
 		}
-		LogUtil.d(LogUtil.CACHE_TAG, "A response failed to be cached!");
-		printAllResponses();
+		debug("A response failed to be cached!");
 		return false;
 	}
 
@@ -90,8 +86,7 @@ public class Cache {
 				CacheContract.Responses.COLUMN_LOCATION + " = "
 						+ CacheContract.APOSTROPHE + location
 						+ CacheContract.APOSTROPHE, null);
-		LogUtil.d(LogUtil.CACHE_TAG, "A response was deleted!");
-		printAllResponses();
+		debug("A response was deleted!");
 	}
 
 	public void invalidate() {
@@ -100,25 +95,21 @@ public class Cache {
 				CacheContract.Responses.COLUMN_TIMESTAMP + " < "
 						+ (System.currentTimeMillis() - mInvalidatePeriod),
 				null);
-		LogUtil.d(LogUtil.CACHE_TAG, "Database invalidated!");
-		printAllResponses();
+		debug("Database invalidated!");
 	}
 
 	public String getResponse(String location) {
 		Cursor c = database.query(CacheContract.Responses.TABLE_NAME, mColumns,
 				selection(location), null, null, null, null);
 		if (!c.moveToFirst()) {
-			LogUtil.d(LogUtil.CACHE_TAG, "Response not aquired!");
-			printAllResponses();
+			debug("Response NOT aquired from cache!");
 			return null;
 		}
 		if (c.isAfterLast()) {
-			LogUtil.d(LogUtil.CACHE_TAG, "Response not aquired!");
-			printAllResponses();
+			debug("Response NOT aquired from cache!");
 			return null;
 		}
-		LogUtil.d(LogUtil.CACHE_TAG, "Response aquired!");
-		printAllResponses();
+		debug("Response aquired from cache!");
 		return c.getString(0);
 	}
 
@@ -157,4 +148,12 @@ public class Cache {
 					"--------------------------------------");
 		}
 	}
+	
+	public void debug(String message){
+		if(LogUtil.CACHE_DEBUG_ENABLED){
+			LogUtil.d(LogUtil.CACHE_TAG, message);
+			printAllResponses();
+		}
+	}
+	
 }
