@@ -28,19 +28,22 @@ public class RequestManager {
 	public static <T> void sendServerRequest(final BaseSWActivity activity,
 			Object tag, BaseForecastRequest<T> request,
 			final Listener<T> listener) {
-
-		if (request instanceof CacheGsonGetRequest) {
-			T response = ((CacheGsonGetRequest<T>) request).checkInCache();
-			if (response != null) {
-				activity.hideProgressDialog();
-				if (listener != null) {
-					LogUtil.d(LogUtil.CACHE_TAG, "cached response aquired!");
-					listener.onResponse(response);
+		if (SimpleWeatherApplication.isDBCahceEnabled()) {
+			if (request instanceof CacheGsonGetRequest) {
+				T response = ((CacheGsonGetRequest<T>) request).checkInCache();
+				if (response != null) {
+					activity.hideProgressDialog();
+					if (listener != null) {
+						LogUtil.d(LogUtil.CACHE_TAG, "cached response aquired!");
+						listener.onResponse(response);
+					}
+					return;
 				}
-				return;
+			} else {
+				LogUtil.d(LogUtil.CACHE_TAG, "cached response NOT aquired!");
+				SimpleWeatherApplication.getCache().printAllResponses();
 			}
 		}
-		LogUtil.d(LogUtil.CACHE_TAG, "cached response NOT aquired!");
 		request.setResponseListener(new Listener<T>() {
 
 			@Override
