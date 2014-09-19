@@ -26,9 +26,10 @@ public class CurrentForecastRequest extends
 
 	@Override
 	public void cacheResponse(NetworkResponse response) {
-		SimpleWeatherApplication.getCache().insertResponse(mLocation,
-				System.currentTimeMillis(), new String(response.data));
-		LogUtil.d(LogUtil.CACHE_TAG, "response cached");
+		if (SimpleWeatherApplication.isDBCahceEnabled()) {
+			SimpleWeatherApplication.getCache().insertResponse(mLocation,
+					System.currentTimeMillis(), new String(response.data));
+		}
 	}
 
 	@Override
