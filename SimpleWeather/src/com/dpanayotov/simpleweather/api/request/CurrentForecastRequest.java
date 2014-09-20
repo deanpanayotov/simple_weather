@@ -5,7 +5,6 @@ import com.dpanayotov.simpleweather.activity.base.BaseSWActivity;
 import com.dpanayotov.simpleweather.api.base.BaseForecastRequest;
 import com.dpanayotov.simpleweather.api.response.ForecastResponse;
 import com.dpanayotov.simpleweather.general.SimpleWeatherApplication;
-import com.dpanayotov.simpleweather.util.LogUtil;
 
 public class CurrentForecastRequest extends
 		BaseForecastRequest<ForecastResponse> {
@@ -18,18 +17,9 @@ public class CurrentForecastRequest extends
 	}
 
 	@Override
-	protected void onNetworkResponseReceived(NetworkResponse response) {
-		super.onNetworkResponseReceived(response);
+	public void cacheResponse(NetworkResponse response) {
 		SimpleWeatherApplication.getCache().insertResponse(mLocation,
 				System.currentTimeMillis(), new String(response.data));
-	}
-
-	@Override
-	public void cacheResponse(NetworkResponse response) {
-		if (SimpleWeatherApplication.isDBCahceEnabled()) {
-			SimpleWeatherApplication.getCache().insertResponse(mLocation,
-					System.currentTimeMillis(), new String(response.data));
-		}
 	}
 
 	@Override
