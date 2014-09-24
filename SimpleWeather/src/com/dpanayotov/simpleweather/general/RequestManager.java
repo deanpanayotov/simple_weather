@@ -4,7 +4,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.Volley;
 import com.dpanayotov.simpleweather.activity.base.BaseSWActivity;
-import com.dpanayotov.simpleweather.api.base.BaseForecastRequest;
+import com.dpanayotov.simpleweather.api.base.BaseGsonGetRequest;
 import com.dpanayotov.simpleweather.api.base.CacheGsonGetRequest;
 import com.dpanayotov.simpleweather.util.DateUtil;
 import com.dpanayotov.simpleweather.util.LogUtil;
@@ -26,7 +26,7 @@ public class RequestManager {
 	}
 
 	public static <T> void sendServerRequest(final BaseSWActivity activity,
-			Object tag, BaseForecastRequest<T> request,
+			Object tag, BaseGsonGetRequest<T> request,
 			final Listener<T> listener) {
 		if (SimpleWeatherApplication.isDBCahceEnabled()
 				&& (request instanceof CacheGsonGetRequest)) {
@@ -65,7 +65,7 @@ public class RequestManager {
 
 	}
 
-	private static void printRequestToBeSent(BaseForecastRequest request) {
+	private static void printRequestToBeSent(BaseGsonGetRequest<?> request) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("=============[REQUEST]=============");
 		sb.append("\n");

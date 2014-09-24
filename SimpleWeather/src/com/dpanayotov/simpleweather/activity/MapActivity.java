@@ -41,10 +41,5 @@ public class MapActivity extends BaseSWActivity {
 			Toast.makeText(this, R.string.no_location, Toast.LENGTH_SHORT)
 					.show();
 		}
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-	}
+	}	
 }

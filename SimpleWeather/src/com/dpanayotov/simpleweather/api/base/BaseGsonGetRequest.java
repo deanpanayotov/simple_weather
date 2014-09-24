@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.dpanayotov.simpleweather.activity.base.BaseSWActivity;
@@ -31,8 +32,8 @@ public class BaseGsonGetRequest<T> extends Request<T> {
 	private long mTimestamp;
 
 	public BaseGsonGetRequest(String url, Class<T> responseClass,
-			BaseSWActivity activity) {
-		super(Method.GET, url, new BaseForecastErrorListener(activity, url));
+			BaseSWActivity activity, ErrorListener errorListener) {
+		super(Method.GET, url, errorListener);
 		mResponseClass = responseClass;
 		mUrl = url;
 		mTimestamp = System.currentTimeMillis();

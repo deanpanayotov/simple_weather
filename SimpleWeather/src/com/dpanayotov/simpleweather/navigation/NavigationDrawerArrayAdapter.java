@@ -44,8 +44,9 @@ public class NavigationDrawerArrayAdapter extends
 			holder.txtTitle = (TextView) convertView.findViewById(R.id.text);
 			holder.imageView = (ImageView) convertView.findViewById(R.id.image);
 			convertView.setTag(holder);
-		} else
+		} else {
 			holder = (ViewHolder) convertView.getTag();
+		}
 
 		holder.txtTitle.setText(rowItem.getTextResourceId());
 		holder.imageView.setImageResource(rowItem.getImageResourceId());
