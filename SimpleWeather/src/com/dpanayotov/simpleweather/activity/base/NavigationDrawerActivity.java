@@ -75,7 +75,6 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 		drawer.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
-
 	}
 
 	/**

@@ -25,7 +25,7 @@ public class CacheContract {
 	public static final String BIGGER_THAN = " > ";
 	public static final String QUESTION_MARK = "?";
 
-	public static abstract class Responses implements BaseColumns {
+	public static class Responses implements BaseColumns {
 		public static final String TABLE_NAME = "responses";
 		public static final String COLUMN_LOCATION = "location";
 		public static final String COLUMN_TIMESTAMP = "timestamp";

@@ -25,7 +25,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_marginBottom="@dimen/fragment_single_item_forecast_rectangle_margin"
             android:layout_marginTop="@dimen/fragment_single_item_forecast_rectangle_margin"
             android:background="@color/terra_terra"
@@ -43,7 +42,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:orientation="vertical"
                 android:paddingBottom="@dimen/fragment_single_item_forecast_rectangle_padding"
                 android:paddingRight="@dimen/fragment_single_item_forecast_icon_paddimg"
@@ -88,7 +86,7 @@
             android:id="@+id/wind_speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:gravity="center"
             android:text="@string/wind_speed_placeholder"
             android:textSize="@dimen/single_item_forecast_text_size" />
 
@@ -96,7 +94,7 @@
             android:id="@+id/cloud_cover"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:gravity="center"
             android:text="@string/cloud_cover_placeholder"
             android:textSize="@dimen/single_item_forecast_text_size" />
 
@@ -104,7 +102,7 @@
             android:id="@+id/humitidy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:gravity="center"
             android:text="@string/humitidy_placeholder"
             android:textSize="@dimen/single_item_forecast_text_size" />
     </LinearLayout>

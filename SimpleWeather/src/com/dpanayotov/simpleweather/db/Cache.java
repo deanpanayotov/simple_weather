@@ -3,7 +3,6 @@ package com.dpanayotov.simpleweather.db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -49,10 +48,6 @@ public class Cache {
 		mWorkerThread = new HandlerThread(HANDLER_CACHE_THREAD_NAME);
 		mWorkerThread.start();
 		mHandler = new Handler(mWorkerThread.getLooper());
-	}
-
-	public void close() {
-		dbHelper.close();
 	}
 
 	/**
