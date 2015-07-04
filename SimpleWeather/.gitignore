@@ -16,7 +16,7 @@ gen/
 .gradle/
 build/
 
-# Idea
+# Android Studio
 .idea/libraries/
 .idea/workspace.xml
 .idea/tasks.xml
@@ -28,6 +28,7 @@ build/
 .idea/modules.xml
 .idea/scopes/scope_settings.xml
 .idea/vcs.xml
+*.iml
 
 # Local configuration file (sdk path, etc)
 local.properties
