@@ -24,6 +24,7 @@ public class BaseSWActivity extends NavigationDrawerActivity {
 		super.setContentView(fullLayout);
 	}
 
+	@Override
 	public void setContentView(View view) {
 		LinearLayout fullLayout = (LinearLayout) getLayoutInflater().inflate(
 				R.layout.activity_sw_base, null);
