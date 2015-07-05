@@ -18,9 +18,9 @@ public class BaseSWActivity extends NavigationDrawerActivity {
 	public void setContentView(int layoutResID) {
 		LinearLayout fullLayout = (LinearLayout) getLayoutInflater().inflate(
 				R.layout.activity_sw_base, null);
-		FrameLayout actContent = (FrameLayout) fullLayout
+		FrameLayout actualContent = (FrameLayout) fullLayout
 				.findViewById(R.id.content_frame);
-		getLayoutInflater().inflate(layoutResID, actContent, true);
+		getLayoutInflater().inflate(layoutResID, actualContent, true);
 		super.setContentView(fullLayout);
 	}
 
@@ -28,9 +28,9 @@ public class BaseSWActivity extends NavigationDrawerActivity {
 	public void setContentView(View view) {
 		LinearLayout fullLayout = (LinearLayout) getLayoutInflater().inflate(
 				R.layout.activity_sw_base, null);
-		FrameLayout actContent = (FrameLayout) fullLayout
+		FrameLayout actualContent = (FrameLayout) fullLayout
 				.findViewById(R.id.content_frame);
-		actContent.addView(view);
+		actualContent.addView(view);
 		super.setContentView(fullLayout);
 	}
 

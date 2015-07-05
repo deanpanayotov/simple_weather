@@ -3,9 +3,9 @@ package com.dpanayotov.simpleweather.activity.base;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Gravity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -52,10 +52,10 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 	/**
 	 * Sets up the Navigation Drawer
 	 * 
-	 * @param drawer
+	 * @param drawerLayout
 	 */
-	private void setUpDrawer(DrawerLayout drawer) {
-		mDrawer = drawer;
+	private void setUpDrawer(DrawerLayout drawerLayout) {
+		mDrawer = drawerLayout;
 		ListView drawerList = ((ListView) findViewById(R.id.left_drawer));
 		drawerList.setAdapter(new NavigationDrawerArrayAdapter(this,
 				NavigationDrawerContent.getContent()));
@@ -67,12 +67,10 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 				selectItem(position);
 			}
 		});
-		mDrawerToggle = new ActionBarDrawerToggle(this, drawer,
-				R.drawable.ic_drawer_terra, R.string.drawer_open,
-				R.string.drawer_close) {
+		mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close) {
 		};
-		drawer.setDrawerListener(mDrawerToggle);
-		drawer.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
+		drawerLayout.setDrawerListener(mDrawerToggle);
+		drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
 	}
@@ -106,7 +104,7 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 
 	private void startActivityClearStack(Class activityClass) {
 		if (this.getClass().equals(activityClass)) {
-			mDrawer.closeDrawer(Gravity.LEFT);
+			mDrawer.closeDrawer(GravityCompat.START);
 			return;
 		}
 		Intent intent = new Intent(this, activityClass);
@@ -129,10 +127,7 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (mDrawerToggle.onOptionsItemSelected(item)) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+		return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
 	}
 
 }
