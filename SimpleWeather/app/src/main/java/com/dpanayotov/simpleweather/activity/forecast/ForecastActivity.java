@@ -44,7 +44,7 @@ public class ForecastActivity extends BaseSWActivity implements
 					.setAdapter(new ForecastPagerAdapter(
 							getSupportFragmentManager()));
 		} else {
-			LatLng latlng = (LatLng) getIntent().getParcelableExtra(
+			LatLng latlng = getIntent().getParcelableExtra(
 					Constants.PARAM_LATLNG);
 			if (latlng != null) {
 				getWeatherForLocation(latlng);

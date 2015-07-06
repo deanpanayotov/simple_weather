@@ -31,9 +31,9 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 	public void setContentView(int layoutResID) {
 		DrawerLayout fullLayout = (DrawerLayout) getLayoutInflater().inflate(
 				R.layout.activity_base_navigation_drawer, null);
-		FrameLayout actContent = (FrameLayout) fullLayout
+		FrameLayout actualContent = (FrameLayout) fullLayout
 				.findViewById(R.id.content_frame);
-		getLayoutInflater().inflate(layoutResID, actContent, true);
+		getLayoutInflater().inflate(layoutResID, actualContent, true);
 		super.setContentView(fullLayout);
 		setUpDrawer(fullLayout);
 	}
@@ -42,9 +42,9 @@ public abstract class NavigationDrawerActivity extends ProcessDialogActivity {
 	public void setContentView(View view) {
 		DrawerLayout fullLayout = (DrawerLayout) getLayoutInflater().inflate(
 				R.layout.activity_base_navigation_drawer, null);
-		FrameLayout actContent = (FrameLayout) fullLayout
+		FrameLayout actualContent = (FrameLayout) fullLayout
 				.findViewById(R.id.content_frame);
-		actContent.addView(view);
+		actualContent.addView(view);
 		super.setContentView(fullLayout);
 		setUpDrawer(fullLayout);
 	}
