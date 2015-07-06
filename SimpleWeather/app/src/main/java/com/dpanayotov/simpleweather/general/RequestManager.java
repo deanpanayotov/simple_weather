@@ -66,19 +66,12 @@ public class RequestManager {
 	}
 
 	private static void printRequestToBeSent(BaseGsonGetRequest<?> request) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("=============[REQUEST]=============");
-		sb.append("\n");
-		sb.append("URL: ");
-		sb.append(request.getUrl());
-		sb.append("\n");
-		sb.append("timestamp: ");
-		sb.append(DateUtil.getFormatedDate(request.getmTimestamp(),
-				DateUtil.NETWORKING_DEBUG_TIMESTAMP_FORMAT));
-		sb.append("\n");
-		sb.append("------------------------------------");
-
-		LogUtil.n(sb.toString());
-
+		LogUtil.n(
+				"=============[REQUEST]=============\n" +
+				"URL: " + request.getUrl() + "\n" +
+				"timestamp: " + DateUtil.getFormatedDate(request.getmTimestamp(),
+				DateUtil.NETWORKING_DEBUG_TIMESTAMP_FORMAT) + "\n" +
+				"------------------------------------\n"
+		);
 	}
 }
