@@ -14,7 +14,6 @@ public class SettingsActivity extends BaseSWActivity {
 	Switch mCacheSwitch;
 	Switch mMissingDataSwitch;
 	Switch mUnitsSwitch;
-	SimpleWeatherApplication app;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +30,14 @@ public class SettingsActivity extends BaseSWActivity {
 		mCacheSwitch = (Switch) findViewById(R.id.switch_cache);
 		mMissingDataSwitch = (Switch) findViewById(R.id.switch_missing_data);
 		mUnitsSwitch = (Switch) findViewById(R.id.switch_units);
-		app = SimpleWeatherApplication.getInstance();
 	}
 
 	private void setControlsState() {
-		mValidationSwitch.setChecked(app.isDataValidationEnabled());
-		mCacheSwitch.setChecked(app.isDBCahceEnabled());
-		mMissingDataSwitch.setChecked(app.isMissingDataEnabled());
+		mValidationSwitch.setChecked(SimpleWeatherApplication.isDataValidationEnabled());
+		mCacheSwitch.setChecked(SimpleWeatherApplication.isDBCahceEnabled());
+		mMissingDataSwitch.setChecked(SimpleWeatherApplication.isMissingDataEnabled());
 		mUnitsSwitch
-				.setChecked(app.getUnits() == SimpleWeatherApplication.UNITS.US);
+				.setChecked(SimpleWeatherApplication.getUnits() == SimpleWeatherApplication.UNITS.US);
 	}
 
 	private void setOnClickListeners() {
@@ -49,7 +47,7 @@ public class SettingsActivity extends BaseSWActivity {
 					@Override
 					public void onCheckedChanged(CompoundButton buttonView,
 							boolean isChecked) {
-						app.setDataValidation(isChecked);
+						SimpleWeatherApplication.setDataValidation(isChecked);
 					}
 				});
 		mCacheSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -57,7 +55,7 @@ public class SettingsActivity extends BaseSWActivity {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				app.setDBCahceEnabled(isChecked);
+				SimpleWeatherApplication.setDBCahceEnabled(isChecked);
 
 			}
 		});
@@ -67,7 +65,7 @@ public class SettingsActivity extends BaseSWActivity {
 					@Override
 					public void onCheckedChanged(CompoundButton buttonView,
 							boolean isChecked) {
-						app.setMissingData(isChecked);
+						SimpleWeatherApplication.setMissingData(isChecked);
 					}
 				});
 		mUnitsSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -75,7 +73,7 @@ public class SettingsActivity extends BaseSWActivity {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				app.setUnits((isChecked ? SimpleWeatherApplication.UNITS.US
+				SimpleWeatherApplication.setUnits((isChecked ? SimpleWeatherApplication.UNITS.US
 						: SimpleWeatherApplication.UNITS.SI).ordinal());
 			}
 		});
