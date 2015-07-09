@@ -10,15 +10,21 @@ import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.activity.base.BaseSWActivity;
 import com.dpanayotov.simpleweather.util.DateUtil;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class AboutActivity extends BaseSWActivity {
+
+	@Bind(R.id.version) TextView version;
+	@Bind(R.id.version_code) TextView versionCode;
+	@Bind(R.id.installation_time) TextView installationTime;
+	@Bind(R.id.last_update_time) TextView lastUpdateTime;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_about);
-		TextView version = (TextView) findViewById(R.id.version);
-		TextView versionCode = (TextView) findViewById(R.id.version_code);
-		TextView installationTime = (TextView) findViewById(R.id.installation_time);
-		TextView lastUpdateTime = (TextView) findViewById(R.id.last_update_time);
+		ButterKnife.bind(this);
 
 		PackageInfo packageInfo = null;
 		try {
@@ -39,13 +45,11 @@ public class AboutActivity extends BaseSWActivity {
 			lastUpdateTime.setText(getString(R.string.last_updated)
 					+ DateUtil.getFormatedDate(packageInfo.lastUpdateTime,
 							DateUtil.INSTALLATION_FORMAT));
-
 		} else {
 			version.setVisibility(View.GONE);
 			versionCode.setVisibility(View.GONE);
 			installationTime.setVisibility(View.GONE);
 			lastUpdateTime.setVisibility(View.GONE);
-
 		}
 
 	}

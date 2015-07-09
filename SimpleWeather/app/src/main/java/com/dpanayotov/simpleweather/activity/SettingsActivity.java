@@ -9,27 +9,23 @@ import com.dpanayotov.simpleweather.R;
 import com.dpanayotov.simpleweather.activity.base.BaseSWActivity;
 import com.dpanayotov.simpleweather.general.SimpleWeatherApplication;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class SettingsActivity extends BaseSWActivity {
-	Switch mValidationSwitch;
-	Switch mCacheSwitch;
-	Switch mMissingDataSwitch;
-	Switch mUnitsSwitch;
+
+	@Bind(R.id.switch_validation) Switch mValidationSwitch;
+	@Bind(R.id.switch_cache) Switch mCacheSwitch;
+	@Bind(R.id.switch_missing_data) Switch mMissingDataSwitch;
+	@Bind(R.id.switch_units) Switch mUnitsSwitch;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
-		initializeControls();
+		ButterKnife.bind(this);
 		setControlsState();
-		setOnClickListeners();
-
-	}
-
-	private void initializeControls() {
-		mValidationSwitch = (Switch) findViewById(R.id.switch_validation);
-		mCacheSwitch = (Switch) findViewById(R.id.switch_cache);
-		mMissingDataSwitch = (Switch) findViewById(R.id.switch_missing_data);
-		mUnitsSwitch = (Switch) findViewById(R.id.switch_units);
 	}
 
 	private void setControlsState() {
@@ -40,43 +36,21 @@ public class SettingsActivity extends BaseSWActivity {
 				.setChecked(SimpleWeatherApplication.getUnits() == SimpleWeatherApplication.UNITS.US);
 	}
 
-	private void setOnClickListeners() {
-		mValidationSwitch
-				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView,
-							boolean isChecked) {
-						SimpleWeatherApplication.setDataValidation(isChecked);
-					}
-				});
-		mCacheSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				SimpleWeatherApplication.setDBCahceEnabled(isChecked);
-
-			}
-		});
-		mMissingDataSwitch
-				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView,
-							boolean isChecked) {
-						SimpleWeatherApplication.setMissingData(isChecked);
-					}
-				});
-		mUnitsSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				SimpleWeatherApplication.setUnits((isChecked ? SimpleWeatherApplication.UNITS.US
-						: SimpleWeatherApplication.UNITS.SI).ordinal());
-			}
-		});
+	@OnClick(R.id.switch_validation)
+	public void validationSwitchOnClick(Switch switchView){
+		SimpleWeatherApplication.setDataValidation(switchView.isChecked());
 	}
-
+	@OnClick(R.id.switch_cache)
+	public void cacheSwitchOnClick(Switch switchView){
+		SimpleWeatherApplication.setDBCahceEnabled(switchView.isChecked());
+	}
+	@OnClick(R.id.switch_missing_data)
+	public void missingDataSwitchOnClick(Switch switchView){
+		SimpleWeatherApplication.setMissingData(switchView.isChecked());
+	}
+	@OnClick(R.id.switch_units)
+	public void unitsSwitchOnClick(Switch switchView){
+		SimpleWeatherApplication.setUnits((switchView.isChecked() ? SimpleWeatherApplication.UNITS.US
+				: SimpleWeatherApplication.UNITS.SI).ordinal());
+	}
 }
