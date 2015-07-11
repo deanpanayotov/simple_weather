@@ -13,6 +13,9 @@ import android.widget.TextView;
 
 import com.dpanayotov.simpleweather.R;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class NavigationDrawerArrayAdapter extends
 		ArrayAdapter<NavigationDrawerItem> {
 	Context mContext;
@@ -23,33 +26,33 @@ public class NavigationDrawerArrayAdapter extends
 		mContext = context;
 	}
 
-	/**
-	 * private view holder class
-	 */
-	private class ViewHolder {
-		ImageView imageView;
-		TextView txtTitle;
+	static class ViewHolder {
+		@Bind(R.id.text) TextView title;
+        @Bind(R.id.image) ImageView image;
+
+
+        public ViewHolder(View view){
+            ButterKnife.bind(this, view);
+        }
+
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder holder = null;
+		ViewHolder holder;
 		NavigationDrawerItem rowItem = getItem(position);
 
-		LayoutInflater mInflater = (LayoutInflater) mContext
-				.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 		if (convertView == null) {
-			convertView = mInflater.inflate(
-					R.layout.layout_navigation_drawer_item, null);
-			holder = new ViewHolder();
-			holder.txtTitle = (TextView) convertView.findViewById(R.id.text);
-			holder.imageView = (ImageView) convertView.findViewById(R.id.image);
+			convertView = ((LayoutInflater) mContext.
+                    getSystemService(Activity.LAYOUT_INFLATER_SERVICE))
+                    .inflate(R.layout.layout_navigation_drawer_item, null);
+			holder = new ViewHolder(convertView);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.txtTitle.setText(rowItem.getTextResourceId());
-		holder.imageView.setImageResource(rowItem.getImageResourceId());
+		holder.title.setText(rowItem.getTextResourceId());
+		holder.image.setImageResource(rowItem.getImageResourceId());
 
 		return convertView;
 	}

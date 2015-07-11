@@ -23,9 +23,14 @@ import com.dpanayotov.simpleweather.util.GeocodingUtil.GeocodeListener;
 import com.dpanayotov.simpleweather.util.LogUtil;
 import com.google.android.gms.maps.model.LatLng;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class ForecastActivity extends BaseSWActivity implements
 		IForecastDataProvider {
 	private String FORECAST_REQUEST_TAG = "FORECAST_REQUEST_TAG";
+
+    @Bind(R.id.pager) ViewPager pager;
 
 	private ForecastResponse mForecastResponse;
 
@@ -33,6 +38,7 @@ public class ForecastActivity extends BaseSWActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forecast);
+        ButterKnife.bind(this);
 		if (savedInstanceState != null) {
 			mForecastResponse = savedInstanceState
 					.getParcelable(Constants.PARAM_FULL_FORECAST_RESPONSE);
@@ -40,9 +46,7 @@ public class ForecastActivity extends BaseSWActivity implements
 					.setTitle(
 							savedInstanceState
 									.getString(Constants.PARAM_LOCATION_NAME));
-			((ViewPager) findViewById(R.id.pager))
-					.setAdapter(new ForecastPagerAdapter(
-							getSupportFragmentManager()));
+			pager.setAdapter(new ForecastPagerAdapter(getSupportFragmentManager()));
 		} else {
 			LatLng latlng = getIntent().getParcelableExtra(
 					Constants.PARAM_LATLNG);
@@ -84,8 +88,7 @@ public class ForecastActivity extends BaseSWActivity implements
 									response.selfValidate();
 								}
 								mForecastResponse = response;
-								((ViewPager) findViewById(R.id.pager))
-										.setAdapter(new ForecastPagerAdapter(
+								pager.setAdapter(new ForecastPagerAdapter(
 												getSupportFragmentManager()));
 							}
 						});

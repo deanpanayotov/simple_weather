@@ -76,10 +76,10 @@ public abstract class ForecastFragment extends Fragment {
 	}
 
     @OnItemClick(R.id.list)
-    public void listOnItemClick(long id){
+    public void listOnItemClick(long id) {
         Intent intent = new Intent(getActivity(), getSingleForecastActivity());
         intent.putExtra(Constants.PARAM_FULL_FORECAST_RESPONSE, mResponse);
-        intent.putExtra(Constants.PARAM_FORECAST_ID,(int) id);
+        intent.putExtra(Constants.PARAM_FORECAST_ID, (int) id);
         intent.putExtra(Constants.PARAM_LOCATION_NAME, getActivity().getActionBar().getTitle());
         startActivity(intent);
     }

@@ -15,8 +15,14 @@ import com.dpanayotov.simpleweather.api.response.ForecastResponse;
 import com.dpanayotov.simpleweather.util.Constants;
 import com.dpanayotov.simpleweather.util.DateUtil;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public abstract class SingleForecastViewActivity extends BaseSWActivity
 		implements IForecastDataProvider {
+
+    @Bind(R.id.pager) ViewPager pager;
+
 	private ForecastResponse mForecastResponse;
 	private List<Forecast> forecasts;
 
@@ -29,6 +35,7 @@ public abstract class SingleForecastViewActivity extends BaseSWActivity
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forecast);
+        ButterKnife.bind(this);
 		mForecastResponse = getIntent().getParcelableExtra(
 				Constants.PARAM_FULL_FORECAST_RESPONSE);
 		String title = getIntent()
@@ -39,7 +46,6 @@ public abstract class SingleForecastViewActivity extends BaseSWActivity
 		forecasts = getForecasts();
 		SingleItemForecastPagerAdapter adapter = new SingleItemForecastPagerAdapter(
 				getSupportFragmentManager());
-		ViewPager pager = (ViewPager) findViewById(R.id.pager);
 		pager.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
 		pager.setCurrentItem(getIntent().getIntExtra(
