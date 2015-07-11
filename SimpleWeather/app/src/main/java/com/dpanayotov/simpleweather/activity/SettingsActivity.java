@@ -1,8 +1,6 @@
 package com.dpanayotov.simpleweather.activity;
 
 import android.os.Bundle;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 
 import com.dpanayotov.simpleweather.R;

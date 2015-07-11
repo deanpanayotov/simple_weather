@@ -2,6 +2,7 @@ package com.dpanayotov.simpleweather.activity.forecast.fragment.item;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,9 @@ import com.dpanayotov.simpleweather.general.SimpleWeatherApplication;
 import com.dpanayotov.simpleweather.util.UnitUtil;
 import com.dpanayotov.simpleweather.util.WeatherImageUtil;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public abstract class SingleItemForecastFragment extends Fragment {
 
 	private static final String PERCENT = SimpleWeatherApplication.getContext()
@@ -21,11 +25,25 @@ public abstract class SingleItemForecastFragment extends Fragment {
 	private static final String BULLET = SimpleWeatherApplication.getContext()
 			.getString(R.string.bullet);
 
+    @Bind(R.id.data) View data;
+    @Bind(R.id.no_data) View noData;
+
+    @Bind(R.id.summary) TextView summary;
+    @Bind(R.id.icon) ImageView icon;
+    @Bind(R.id.temperature) TextView temperature;
+    @Bind(R.id.precip_intensity) TextView precipIntensity;
+    @Bind(R.id.precip_probability) TextView precipProbability;
+    @Bind(R.id.wind_speed) TextView windSpeed;
+    @Bind(R.id.cloud_cover) TextView cloudCover;
+    @Bind(R.id.humitidy) TextView humitidy;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View root = inflater.inflate(R.layout.fragment_single_item_forecast,
 				container, false);
+        ButterKnife.bind(this, root);
+        Log.d("test41", "onCreateView");
 		return root;
 
 	}
@@ -33,6 +51,7 @@ public abstract class SingleItemForecastFragment extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+        Log.d("test41", "onActivityCreated");
 		fillInData();
 	}
 
@@ -43,11 +62,11 @@ public abstract class SingleItemForecastFragment extends Fragment {
 	private void fillInData() {
 		if (getForecast().getIcon() == null
 				&& getForecast().getSummary() == null) {
-			getView().findViewById(R.id.data).setVisibility(View.GONE);
-			getView().findViewById(R.id.no_data).setVisibility(View.VISIBLE);
+			data.setVisibility(View.GONE);
+			noData.setVisibility(View.VISIBLE);
 		} else {
-			getView().findViewById(R.id.data).setVisibility(View.VISIBLE);
-			getView().findViewById(R.id.no_data).setVisibility(View.GONE);
+			data.setVisibility(View.VISIBLE);
+			noData.setVisibility(View.GONE);
 
 			String sTemperature = BULLET + getForecastTemperature()
 					+ UnitUtil.getTemperatureUnit();
@@ -67,23 +86,8 @@ public abstract class SingleItemForecastFragment extends Fragment {
 					+ String.format("%.1f", 100 * getForecast().getHumidity())
 					+ PERCENT;
 
-			TextView summary = (TextView) getView().findViewById(R.id.summary);
-			ImageView image = (ImageView) getView().findViewById(R.id.icon);
-			TextView temperature = (TextView) getView().findViewById(
-					R.id.temperature);
-			TextView precipIntensity = (TextView) getView().findViewById(
-					R.id.precip_intensity);
-			TextView precipProbability = (TextView) getView().findViewById(
-					R.id.precip_probability);
-			TextView windSpeed = (TextView) getView().findViewById(
-					R.id.wind_speed);
-			TextView cloudCover = (TextView) getView().findViewById(
-					R.id.cloud_cover);
-			TextView humitidy = (TextView) getView()
-					.findViewById(R.id.humitidy);
-
 			summary.setText(getTitle() + getForecast().getSummary());
-			image.setImageResource(WeatherImageUtil
+			icon.setImageResource(WeatherImageUtil
 					.returnImageResource(getForecast().getIcon()));
 			temperature.setText(sTemperature);
 			precipIntensity.setText(sPercipIntensity);
