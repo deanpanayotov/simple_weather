@@ -89,7 +89,7 @@
             </FrameLayout>
 
             <ImageView
-                android:id="@+id/coluds"
+                android:id="@+id/clouds"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

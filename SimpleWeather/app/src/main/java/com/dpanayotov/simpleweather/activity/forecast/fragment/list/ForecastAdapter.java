@@ -66,7 +66,7 @@ public class ForecastAdapter extends ArrayAdapter<Forecast> {
             }
             holder.temperature.setImageBitmap(BitmapCirclesUtil.getTemperatureCircle(temperature));
             holder.temperatureText.setText("" + (int) temperature);
-            holder.coluds.setImageBitmap(BitmapCirclesUtil.getCloudCircle(forecast.getCloudCover()));
+            holder.clouds.setImageBitmap(BitmapCirclesUtil.getCloudCircle(forecast.getCloudCover()));
             holder.wind.setImageBitmap(BitmapCirclesUtil.getWindCircle(forecast.getWindSpeed()));
         }
         return convertView;
@@ -83,7 +83,7 @@ public class ForecastAdapter extends ArrayAdapter<Forecast> {
         @Bind(R.id.precip) ImageView precip;
         @Bind(R.id.temperature) ImageView temperature;
         @Bind(R.id.temperature_text) TextView temperatureText;
-        @Bind(R.id.coluds) ImageView coluds;
+        @Bind(R.id.clouds) ImageView clouds;
         @Bind(R.id.wind) ImageView wind;
 
         public ViewHolder(View view){
